@@ -3,6 +3,8 @@ import os
 from tqdm import tqdm
 import csv
 
+import threading
+
 from netpress import PCAPextractor
 
 # Import the config file
@@ -28,9 +30,6 @@ for i in tqdm(config.sections()):
             # Extract information from the PCAP file
             info = PCAPextractor.extract_pcap_info(file_path, label)
 
-            # Encode information
-            
-
             if info:
 
                 # Check if the output folder exists
@@ -49,6 +48,11 @@ for i in tqdm(config.sections()):
                             "HT Capabilities",
                             "Extended Capabilities",
                             "Vendor Specific Tags",
+                            "SSID",
+                            "Supported Rates",
+                            "Extended Supported Rates",
+                            "VHT Capabilities",
+                            "HE Capabilities",
                             "Label",
                         ]
                     )

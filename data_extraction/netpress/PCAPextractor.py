@@ -16,31 +16,42 @@ def extract_pcap_info(file_path, label):
 
         for packet in packets:
             # Timestamp
-            timestamp = extractTimestamp(packet)
+            timestamp = utils.extractTimestamp(packet)
 
             # Source MAC address
-            mac_address = extractMAC(packet)
+            mac_address = utils.extractMAC(packet)
 
             # Channel number
-            channel = extractChannel(packet)
+            channel = utils.extractChannel(packet)
 
             # DS Parameter Set channel number
-            ds_channel = extractDSChannel(packet)
+            ds_channel = utils.extractDSChannel(packet)
 
             # HT Capabilities (HEX)
-            htcapabilities = extractHTCapabilities(packet)
+            htcapabilities = utils.extractHTCapabilities(packet)
 
             # Extended Capabilities (HEX)
-            extended_capabilities = extractExtendedCapabilities(packet)
+            extended_capabilities = utils.extractExtendedCapabilities(packet)
 
             # Vendor Specific Tags (HEX)
-            vendor_specific_tags = extractVendorSpecificTags(packet)
+            vendor_specific_tags = utils.extractVendorSpecificTags(packet)
+
+            # Additional features
 
             # SSID
-            ssid = extractSSID(packet)
+            ssid = utils.extractSSID(packet)
 
             # Supported Rates (HEX)
-            supported_rates = extractSupportedRates(packet)
+            supported_rates = utils.extractSupportedRates(packet)
+
+            # Extended Supported Rates (HEX)
+            extended_supported_rates = utils.extractExtendedSupportedRates(packet)
+
+            # VHT Capabilities (HEX)
+            vhtcapabilities = utils.extractVHTCapabilities(packet)
+
+            # HE Capabilities (HEX)
+            hecapabilities = utils.extractHECapabilities(packet)
 
             output_data.append(
                 [
@@ -51,12 +62,17 @@ def extract_pcap_info(file_path, label):
                     htcapabilities,
                     extended_capabilities,
                     vendor_specific_tags,
+                    ssid,
+                    supported_rates,
+                    extended_supported_rates,
+                    vhtcapabilities,
+                    hecapabilities,
                     label,
                 ]
             )
 
         return output_data
-    
+
     except Exception as e:
         print(f"[!] Error processing {file_path}: {str(e)}")
         return RuntimeError
@@ -66,17 +82,21 @@ def extract_pcap_info(file_path, label):
 def frequencyToChannel(frequency):
     return int((frequency - 2407) / 5)
 
+
 # Extract timestamp from packet
 def extractTimestamp(packet):
     return packet.time
+
 
 # Extract source MAC address from packet
 def extractMAC(packet):
     return packet.addr2
 
+
 # Extract channel number from packet
 def extractChannel(packet):
     return frequencyToChannel(packet.Channel)
+
 
 # Extract DS channel number from packet
 def extractDSChannel(packet):
@@ -84,38 +104,67 @@ def extractDSChannel(packet):
         return packet.getlayer(Dot11Elt, ID=3).channel
     except:
         return "0"
-    
+
+
 # Extract HT capabilities from packet
 def extractHTCapabilities(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=45).info.hex()
     except:
         return "0"
-    
+
+
 # Extract extended capabilities from packet
 def extractExtendedCapabilities(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=127).info.hex()
     except:
         return "0"
-    
+
+
 # Extract vendor specific tags from packet
 def extractVendorSpecificTags(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=221).info.hex()
     except:
         return "0"
-    
+
+
 # Extract SSID from packet
 def extractSSID(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=0).info.decode()
     except:
         return "0"
-    
+
+
 # Extract supported rates from packet
 def extractSupportedRates(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=1).info.hex()
+    except:
+        return "0"
+
+
+# Extract extended supported rates from packet
+def extractExtendedSupportedRates(packet):
+    try:
+        return packet.getlayer(Dot11Elt, ID=50).info.hex()
+    except:
+        return "0"
+
+
+# Extract VHT capabilities from packet
+def extractVHTCapabilities(packet):
+    try:
+        return packet.getlayer(Dot11Elt, ID=191).info.hex()
+    except:
+        return "0"
+
+
+# Extract HE capabilities from packet
+def extractHECapabilities(packet):
+    try:
+        return packet.getlayer(Dot11Elt, ID=255).info.hex()
     except:
         return "0"
