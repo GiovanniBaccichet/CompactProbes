@@ -16,42 +16,42 @@ def extract_pcap_info(file_path, label):
 
         for packet in packets:
             # Timestamp
-            timestamp = utils.extractTimestamp(packet)
+            timestamp = extractTimestamp(packet)
 
             # Source MAC address
-            mac_address = utils.extractMAC(packet)
+            mac_address = extractMAC(packet)
 
             # Channel number
-            channel = utils.extractChannel(packet)
+            channel = extractChannel(packet)
 
             # DS Parameter Set channel number
-            ds_channel = utils.extractDSChannel(packet)
+            ds_channel = extractDSChannel(packet)
 
             # HT Capabilities (HEX)
-            htcapabilities = utils.extractHTCapabilities(packet)
+            htcapabilities = extractHTCapabilities(packet)
 
             # Extended Capabilities (HEX)
-            extended_capabilities = utils.extractExtendedCapabilities(packet)
+            extended_capabilities = extractExtendedCapabilities(packet)
 
             # Vendor Specific Tags (HEX)
-            vendor_specific_tags = utils.extractVendorSpecificTags(packet)
+            vendor_specific_tags = extractVendorSpecificTags(packet)
 
             # Additional features
 
             # SSID
-            ssid = utils.extractSSID(packet)
+            ssid = extractSSID(packet)
 
             # Supported Rates (HEX)
-            supported_rates = utils.extractSupportedRates(packet)
+            supported_rates = extractSupportedRates(packet)
 
             # Extended Supported Rates (HEX)
-            extended_supported_rates = utils.extractExtendedSupportedRates(packet)
+            extended_supported_rates = extractExtendedSupportedRates(packet)
 
             # VHT Capabilities (HEX)
-            vhtcapabilities = utils.extractVHTCapabilities(packet)
+            vhtcapabilities = extractVHTCapabilities(packet)
 
             # HE Capabilities (HEX)
-            hecapabilities = utils.extractHECapabilities(packet)
+            hecapabilities = extractHECapabilities(packet)
 
             output_data.append(
                 [
