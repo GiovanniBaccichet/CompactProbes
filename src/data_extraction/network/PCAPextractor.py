@@ -1,9 +1,9 @@
-from .logger import log
+from utils import logger
 
 from scapy.all import rdpcap
 from scapy.layers.dot11 import Dot11Elt
 
-from .IEextractor import *
+from network import IEextractor
 
 
 # Create a function to extract information from a PCAP file
@@ -16,42 +16,42 @@ def extract_pcap_info(file_path: str, label: str) -> list:
 
         for packet in packets:
             # Timestamp
-            timestamp = extractTimestamp(packet)
+            timestamp = IEextractor.extractTimestamp(packet)
 
             # Source MAC address
-            mac_address = extractMAC(packet)
+            mac_address = IEextractor.extractMAC(packet)
 
             # Channel number
-            channel = extractChannel(packet)
+            channel = IEextractor.extractChannel(packet)
 
             # DS Parameter Set channel number
-            ds_channel = extractDSChannel(packet)
+            ds_channel = IEextractor.extractDSChannel(packet)
 
             # HT Capabilities (HEX)
-            htcapabilities = extractHTCapabilities(packet)
+            htcapabilities = IEextractor.extractHTCapabilities(packet)
 
             # Extended Capabilities (HEX)
-            extended_capabilities = extractExtendedCapabilities(packet)
+            extended_capabilities = IEextractor.extractExtendedCapabilities(packet)
 
             # Vendor Specific Tags (HEX)
-            vendor_specific_tags = extractVendorSpecificTags(packet)
+            vendor_specific_tags = IEextractor.extractVendorSpecificTags(packet)
 
             # Additional features
 
             # SSID
-            ssid = extractSSID(packet)
+            ssid = IEextractor.extractSSID(packet)
 
             # Supported Rates (HEX)
-            supported_rates = extractSupportedRates(packet)
+            supported_rates = IEextractor.extractSupportedRates(packet)
 
             # Extended Supported Rates (HEX)
-            extended_supported_rates = extractExtendedSupportedRates(packet)
+            extended_supported_rates = IEextractor.extractExtendedSupportedRates(packet)
 
             # VHT Capabilities (HEX)
-            vhtcapabilities = extractVHTCapabilities(packet)
+            vhtcapabilities = IEextractor.extractVHTCapabilities(packet)
 
             # HE Capabilities (HEX)
-            hecapabilities = extractHECapabilities(packet)
+            hecapabilities = IEextractor.extractHECapabilities(packet)
 
             output_data.append(
                 [
@@ -74,5 +74,5 @@ def extract_pcap_info(file_path: str, label: str) -> list:
         return output_data
 
     except Exception as e:
-        log.critical(f"Error extracting information from {file_path}: {e}")
+        logger.log.critical(f"Error extracting information from {file_path}: {e}")
         return RuntimeError

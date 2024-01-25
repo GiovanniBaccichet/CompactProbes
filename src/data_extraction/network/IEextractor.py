@@ -1,4 +1,4 @@
-from .logger import log
+from utils import logger
 
 from scapy.all import rdpcap
 from scapy.layers.dot11 import Dot11Elt
@@ -41,7 +41,7 @@ def extractDSChannel(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=3).channel
     except:
-        log.debug("No DS channel found.")
+        logger.log.debug("No DS channel found.")
         return None
 
 
@@ -50,7 +50,7 @@ def extractHTCapabilities(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=45).info.hex()
     except:
-        log.debug("No HT capabilities found.")
+        logger.log.debug("No HT capabilities found.")
         return None
 
 
@@ -59,7 +59,7 @@ def extractExtendedCapabilities(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=127).info.hex()
     except:
-        log.debug("No extended capabilities found.")
+        logger.log.debug("No extended capabilities found.")
         return None
 
 
@@ -68,7 +68,7 @@ def extractVendorSpecificTags(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=221).info.hex()
     except:
-        log.debug("No vendor specific tags found.")
+        logger.log.debug("No vendor specific tags found.")
         return None
 
 
@@ -77,7 +77,7 @@ def extractSSID(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=0).info.decode()
     except:
-        log.debug("No SSID found.")
+        logger.log.debug("No SSID found.")
         return None
 
 
@@ -86,7 +86,7 @@ def extractSupportedRates(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=1).info.hex()
     except:
-        log.debug("No supported rates found.")
+        logger.log.debug("No supported rates found.")
         return None
 
 
@@ -95,7 +95,7 @@ def extractExtendedSupportedRates(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=50).info.hex()
     except:
-        log.debug("No extended supported rates found.")
+        logger.log.debug("No extended supported rates found.")
         return None
 
 
@@ -104,7 +104,7 @@ def extractVHTCapabilities(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=191).info.hex()
     except:
-        log.debug("No VHT capabilities found.")
+        logger.log.debug("No VHT capabilities found.")
         return None
 
 
@@ -113,5 +113,5 @@ def extractHECapabilities(packet):
     try:
         return packet.getlayer(Dot11Elt, ID=255).info.hex()
     except:
-        log.debug("No HE capabilities found.")
+        logger.log.debug("No HE capabilities found.")
         return None

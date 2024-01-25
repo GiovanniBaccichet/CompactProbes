@@ -5,7 +5,7 @@ logging.getLogger("scapy.runtime").setLevel(logging.CRITICAL)
 
 FORMAT = "%(message)s"
 logging.basicConfig(
-    level="DEBUG",
+    level="NOTSET",
     format=FORMAT,
     datefmt="[%X]",
     handlers=[RichHandler(rich_tracebacks=True)],
@@ -13,4 +13,4 @@ logging.basicConfig(
 
 log = logging.getLogger("rich")
 
-log.setLevel("INFO")
+log.setLevel("WARNING")

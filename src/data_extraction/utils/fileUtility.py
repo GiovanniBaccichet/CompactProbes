@@ -1,4 +1,4 @@
-from netpress.logger import log
+from utils import logger
 import os
 import csv
 
@@ -9,8 +9,12 @@ def checkCreatePath(output_path: str) -> None:
     """
 
     if not os.path.exists(output_path):
-        log.warning(f"Output folder does not exist. Creating {output_path}")
-        os.makedirs(output_path)
+        logger.log.warning(f"Output folder does not exist. Creating {output_path}")
+        try:
+            os.makedirs(output_path)
+        except Exception as e:
+            logger.log.critical(f"Error creating output folder: {e}")
+            exit()
 
 
 def csv_writer(header: list, data: list, output_path: str, label: str) -> None:
@@ -26,7 +30,7 @@ def csv_writer(header: list, data: list, output_path: str, label: str) -> None:
     output_file = output_path + f"{label}.csv"
 
     with open(output_file, "w", newline="") as csvfile:
-        log.info(f"Writing {label}" + ".csv")
+        logger.log.info(f"Writing {label}" + ".csv")
 
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(header)
