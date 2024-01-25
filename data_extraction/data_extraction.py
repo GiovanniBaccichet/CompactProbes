@@ -1,11 +1,11 @@
 from configparser import ConfigParser
 import os
 from tqdm import tqdm
-import csv
-
-import threading
 
 from netpress import PCAPextractor
+
+from FileUtility import *
+
 
 # Import the config file
 config = ConfigParser()
@@ -20,40 +20,37 @@ for i in tqdm(config.sections()):
 
     # Create a CSV file for each PCAP file in the Captures folder
     for filename in tqdm(os.listdir(capture_path)):
+        
         if filename.endswith(".pcap"):
 
             # Set output file name to the same as the PCAP file
             label = os.path.splitext(filename)[0]
+
+            # Set the file path for the PCAP file
             file_path = os.path.join(capture_path, filename)
-            output_file = output_path + f"{label}.csv"
 
             # Extract information from the PCAP file
             info = PCAPextractor.extract_pcap_info(file_path, label)
 
             if info:
-
                 # Check if the output folder exists
-                if not os.path.exists(output_path):
-                    os.makedirs(output_path)
+                checkCreatePath(output_path)
 
                 # Write the information to a CSV file
-                with open(output_file, "w", newline="") as csvfile:
-                    csv_writer = csv.writer(csvfile)
-                    csv_writer.writerow(
-                        [
-                            "Timestamp",
-                            "MAC Address",
-                            "Channel",
-                            "DS Channel",
-                            "HT Capabilities",
-                            "Extended Capabilities",
-                            "Vendor Specific Tags",
-                            "SSID",
-                            "Supported Rates",
-                            "Extended Supported Rates",
-                            "VHT Capabilities",
-                            "HE Capabilities",
-                            "Label",
-                        ]
-                    )
-                    csv_writer.writerows(info)
+                header = [
+                    "Timestamp",
+                    "MAC Address",
+                    "Channel",
+                    "DS Channel",
+                    "HT Capabilities",
+                    "Extended Capabilities",
+                    "Vendor Specific Tags",
+                    "SSID",
+                    "Supported Rates",
+                    "Extended Supported Rates",
+                    "VHT Capabilities",
+                    "HE Capabilities",
+                    "Label",
+                ]
+
+                csv_writer(header, info, output_path, label)
