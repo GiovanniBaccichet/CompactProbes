@@ -57,3 +57,28 @@ def plot_heatmap(df, column1, column2, colormap="Blues"):
 
     # Show the plot
     plt.show()
+
+def plot_pie_chart(df, column_name):
+    # Check if the column exists in the DataFrame
+    if column_name not in df.columns:
+        print(f"Column '{column_name}' not found in DataFrame.")
+        return
+
+    # Calculate the value counts and the percentage of each category
+    data = df[column_name].value_counts()
+    data_percentage = data / data.sum()
+
+    # Group categories with less than 5% into an "Others" category
+    other_categories = data_percentage[data_percentage < 0.05].index
+    data['Others'] = data[other_categories].sum()
+    data = data.drop(other_categories)
+    data_percentage = data / data.sum()
+
+    # Set the seaborn style
+    sns.set(style="whitegrid")
+
+    # Create a pie plot
+    plt.figure(figsize=(10, 8))
+    plt.pie(data, labels=data.index, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("pastel"))
+    plt.title(f'Pie Chart of {column_name}', fontsize=16)
+    plt.show()
