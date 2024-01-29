@@ -58,7 +58,7 @@ def plot_heatmap(df, column1, column2, colormap="Blues"):
     # Show the plot
     plt.show()
 
-def plot_pie_chart(df, column_name):
+def plot_pie_chart(df, column_name, other_percentage=0.05):
     # Check if the column exists in the DataFrame
     if column_name not in df.columns:
         print(f"Column '{column_name}' not found in DataFrame.")
@@ -69,7 +69,7 @@ def plot_pie_chart(df, column_name):
     data_percentage = data / data.sum()
 
     # Group categories with less than 5% into an "Others" category
-    other_categories = data_percentage[data_percentage < 0.05].index
+    other_categories = data_percentage[data_percentage < other_percentage].index
     data['Others'] = data[other_categories].sum()
     data = data.drop(other_categories)
     data_percentage = data / data.sum()
