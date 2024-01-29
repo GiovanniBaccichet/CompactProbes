@@ -164,3 +164,37 @@ def plot_boxplot(df: pd.DataFrame, group_column: str, value_column: str) -> None
 
     # Show the plot
     plt.show()
+
+
+def plot_correlation_matrix(df: pd.DataFrame) -> None:
+    """
+    Plots the correlation matrix with annotations for a given DataFrame.
+
+    Args:
+    df (pandas.DataFrame): The DataFrame for which the correlation matrix will be plotted.
+    """
+    # Compute the correlation matrix for numerical columns
+    corr = df.select_dtypes(["number"]).corr()
+
+    # Set up the matplotlib figure
+    f, ax = plt.subplots(figsize=(10, 10))
+
+    # Draw the heatmap with the mask and correct aspect ratio
+    sns.heatmap(
+        corr,
+        annot=True,
+        fmt=".2f",
+        cmap="viridis",
+        square=True,
+        linewidths=0.5,
+        cbar_kws={"shrink": 0.5},
+        ax=ax,
+    )
+
+    # Set titles and labels
+    plt.title("Correlation Matrix", fontsize=16)
+    plt.xticks(fontsize=14, rotation=90)
+    plt.yticks(fontsize=14, rotation=0)
+
+    # Show the plot
+    plt.show()
