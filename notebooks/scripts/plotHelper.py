@@ -137,3 +137,30 @@ def plot_multi_pie_charts(df: pd.DataFrame, col_label: str, col_data: str) -> No
 
     plt.tight_layout()
     plt.show()
+
+
+def plot_boxplot(df: pd.DataFrame, group_column: str, value_column: str) -> None:
+    # Check if the columns exist in the DataFrame
+    if group_column not in df.columns or value_column not in df.columns:
+        print(
+            f"One or both columns '{group_column}' and '{value_column}' not found in DataFrame."
+        )
+        return
+
+    # Set the seaborn style
+    sns.set(style="whitegrid")
+
+    # Create the boxplot
+    plt.figure(figsize=(20, 6))
+    ax = sns.boxplot(x=group_column, y=value_column, data=df)
+
+    # Set title and labels
+    plt.title(f"Box Plot of {value_column} grouped by {group_column}")
+    plt.xlabel(group_column)
+    plt.ylabel(value_column)
+
+    # Set the labels for the horizontal axis in vertical orientation
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
+
+    # Show the plot
+    plt.show()
