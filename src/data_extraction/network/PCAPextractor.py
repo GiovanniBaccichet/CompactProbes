@@ -53,6 +53,9 @@ def extract_pcap_info(file_path: str, label: str) -> list:
             # HE Capabilities (HEX)
             hecapabilities = IEextractor.extractHECapabilities(packet)
 
+            # Packet size
+            packet_length = len(packet)
+
             output_data.append(
                 [
                     timestamp,
@@ -67,6 +70,7 @@ def extract_pcap_info(file_path: str, label: str) -> list:
                     extended_supported_rates,
                     vhtcapabilities,
                     hecapabilities,
+                    packet_length,
                     label,
                 ]
             )

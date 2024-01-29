@@ -73,6 +73,7 @@ def main():
                         "Extended Supported Rates",
                         "VHT Capabilities",
                         "HE Capabilities",
+                        "Length",
                         "Label",
                     ]
 
