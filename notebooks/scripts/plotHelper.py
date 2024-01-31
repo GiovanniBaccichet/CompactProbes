@@ -1,6 +1,7 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
+import math
 
 
 def plot_label_distribution(
@@ -106,7 +107,7 @@ def plot_multi_pie_charts(df: pd.DataFrame, col_label: str, col_data: str) -> No
 
     # Determine the number of donut charts (subplots) needed
     n_labels = len(labels)
-    n_cols = 4  # number of columns in the plot grid
+    n_cols = 3  # number of columns in the plot grid
     n_rows = (n_labels + n_cols - 1) // n_cols  # calculate rows needed
 
     # Create subplots
@@ -239,4 +240,46 @@ def plot_average_and_error(
     plt.ylabel(f"Average {value_column}")
     plt.title(f"Average {value_column} and Error per {group_column}")
     plt.xticks(rotation=90)  # Rotate labels if they are too long
+    plt.show()
+
+
+def plot_fsct_bar_by_label(data):
+    # Identify the unique labels
+    labels = data["Label"].unique()
+
+    # Identify FSCT columns
+    fsct_columns = [col for col in data.columns if col.startswith("FSCT")]
+
+    # Extract just the number part of the FSCT columns for x-axis labels
+    fsct_numbers = [col.replace("FSCT-", "") for col in fsct_columns]
+
+    # Determine the number of rows needed for a 3-column layout
+    n_rows = math.ceil(len(labels) / 3)
+
+    # Create a figure for the plots
+    fig, axes = plt.subplots(nrows=n_rows, ncols=3, figsize=(15, 5 * n_rows))
+    axes = axes.flatten()  # Flatten the axes array for easy iteration
+
+    # Iterate over each label
+    for i, label in enumerate(labels):
+        # Filter the data for the current label
+        label_data = data[data["Label"] == label]
+
+        # Calculate mean FSCT values for the label
+        mean_values = label_data[fsct_columns].mean()
+
+        # Create a bar plot
+        axes[i].bar(fsct_numbers, mean_values.values)
+        axes[i].set_title(f"Average FSCT Values for Label: {label}")
+        axes[i].set_xlabel("FSCT")
+        axes[i].set_ylabel("Average Value")
+
+        # Set y-axis to logarithmic scale
+        axes[i].set_yscale("log")
+
+    # Hide unused axes if the number of labels is not a multiple of 3
+    for j in range(i + 1, len(axes)):
+        axes[j].axis("off")
+
+    plt.tight_layout()
     plt.show()
