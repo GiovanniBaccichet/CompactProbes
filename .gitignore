@@ -532,7 +532,7 @@ pyrightconfig.json
 
 # Non-Anonymized Datasets
 
-*.csv
+data/
 
 # Configurations which are not templates
 
