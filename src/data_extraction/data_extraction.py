@@ -53,7 +53,7 @@ def main():
                 file_path = os.path.join(capture_path, filename)
 
                 # Extract information from the PCAP file
-                info = PCAPextractor.extract_pcap_info(file_path, label)
+                info = PCAPextractor.extract_pcap_info(file_path, label, progress)
 
                 if info:
                     # Check if the output folder exists

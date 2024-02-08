@@ -7,12 +7,19 @@ from network import IEextractor
 
 
 # Create a function to extract information from a PCAP file
-def extract_pcap_info(file_path: str, label: str) -> list:
+def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
+
     try:
         # Read the PCAP file using Scapy
         packets = rdpcap(file_path)
 
         output_data = []
+
+        if progress:
+            # Create a task for the inner loop
+            packet_task = progress.add_task(
+                f"[blue]Processing packets...", total=len(packets)
+            )
 
         for packet in packets:
             # Timestamp
@@ -74,6 +81,10 @@ def extract_pcap_info(file_path: str, label: str) -> list:
                     label,
                 ]
             )
+
+            if progress:
+                # Update the progress for each file
+                progress.update(packet_task, advance=1)
 
         return output_data
 
