@@ -72,7 +72,7 @@ Repository is organized according to the [Cookiecutter Data Science](https://git
 │   │   └── uji_dataset                                  ← Notebooks for the unlabelled UJI Dataset (used for generalization)
 │   │       └── data_visualization_statistics_uji.ipynb
 │   ├── data_testing_subsets
-│   │   └── data_subset_generation.ipynb                 ← Generating randomized subsets for testing. Output: /CSV/subset_combinations/unique_combinations.csv
+│   │   └── data_subset_generation.ipynb                 ← Generating randomized subsets for testing. Output: /reports/CSV/subset_combinations/unique_combinations.csv
 │   ├── models_feature_engineering
 │   │   └── feature_selection_RF.ipynb
 │   ├── models_train_evaluate
