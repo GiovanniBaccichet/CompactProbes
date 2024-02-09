@@ -39,8 +39,8 @@ Reducing complexity and costs of network traffic analysis Network traffic analys
 
 The methodologies developed in the COMPACT project will be tested in various network scenarios. These scenarios encompass central traffic analysis in backbone networks, examination of IoT traffic in home networks, and various traffic analysis tasks across different network elements and traffic rates.
 
-<!-- REPOSITORY ORGANIZATION -->
-## Repository Organization
+<!-- REPOSITORY STRUCTURE -->
+## Repository Structure
 
 Repository is organized according to the [Cookiecutter Data Science](https://github.com/drivendata/cookiecutter-data-science) structure. In the box below, we add some notes about each notebook, script and folder as a sort of Table of Contents.
 
@@ -72,7 +72,7 @@ Repository is organized according to the [Cookiecutter Data Science](https://git
 │   │   └── uji_dataset                                  ← Notebooks for the unlabelled UJI Dataset (used for generalization)
 │   │       └── data_visualization_statistics_uji.ipynb
 │   ├── data_testing_subsets
-│   │   └── data_subset_generation.ipynb
+│   │   └── data_subset_generation.ipynb                 ← Generating randomized subsets for testing. Output: /CSV/subset_combinations/unique_combinations.csv
 │   ├── models_feature_engineering
 │   │   └── feature_selection_RF.ipynb
 │   ├── models_train_evaluate
