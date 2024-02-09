@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/GiovanniBaccichet/COMPACT">
-    <img src="images/compact_logo.png" alt="Logo" width="370">
+    <img src="images/compact_logo.png" alt="Logo" width="400">
   </a>
 
 <h3 align="center">COMPACT</h3>
