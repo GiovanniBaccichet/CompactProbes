@@ -48,28 +48,28 @@ Repository is organized according to the [Cookiecutter Data Science](https://git
 .
 ├── README.md
 ├── data
-│   ├── extracted                                             ← Data extracted from raw, using src/data_extraction
-│   ├── interim
-│   ├── processed
-│   └── raw
+│   ├── extracted                                        ← Data extracted from raw, using /src/data_extraction
+│   ├── interim                                          ← Intermediate data that has been transformed
+│   ├── processed                                        ← The final, canonical data sets for modeling
+│   └── raw                                              ← The original, immutable data dump in .PCAP format
 │
 ├── images
-├── models
+├── models                                               ← Trained and serialized models
 ├── notebooks
 │   ├── Template.ipynb
-│   ├── config.ini
-│   ├── data_encoding
+│   ├── config.ini                                       ← Configuration files for /notebooks, containing paths
+│   ├── data_encoding                                    ← Data encodings and embeddings tests and comparisons
 │   │   ├── IE_embeddings.ipynb
 │   │   ├── IE_one-hot_encoding.ipynb
 │   │   └── IE_sum_encoding.ipynb
-│   ├── data_exploration_cleaning
-│   │   ├── data_balancing.ipynb
+│   ├── data_exploration_cleaning                        ← Data pre-processing and visualization from /data/raw to /data/interim
+│   │   ├── data_balancing.ipynb                         ← Balancing Baccichet + Pintor dataset. Outputs: balanced_df_raw, encoded_LABEL_balanced_df
 │   │   ├── data_cleaning_SSID_length.ipynb
-│   │   ├── data_exploration_temporal.ipynb
-│   │   ├── data_pre-processing.ipynb
-│   │   ├── data_visualization_correlation.ipynb
-│   │   ├── data_visualization_statistics.ipynb
-│   │   └── uji_dataset
+│   │   ├── data_exploration_temporal.ipynb              ← Experimenting with time-related features: IBAT, FSCT
+│   │   ├── data_pre-processing.ipynb                    ← Filling combined_raw dataset NaN with -1. Output: combined_df
+│   │   ├── data_visualization_correlation.ipynb         ← Analysis of label encoded features
+│   │   ├── data_visualization_statistics.ipynb          ← Analysis of label encoded features
+│   │   └── uji_dataset                                  ← Notebooks for the unlabelled UJI Dataset (used for generalization)
 │   │       └── data_visualization_statistics_uji.ipynb
 │   ├── data_testing_subsets
 │   │   └── data_subset_generation.ipynb
@@ -80,33 +80,9 @@ Repository is organized according to the [Cookiecutter Data Science](https://git
 │       ├── __init__.py
 │       ├── encodingHelper.py
 │       └── plotHelper
-│           ├── __init__.py
-│           ├── barPlots.py
-│           ├── heatmaps.py
-│           ├── pieCharts.py
-│           └── statisticsPlot.py
 ├── reports
-│   ├── CSV
-│   │   ├── feature_selection
-│   │   │   └── SUM_importances_RF.csv
-│   │   └── subset_combinations
-│   │       └── unique_combinations.csv
-│   ├── HTML
-│   │   ├── IE_sum_encoding.html
-│   │   └── data_visualization_statistics.html
-│   ├── PDF
-│   └── figures
-└── src
-    ├── data_encoding
-    └── data_extraction
-        ├── config.ini
-        ├── data_extraction.py
-        ├── network
-        │   ├── IEextractor.py
-        │   ├── PCAPextractor.py
-        │   └── __init__.py
-        └── utils
-            ├── __init__.py
-            ├── fileUtility.py
-            └── logger.py
+└── src                                                  ← Source code for use in this project
+    └── data_extraction                                  ← Data extraction tool from /data/raw to /data/extracted
+        ├── config.ini                                   ← Configuration files for /data_extraction, containing paths
+        └── data_extraction.py
 ```
