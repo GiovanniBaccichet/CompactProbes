@@ -3,6 +3,8 @@ from utils import logger
 from scapy.all import rdpcap
 from scapy.layers.dot11 import Dot11Elt
 
+import numpy as np
+
 
 # Convert channel frequency into channel number
 def frequencyToChannel(frequency: int) -> int:
@@ -116,7 +118,7 @@ def extractHTCapabilities(packet):
         return fields_list
     except:
         logger.log.debug("No HT capabilities found.")
-        return None
+        return np.ones(54) * None
 
 
 # Extract extended capabilities from packet
@@ -154,13 +156,16 @@ def extractSupportedRates(packet):
         rates = packet.getlayer(Dot11Elt, ID=1).rates
 
         for rate in rates:
-            supportedRates.append((rate - 128) / 2)
+            supportedRates.append(rate / 2)
+
+        if len(supportedRates) < 8:
+            supportedRates += [None] * (8 - len(supportedRates))
 
         return supportedRates
 
     except:
         logger.log.debug("No supported rates found.")
-        return None
+        return np.ones(4) * None
 
 
 # Extract extended supported rates from packet
@@ -168,16 +173,21 @@ def extractExtendedSupportedRates(packet):
     try:
         extendedSupportedRates = []
 
-        rates = packet.getlayer(Dot11Elt, ID=50).info.hex()
+        rates = packet.getlayer(Dot11Elt, ID=50).rates
 
         for rate in rates:
             extendedSupportedRates.append(rate / 2)
+
+        # pad extended supported rates to 8 with None
+            
+        if len(extendedSupportedRates) < 8:
+            extendedSupportedRates += [None] * (8 - len(extendedSupportedRates))
 
         return extendedSupportedRates
 
     except:
         logger.log.debug("No extended supported rates found.")
-        return None
+        return np.ones(8) * None
 
 
 # Extract VHT capabilities from packet

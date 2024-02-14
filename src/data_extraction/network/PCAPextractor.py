@@ -4,6 +4,7 @@ from scapy.all import rdpcap
 from scapy.layers.dot11 import Dot11Elt
 
 from network import IEextractor
+from utils import fileUtility
 
 
 # Create a function to extract information from a PCAP file
@@ -15,10 +16,12 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
 
         output_data = []
 
+        filename = fileUtility.get_substring_after_last_slash(file_path)
+
         if progress:
             # Create a task for the inner loop
             packet_task = progress.add_task(
-                f"[blue]Processing packets...", total=len(packets)
+                f"[blue]Processing packets: {filename}", total=len(packets)
             )
 
         for packet in packets:
@@ -63,24 +66,28 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
             # Packet size
             packet_length = len(packet)
 
-            output_data.append(
+            combined_list = (
                 [
                     timestamp,
                     mac_address,
                     channel,
                     ds_channel,
-                    htcapabilities,
                     extended_capabilities,
                     vendor_specific_tags,
                     ssid,
-                    supported_rates,
-                    extended_supported_rates,
                     vhtcapabilities,
                     hecapabilities,
                     packet_length,
                     label,
                 ]
+                + supported_rates
+                + extended_supported_rates
+                + htcapabilities
             )
+
+            output_data.append(combined_list)
+
+            # print(output_data)
 
             if progress:
                 # Update the progress for each file

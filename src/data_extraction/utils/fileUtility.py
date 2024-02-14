@@ -35,3 +35,14 @@ def csv_writer(header: list, data: list, output_path: str, label: str) -> None:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(header)
         csv_writer.writerows(data)
+
+
+def get_substring_after_last_slash(s):
+    # Find the last occurrence of '/'
+    last_slash_index = s.rfind("/")
+    # If '/' is found, slice the string from the character after '/' to the end
+    if last_slash_index != -1:
+        return s[last_slash_index + 1 :]
+    else:
+        # If '/' is not found, return the entire string
+        return s
