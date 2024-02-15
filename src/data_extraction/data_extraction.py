@@ -65,7 +65,6 @@ def main():
                         "MAC Address",
                         "Channel",
                         "DS Channel",
-                        "Extended Capabilities",
                         "Vendor Specific Tags",
                         "SSID",
                         "VHT Capabilities",
@@ -141,6 +140,14 @@ def main():
                         "Transmit_Staggered_Sounding",
                         "Receive_Staggered_Sounding",
                         "Implicit_Transmit_Beamforming_Receiving",
+                        'Extended Capabilities 1',
+                        'Extended Capabilities 2',
+                        'Extended Capabilities 3',
+                        'Extended Capabilities 4',
+                        'Extended Capabilities 5',
+                        'Extended Capabilities 6',
+                        'Extended Capabilities 7',
+                        'Extended Capabilities 8',
                     ]
 
                     fileUtility.csv_writer(header, info, output_path, label)

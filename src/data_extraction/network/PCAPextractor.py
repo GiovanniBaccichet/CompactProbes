@@ -72,7 +72,6 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                     mac_address,
                     channel,
                     ds_channel,
-                    extended_capabilities,
                     vendor_specific_tags,
                     ssid,
                     vhtcapabilities,
@@ -83,6 +82,7 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                 + supported_rates  # add individual Supported Rates
                 + extended_supported_rates  # add individual Extended Supported Rates
                 + htcapabilities  # add individual HT Capabilities
+                + extended_capabilities  # add individual Extended Capabilities
             )
 
             output_data.append(combined_list)

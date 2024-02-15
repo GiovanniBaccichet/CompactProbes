@@ -122,12 +122,14 @@ def extractHTCapabilities(packet: Dot11Elt) -> list:
 
 
 # Extract extended capabilities from packet
-def extractExtendedCapabilities(packet):
+def extractExtendedCapabilities(packet) -> list:
     try:
-        return packet.getlayer(Dot11Elt, ID=127).info.hex()
+        extendedCapHex = packet.getlayer(Dot11Elt, ID=127).info.hex()
+        extendedCap = [extendedCapHex[i : i + 2] for i in range(0, len(extendedCapHex), 2)]
+        return fieldUtility.fieldPadder(extendedCap, 12)
     except:
         logger.log.debug("No extended capabilities found.")
-        return None
+        return fieldUtility.noneList(12)
 
 
 # Extract vendor specific tags from packet
