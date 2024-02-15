@@ -13,4 +13,4 @@ logging.basicConfig(
 
 log = logging.getLogger("rich")
 
-log.setLevel("DEBUG")
+log.setLevel("WARNING")

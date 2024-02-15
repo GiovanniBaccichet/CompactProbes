@@ -1,4 +1,4 @@
-from utils import logger
+from utils import logger, fieldUtility
 
 from scapy.all import rdpcap
 from scapy.layers.dot11 import Dot11Elt
@@ -30,7 +30,11 @@ def extractTimestamp(packet) -> float:
 
 # Extract source MAC address from packet
 def extractMAC(packet) -> str:
-    return packet.addr2
+    if "WLAN" in packet.layers:
+        # Return the source MAC address if available
+        return packet.wlan.sa
+    else:
+        return "WLAN layer not found"
 
 
 # Extract channel number from packet
@@ -48,7 +52,7 @@ def extractDSChannel(packet):
 
 
 # Extract HT capabilities from packet
-def extractHTCapabilities(packet):
+def extractHTCapabilities(packet: Dot11Elt) -> list:
     try:
         ht_cap = packet.getlayer(Dot11Elt, ID=45)
 
@@ -115,10 +119,10 @@ def extractHTCapabilities(packet):
         for field in ht_cap_list:
             fields_list.append(getattr(ht_cap, field))
 
-        return fields_list
+        return fieldUtility.fieldPadder(fields_list, 53)
     except:
         logger.log.debug("No HT capabilities found.")
-        return np.ones(54) * None
+        return fieldUtility.noneList(53)
 
 
 # Extract extended capabilities from packet
@@ -158,14 +162,11 @@ def extractSupportedRates(packet):
         for rate in rates:
             supportedRates.append(rate / 2)
 
-        if len(supportedRates) < 8:
-            supportedRates += [None] * (8 - len(supportedRates))
-
-        return supportedRates
+        return fieldUtility.fieldPadder(supportedRates, 8)
 
     except:
         logger.log.debug("No supported rates found.")
-        return np.ones(4) * None
+        return fieldUtility.noneList(8)
 
 
 # Extract extended supported rates from packet
@@ -178,16 +179,11 @@ def extractExtendedSupportedRates(packet):
         for rate in rates:
             extendedSupportedRates.append(rate / 2)
 
-        # pad extended supported rates to 8 with None
-            
-        if len(extendedSupportedRates) < 8:
-            extendedSupportedRates += [None] * (8 - len(extendedSupportedRates))
-
-        return extendedSupportedRates
+        return fieldUtility.fieldPadder(extendedSupportedRates, 8)
 
     except:
         logger.log.debug("No extended supported rates found.")
-        return np.ones(8) * None
+        return fieldUtility.noneList(8)
 
 
 # Extract VHT capabilities from packet

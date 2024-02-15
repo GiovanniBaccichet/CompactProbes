@@ -3,6 +3,8 @@ from utils import logger
 from scapy.all import rdpcap
 from scapy.layers.dot11 import Dot11Elt
 
+import pyshark
+
 from network import IEextractor
 from utils import fileUtility
 
@@ -12,7 +14,8 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
 
     try:
         # Read the PCAP file using Scapy
-        packets = rdpcap(file_path)
+        # packets = rdpcap(file_path)
+        packets = pyshark.FileCapture(file_path)
 
         output_data = []
 
@@ -80,14 +83,14 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                     packet_length,
                     label,
                 ]
-                + supported_rates
-                + extended_supported_rates
-                + htcapabilities
+                + supported_rates  # add individual Supported Rates
+                + extended_supported_rates  # add individual Extended Supported Rates
+                + htcapabilities  # add individual HT Capabilities
             )
 
             output_data.append(combined_list)
 
-            # print(output_data)
+            print(output_data)
 
             if progress:
                 # Update the progress for each file
