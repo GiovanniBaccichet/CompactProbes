@@ -30,11 +30,7 @@ def extractTimestamp(packet) -> float:
 
 # Extract source MAC address from packet
 def extractMAC(packet) -> str:
-    if "WLAN" in packet.layers:
-        # Return the source MAC address if available
-        return packet.wlan.sa
-    else:
-        return "WLAN layer not found"
+    return packet.addr2
 
 
 # Extract channel number from packet
