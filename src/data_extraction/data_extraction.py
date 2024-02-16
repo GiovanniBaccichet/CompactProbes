@@ -148,6 +148,10 @@ def main():
                         'Extended Capabilities 6',
                         'Extended Capabilities 7',
                         'Extended Capabilities 8',
+                        'Extended Capabilities 9',
+                        'Extended Capabilities 10',
+                        'Extended Capabilities 11',
+                        'Extended Capabilities 12',
                     ]
 
                     fileUtility.csv_writer(header, info, output_path, label)
