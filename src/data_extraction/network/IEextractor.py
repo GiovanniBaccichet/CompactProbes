@@ -1,5 +1,7 @@
 from utils import logger, fieldUtility
 
+from . import extendedCapExtractor
+
 from scapy.all import rdpcap
 from scapy.layers.dot11 import Dot11Elt
 
@@ -125,8 +127,11 @@ def extractHTCapabilities(packet: Dot11Elt) -> list:
 def extractExtendedCapabilities(packet) -> list:
     try:
         extendedCapHex = packet.getlayer(Dot11Elt, ID=127).info.hex()
-        extendedCap = [extendedCapHex[i : i + 2] for i in range(0, len(extendedCapHex), 2)]
-        return fieldUtility.fieldPadder(extendedCap, 12)
+        extendedCapBin = extendedCapExtractor.hex_string_to_binary(extendedCapHex)
+        extendedCap = extendedCapExtractor.extract_fields_from_binary(
+            extendedCapExtractor.EXTENDED_CAP, extendedCapBin
+        )
+        return extendedCap
     except:
         logger.log.debug("No extended capabilities found.")
         return fieldUtility.noneList(12)
