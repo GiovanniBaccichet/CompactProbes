@@ -9,8 +9,10 @@ def fieldPadder(field: list, length: int) -> list:
     Returns:
     list: The padded list.
     """
-    if len(field) >= length:
+    if len(field) == length:
         return field
+    elif len(field) > length:
+        return field[:length]
     return field + [None] * (length - len(field))
 
 
