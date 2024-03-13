@@ -62,7 +62,7 @@ def extractExtendedCapabilities(packet) -> list:
         return fieldUtility.fieldPadder(extendedCap, 53)
     except:
         logger.log.debug("No extended capabilities found.")
-        return fieldUtility.noneList(12)
+        return fieldUtility.noneList(53)
 
 
 # Extract vendor specific tags from packet
