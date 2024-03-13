@@ -4,6 +4,8 @@ from . import extendedCapExtractor
 
 from . import htCapExtractor
 
+from .constants import EXTENDED_CAP
+
 from scapy.all import rdpcap
 from scapy.layers.dot11 import Dot11Elt
 
@@ -57,7 +59,7 @@ def extractExtendedCapabilities(packet) -> list:
         extendedCapHex = packet.getlayer(Dot11Elt, ID=127).info.hex()
         extendedCapBin = extendedCapExtractor.hex_string_to_binary(extendedCapHex)
         extendedCap = extendedCapExtractor.extract_fields_from_binary(
-            extendedCapExtractor.EXTENDED_CAP, extendedCapBin
+            EXTENDED_CAP, extendedCapBin
         )
         return fieldUtility.fieldPadder(extendedCap, 75)
     except:
