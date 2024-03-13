@@ -530,12 +530,4 @@ pyrightconfig.json
 
 *.pcap
 
-# Non-Anonymized Datasets
-
-data/
-
-# Configurations which are not templates
-
-config.ini
-
 # End of https://www.toptal.com/developers/gitignore/api/macos,python,jupyternotebooks,latex
