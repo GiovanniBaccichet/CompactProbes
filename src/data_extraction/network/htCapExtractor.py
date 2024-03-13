@@ -1,55 +1,23 @@
-HT_CAP = [
-    "L_SIG_TXOP_Protection",
-    "Forty_Mhz_Intolerant",
-    "PSMP",
-    "DSSS_CCK",
-    "Max_A_MSDU",
-    "Delayed_BlockAck",
-    "Rx_STBC",
-    "Tx_STBC",
-    "Short_GI_40Mhz",
-    "Short_GI_20Mhz",
-    "Green_Field",
-    "SM_Power_Save",
-    "Supported_Channel_Width",
-    "LDPC_Coding_Capability",
-    "res1",
-    "Min_MPDCU_Start_Spacing",
-    "Max_A_MPDU_Length_Exponent",
-    "res2",
-    "TX_Unequal_Modulation",
-    "TX_Max_Spatial_Streams",
-    "TX_RX_MCS_Set_Not_Equal",
-    "TX_MCS_Set_Defined",
-    "res3",
-    "RX_Highest_Supported_Data_Rate",
-    "res4",
-    "RX_MSC_Bitmask",
-    "res5",
-    "RD_Responder",
-    "HTC_HT_Support",
-    "MCS_Feedback",
-    "res6",
-    "PCO_Transition_Time",
-    "PCO",
-    "res7",
-    "Channel_Estimation_Capability",
-    "CSI_max_n_Rows_Beamformer_Supported",
-    "Compressed_Steering_n_Beamformer_Antennas_Supported",
-    "Noncompressed_Steering_n_Beamformer_Antennas_Supported",
-    "CSI_n_Beamformer_Antennas_Supported",
-    "Minimal_Grouping",
-    "Explicit_Compressed_Beamforming_Feedback",
-    "Explicit_Noncompressed_Beamforming_Feedback",
-    "Explicit_Transmit_Beamforming_CSI_Feedback",
-    "Explicit_Compressed_Steering",
-    "Explicit_Noncompressed_Steering",
-    "Explicit_CSI_Transmit_Beamforming",
-    "Calibration",
-    "Implicit_Trasmit_Beamforming",
-    "Transmit_NDP",
-    "Receive_NDP",
-    "Transmit_Staggered_Sounding",
-    "Receive_Staggered_Sounding",
-    "Implicit_Transmit_Beamforming_Receiving",
-]
+from scapy.all import rdpcap
+from scapy.layers.dot11 import Dot11Elt
+
+from utils import fieldUtility, logger
+
+from .constants import HT_CAP
+
+# Extract HT capabilities from packet
+def extractHTCapabilities(packet: Dot11Elt) -> list:
+    try:
+        ht_cap = packet.getlayer(Dot11Elt, ID=45)
+
+        # Extract all fields into a list
+
+        fields_list = []
+
+        for field in HT_CAP:
+            fields_list.append(getattr(ht_cap, field))
+
+        return fieldUtility.fieldPadder(fields_list, 53)
+    except:
+        logger.log.debug("No HT capabilities found.")
+        return fieldUtility.noneList(53)
