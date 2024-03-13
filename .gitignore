@@ -531,3 +531,10 @@ pyrightconfig.json
 *.pcap
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,python,jupyternotebooks,latex
+
+# Large datasets
+
+data/extracted/UJI/uji_probes.csv
+data/interim/uji_dataset/encoded_LABEL_uji_df.csv
+data/interim/uji_dataset/uji_clean.csv
+data/interim/uji_dataset/uji_df_non-random.csv
