@@ -13,6 +13,10 @@ traceback.install()
 
 
 def main():
+
+    # Clear shell
+    os.system("clear")
+
     # Import the config file
     config = ConfigParser()
     config.read(os.path.join(os.path.dirname(__file__), "config.ini"))

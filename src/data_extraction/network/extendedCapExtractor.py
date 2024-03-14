@@ -44,7 +44,7 @@ def extract_fields_from_binary(ie_dictionary, binary_string):
                     ]
                 )
                 # Add the field and its bits to the list
-                extracted_fields.append((field_name, field_bits))
+                extracted_fields.append(field_bits)
                 # Mark this field as added
                 added_fields.add(field_name)
 
