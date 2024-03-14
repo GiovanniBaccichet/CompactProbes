@@ -61,10 +61,10 @@ def extractExtendedCapabilities(packet) -> list:
         extendedCap = extendedCapExtractor.extract_fields_from_binary(
             EXTENDED_CAP, extendedCapBin
         )
-        return fieldUtility.fieldPadder(extendedCap, 75)
+        return fieldUtility.fieldPadder(extendedCap, 72)
     except:
         logger.log.debug("No extended capabilities found.")
-        return fieldUtility.noneList(75)
+        return fieldUtility.noneList(72)
 
 
 # Extract vendor specific tags from packet

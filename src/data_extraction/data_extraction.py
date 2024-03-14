@@ -1,5 +1,6 @@
 from configparser import ConfigParser
 import os
+import cowsay
 from rich.progress import Progress, BarColumn, TextColumn
 from rich import traceback
 
@@ -16,6 +17,9 @@ def main():
 
     # Clear shell
     os.system("clear")
+
+    # Fun title
+    cowsay.stegosaurus("Extracting some Information Elements")
 
     # Import the config file
     config = ConfigParser()
