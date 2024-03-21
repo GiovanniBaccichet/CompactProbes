@@ -43,6 +43,9 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
             # Extended Capabilities (HEX)
             extended_capabilities = IEextractor.extractExtendedCapabilities(packet)
 
+            # Sequence Number
+            seq_number = IEextractor.extractSN(packet)
+
             # Vendor Specific Tags (HEX)
             vendor_specific_tags = IEextractor.extractVendorSpecificTags(packet)
 
@@ -72,6 +75,7 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                     mac_address,
                     channel,
                     ds_channel,
+                    seq_number,
                     vendor_specific_tags,
                     ssid,
                     vhtcapabilities,

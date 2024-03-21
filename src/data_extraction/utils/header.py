@@ -3,6 +3,7 @@ HEADER = [
     "MAC Address",
     "Channel",
     "DS Channel",
+    "SN",
     "Vendor Specific Tags",
     "SSID",
     "VHT Capabilities",

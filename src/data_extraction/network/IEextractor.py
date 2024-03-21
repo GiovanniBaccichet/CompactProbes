@@ -7,7 +7,7 @@ from . import htCapExtractor
 from .constants import EXTENDED_CAP
 
 from scapy.all import rdpcap
-from scapy.layers.dot11 import Dot11Elt
+from scapy.layers.dot11 import Dot11Elt, Dot11FCS
 
 import numpy as np
 
@@ -66,6 +66,10 @@ def extractExtendedCapabilities(packet) -> list:
         logger.log.debug("No extended capabilities found.")
         return fieldUtility.noneList(72)
 
+# Extract Sequence Number (SN) from packet
+    
+def extractSN(packet) -> int:
+    return int(packet.getlayer(Dot11FCS).SC / 16)
 
 # Extract vendor specific tags from packet
 def extractVendorSpecificTags(packet):
