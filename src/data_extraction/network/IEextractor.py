@@ -66,10 +66,18 @@ def extractExtendedCapabilities(packet) -> list:
         logger.log.debug("No extended capabilities found.")
         return fieldUtility.noneList(72)
 
+
 # Extract Sequence Number (SN) from packet
-    
+
+
 def extractSN(packet) -> int:
-    return int(packet.getlayer(Dot11FCS).SC / 16)
+    try:
+        sn = (packet.SC / 16)
+        return sn
+    except:
+        logger.log.warning("No Sequence Number (SN) found")
+        return 0
+
 
 # Extract vendor specific tags from packet
 def extractVendorSpecificTags(packet):
@@ -139,6 +147,7 @@ def extractHECapabilities(packet):
     except:
         logger.log.debug("No HE capabilities found.")
         return None
+
 
 def extractHTCapabilities(packet: Dot11Elt):
     return htCapExtractor.extractHTCapabilities(packet)
