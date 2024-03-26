@@ -6,6 +6,10 @@ Supported Rates 1,24.78770973374533
 Supported Rates 2,24.785575519730493
 Supported Rates 3,24.785580002232802
 Supported Rates 4,24.78560661207726
+Supported Rates 5,0.3758377137829317
+Supported Rates 6,0.9420942719238259
+Supported Rates 7,2.438437131989901
+Supported Rates 8,3.638353330365047
 Extended Supported Rates 1,4.780069155882292
 Extended Supported Rates 2,7.169920874460946
 Extended Supported Rates 3,9.563303666624252
@@ -129,3 +133,13 @@ Protected_QLoad_Report,0.0
 TDLS_Wide_Bandwidth,0.0
 Operating_Mode_Notification,0.27948915243326117
 Max_Number_Of_MSDUs_In_A_MPDU,0.0
+Channel_Schedule_Management,0.0
+Geodatabase_Inband_Enabling_Signal,0.0
+Network_Channel_Control,0.0
+White_Space_Map,0.0
+Channel_Availability_Query,0.0
+FTM_Responder,0.0
+FTM_Initiator,0.4896999631933604
+Reserved_6,0.3186828111656614
+ESM_Capability,0.0
+Future_Channel_Guidance,0.0
