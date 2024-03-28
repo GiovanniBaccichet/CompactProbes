@@ -86,3 +86,7 @@ Repository is organized according to the [Cookiecutter Data Science](https://git
         ├── config.ini                                   ← Configuration files for /data_extraction, containing paths
         └── data_extraction.py
 ```
+
+## Notebooks
+
+In the `notebooks` folder there are a variety of Jupyter Notebooks that are requrired for different purposes. In order to keep track of their order of execution, the input and output files they produce, and also to have a summary of their purpose, we reported everything in a dedicated [README](notebooks/README.md).
