@@ -22,6 +22,11 @@
 
 </details>
 
+## Data Sources
+
+The series of notebooks deal mainly with 3 different sources of data: the one coming from [UIJ Dataset](https://zenodo.org/records/7801798), that are useful to understand the trends wrt Information Elements in a very large and modern (but unlabelled) dataset; the one coming from our extended version of the [Pintor et al. dataset](https://www.sciencedirect.com/science/article/abs/pii/S1389128622000196), extracted following what the authors did in the paper; the last, but most interesting one is coming from the same extended dataset, but using a different approach in data extraction: we implemented a custom dissector to extract each sub-field of the Information Elements.
+
+This data extraction technique allows us to have the maximum granularity possible with respect to the 
 
 ## Folder Structure
 
@@ -86,4 +91,4 @@ It is useful to have a general view of the files contained in this folder. The t
 
 ## `data_exploration_cleaning`
 
-asd
+Data pre-processing and visualization, including cleaning and balancing data. The purpose of the notebooks contained in this folder is to get an idea of the data we are working with, including understanding the most interesting features (that must be checked during the feature selection process).
