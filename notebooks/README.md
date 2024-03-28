@@ -28,6 +28,14 @@ The series of notebooks deal mainly with 3 different sources of data: the one co
 
 > This data extraction technique allows us to have the maximum granularity possible with respect to the actual bits of data used to discriminate between devices, in the context of MAC Address de-randomization techniques.
 
+## Naming Scheme
+
+The difference in the naming scheme we adopted, between the two data extraction techniques, with respect to the extended dataset is:
+- **extracted**: technique that follows the above cited paper
+- **dissected**: technique we introduces, which provides more granularity
+
+When `raw` is appended to the name of a file, it means that `NaN` values are preserved. On the other hand, `fillna("-1", inplace=True) is used.
+
 ## Folder Structure
 
 It is useful to have a general view of the files contained in this folder. The tree view below can help in this regard. The folder has different children, which have a dedicated section in this readme file. The order of the sections reflects as much as possible the reasoning we did when creating them, as well as the proper order of execution of the notebooks. This is necessary for reproducing our results, since many notebooks rely on the outputs of others, to be used as inputs.
@@ -89,12 +97,45 @@ It is useful to have a general view of the files contained in this folder. The t
 └── Template.ipynb
 ```
 
-## `data_exploration_cleaning`
+## data_exploration_cleaning
 
 Data pre-processing and visualization, including cleaning and balancing data. The purpose of the notebooks contained in this folder is to get an idea of the data we are working with, including understanding the most interesting features (that must be confirmed during the feature selection process).
 
-### `data_pre-processing`
+### data_pre-processing
 
 > Input: all the `.CSV` files in `config["DEFAULT"]["extracted_path"]`
 
-> Output: `data/interim/combined_df_raw.csv`
+> Output: `data/interim/combined_df_raw.csv`, `data/interim/combined_df.csv`
+
+This notebook merges the **extracted** files into a unique file.
+
+### data_balancing
+
+> Input: `combined_df_raw.csv`
+
+> Output: `balanced_df_raw.csv`, `balanced_df.csv`, `encoded_LABEL_balanced_df.csv`
+
+This notebook balances the labelled dataset with respect to the average number of rows per unique Label. It undersamples the input dataframe with a fixed random seed for reproducibility.
+
+### data_cleaning_SSID_length
+
+> Input: `balanced_df_raw.csv`, `encoded_LABEL_balanced_df.csv`
+
+> Output: `balanced_df_raw_no_ssid.csv`, `encoded_LABEL_balanced_df_length.csv`
+
+This notebook drops the `SSID` column, subtracting the length of each row to the respective `Length` column. This is done to balanced data, as well as **label encoded** data. Label encoding is performed in another notebook.
+
+### data_exploration and data_visualization
+
+These notebooks, as the names suggest, are used for data exploration and visualization. We won't delve into each one of them, since they do not produce outputs that are used in other notebooks.
+
+### 📁 dissected
+
+## data_testing_subsets
+
+### data_subset_generation
+
+> Output: `/CSV/subset_combinations/unique_combinations.csv`
+
+Generate subsets of the dataset of increasing cardinality. In total we generated 10 subset per cardinality, where possible.
+
