@@ -197,3 +197,7 @@ Generate subsets of the dataset of increasing cardinality. In total we generated
 As the name suggests, these notebooks are created for feature selection and feature engineering.
 
 Since they do not produce output files used as input datasets, we are not going through each one of them. Output files are generated, but are under the `reports` folder.
+
+## models_train_evaluate
+
+Folder dedicated to the models training and performance evaluation notebooks.
