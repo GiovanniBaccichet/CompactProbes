@@ -192,3 +192,8 @@ This notebook performs SUM encoding for each feature extracted as a HEX map: eac
 
 Generate subsets of the dataset of increasing cardinality. In total we generated 10 subset per cardinality, where possible.
 
+## models_feature_engineering
+
+As the name suggests, these notebooks are created for feature selection and feature engineering.
+
+Since they do not produce output files used as input datasets, we are not going through each one of them. Output files are generated, but are under the `reports` folder.
