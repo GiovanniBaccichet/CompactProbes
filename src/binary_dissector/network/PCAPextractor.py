@@ -25,6 +25,8 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
 
         for packet in packets:
 
+            packet_bits = ''
+
             packet_bits = binUtility.getMACLayerBits(packet)
 
             packet_IE = packet_bits[192:]
@@ -44,7 +46,7 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
 
                 elements.append(
                     (
-                        dictionaries.ELEMENT_IDs[convertedID],
+                        IEextractor.getElementIDText(convertedID),
                         binUtility.convertBinLength(packet_slice),
                         elementID,
                         length,
@@ -56,25 +58,93 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
 
             frame_check_seq = packet_IE[-32:]
 
-            combined_list = (
-                [
-                    timestamp,
-                    mac_address,
-                    channel,
-                    ds_channel,
-                    seq_number,
-                    vendor_specific_tags,
-                    ssid,
-                    vhtcapabilities,
-                    hecapabilities,
-                    packet_length,
-                    label,
-                ]
-                + supported_rates  # add individual Supported Rates
-                + extended_supported_rates  # add individual Extended Supported Rates
-                + htcapabilities  # add individual HT Capabilities
-                + extended_capabilities  # add individual Extended Capabilities
-            )
+            # Init variables
+            e_id_ssid = ""
+            len_ssid = ""
+            ssid = ""
+            e_id_sup_rates = ""
+            len_sup_rates = ""
+            supported_rates = ""
+            e_id_ext_sup_rates = ""
+            len_ext_sup_rates = ""
+            ext_sup_rates = ""
+            e_id_dsss = ""
+            len_dsss = ""
+            dsss_parameter = ""
+            e_id_ht_cap = ""
+            len_ht_cap = ""
+            ht_cap = ""
+            e_id_vht_cap = ""
+            len_vht_cap = ""
+            vht_cap = ""
+            e_id_vst = ""
+            len_vst = ""
+            vst = ""
+
+            for i in range(len(elements)):
+                match elements[i][0]:
+                    case "ssid":
+                        e_id_ssid = elements[i][2]
+                        len_ssid = elements[i][3]
+                        ssid = elements[i][4]
+                    case "supported rates":
+                        e_id_sup_rates = elements[i][2]
+                        len_sup_rates = elements[i][3]
+                        supported_rates = elements[i][4]
+                    case "extended supported rates":
+                        e_id_ext_sup_rates = elements[i][2]
+                        len_ext_sup_rates = elements[i][3]
+                        ext_sup_rates = elements[i][4]
+                    case "dsss parameters":
+                        e_id_dsss = elements[i][2]
+                        len_dsss = elements[i][3]
+                        dsss_parameter = elements[i][4]
+                    case "ht capabilities":
+                        e_id_ht_cap = elements[i][2]
+                        len_ht_cap = elements[i][3]
+                        ht_cap = elements[i][4]
+                    case "vht capabilities":
+                        e_id_vht_cap = elements[i][2]
+                        len_vht_cap = elements[i][3]
+                        vht_cap = elements[i][4]
+                    case "vendor specific tags":
+                        if len(vst) != 0:
+                            e_id_vst = elements[i][2]
+                            len_vst = elements[i][3]
+
+                            vst += elements[i][2]
+                            vst += elements[i][3]
+                            vst += elements[i][4]
+                        else:
+                            e_id_vst = elements[i][2]
+                            len_vst = elements[i][3]
+                            vst = elements[i][4]
+
+            combined_list = [
+                e_id_ssid,
+                len_ssid,
+                ssid,
+                e_id_sup_rates,
+                len_sup_rates,
+                supported_rates,
+                e_id_ext_sup_rates,
+                len_ext_sup_rates,
+                ext_sup_rates,
+                e_id_dsss,
+                len_dsss,
+                dsss_parameter,
+                e_id_ht_cap,
+                len_ht_cap,
+                ht_cap,
+                e_id_vht_cap,
+                len_vht_cap,
+                vht_cap,
+                e_id_vst,
+                len_vst,
+                vst,
+                frame_check_seq,
+                label,
+            ]
 
             output_data.append(combined_list)
 
