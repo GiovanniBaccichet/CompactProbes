@@ -2,7 +2,7 @@ from utils import logger
 
 from scapy.all import rdpcap
 
-from network import IEextractor
+from network import IEextractor, dictionaries
 from utils import fileUtility, binUtility
 
 
@@ -31,73 +31,52 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
 
             print(packet_IE)
 
-            print
+            index = 0
+            packetLength = len(packet_IE)
+            elements = []
 
-            # # Timestamp
-            # timestamp = IEextractor.extractTimestamp(packet)
+            while index < packetLength - 32:
+                packet_slice = packet_IE[index:]
+                elementID = binUtility.readBinElementID(packet_slice)
+                convertedID = binUtility.readElementID(packet_slice)
+                length = binUtility.readBinLength(packet_slice)
+                field = binUtility.readBinField(packet_slice)
 
-            # # Source MAC address
-            # mac_address = IEextractor.extractMAC(packet)
+                elements.append(
+                    (
+                        dictionaries.ELEMENT_IDs[convertedID],
+                        binUtility.convertBinLength(packet_slice),
+                        elementID,
+                        length,
+                        field,
+                    )
+                )
 
-            # # Channel number
-            # channel = IEextractor.extractChannel(packet)
+                index += 16 + binUtility.convertBinLength(packet_slice)
 
-            # # DS Parameter Set channel number
-            # ds_channel = IEextractor.extractDSChannel(packet)
+            frame_check_seq = packet_IE[-32:]
 
-            # # HT Capabilities (HEX)
-            # htcapabilities = IEextractor.extractHTCapabilities(packet)
+            combined_list = (
+                [
+                    timestamp,
+                    mac_address,
+                    channel,
+                    ds_channel,
+                    seq_number,
+                    vendor_specific_tags,
+                    ssid,
+                    vhtcapabilities,
+                    hecapabilities,
+                    packet_length,
+                    label,
+                ]
+                + supported_rates  # add individual Supported Rates
+                + extended_supported_rates  # add individual Extended Supported Rates
+                + htcapabilities  # add individual HT Capabilities
+                + extended_capabilities  # add individual Extended Capabilities
+            )
 
-            # # Extended Capabilities (HEX)
-            # extended_capabilities = IEextractor.extractExtendedCapabilities(packet)
-
-            # # Sequence Number
-            # seq_number = IEextractor.extractSN(packet)
-
-            # # Vendor Specific Tags (HEX)
-            # vendor_specific_tags = IEextractor.extractVendorSpecificTags(packet)
-
-            # # Additional features
-
-            # # SSID
-            # ssid = IEextractor.extractSSID(packet)
-
-            # # Supported Rates (HEX)
-            # supported_rates = IEextractor.extractSupportedRates(packet)
-
-            # # Extended Supported Rates (HEX)
-            # extended_supported_rates = IEextractor.extractExtendedSupportedRates(packet)
-
-            # # VHT Capabilities (HEX)
-            # vhtcapabilities = IEextractor.extractVHTCapabilities(packet)
-
-            # # HE Capabilities (HEX)
-            # hecapabilities = IEextractor.extractHECapabilities(packet)
-
-            # # Packet size
-            # packet_length = len(packet)
-
-            # combined_list = (
-            #     [
-            #         timestamp,
-            #         mac_address,
-            #         channel,
-            #         ds_channel,
-            #         seq_number,
-            #         vendor_specific_tags,
-            #         ssid,
-            #         vhtcapabilities,
-            #         hecapabilities,
-            #         packet_length,
-            #         label,
-            #     ]
-            #     + supported_rates  # add individual Supported Rates
-            #     + extended_supported_rates  # add individual Extended Supported Rates
-            #     + htcapabilities  # add individual HT Capabilities
-            #     + extended_capabilities  # add individual Extended Capabilities
-            # )
-
-            # output_data.append(combined_list)
+            output_data.append(combined_list)
 
             if progress:
                 # Update the progress for each file
