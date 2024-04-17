@@ -37,9 +37,7 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
             packetLength = len(packet_IE)
             elements = []
 
-            print(packetLength)
             while index < packetLength - 32:
-                print(index)
                 packet_slice = packet_IE[index:]
                 elementID = binUtility.readBinElementID(packet_slice)
                 convertedID = binUtility.readElementID(packet_slice)
@@ -61,7 +59,6 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                 )
 
                 index += 16 + binUtility.convertBinLength(packet_slice)
-                print(index)
 
             frame_check_seq = packet_IE[-32:]
 
@@ -141,7 +138,6 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                         len_ext_tags = elements[i][3]
                         ext_tags = elements[i][4]
                     case _:
-                        # logger.log.warning("Unknown Element ID:", elements[i][0])
                         continue
 
             combined_list = [

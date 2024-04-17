@@ -15,5 +15,4 @@ def getElementIDText(elementid: int) -> str:
     try:
         return dictionaries.ELEMENT_IDs[elementid]
     except:
-        print(elementid)
         return "unknown"
