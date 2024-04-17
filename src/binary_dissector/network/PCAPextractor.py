@@ -31,8 +31,6 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
 
             packet_IE = packet_bits[192:]
 
-            print(packet_IE)
-
             index = 0
             packetLength = len(packet_IE)
             elements = []
