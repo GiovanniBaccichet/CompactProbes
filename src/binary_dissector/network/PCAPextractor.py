@@ -25,7 +25,9 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
 
         for packet in packets:
 
-            packet_bits = ''
+            mac = IEextractor.getMAC(packet)
+
+            packet_bits = ""
 
             packet_bits = binUtility.getMACLayerBits(packet)
 
@@ -35,10 +37,16 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
             packetLength = len(packet_IE)
             elements = []
 
+            print(packetLength)
             while index < packetLength - 32:
+                print(index)
                 packet_slice = packet_IE[index:]
                 elementID = binUtility.readBinElementID(packet_slice)
                 convertedID = binUtility.readElementID(packet_slice)
+
+                if convertedID == "unknown":
+                    continue
+
                 length = binUtility.readBinLength(packet_slice)
                 field = binUtility.readBinField(packet_slice)
 
@@ -53,6 +61,7 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                 )
 
                 index += 16 + binUtility.convertBinLength(packet_slice)
+                print(index)
 
             frame_check_seq = packet_IE[-32:]
 
@@ -72,12 +81,18 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
             e_id_ht_cap = ""
             len_ht_cap = ""
             ht_cap = ""
+            e_id_ext_cap = ""
+            len_ext_cap = ""
+            ext_cap = ""
             e_id_vht_cap = ""
             len_vht_cap = ""
             vht_cap = ""
             e_id_vst = ""
             len_vst = ""
             vst = ""
+            e_id_ext_tags = ""
+            len_ext_tags = ""
+            ext_tags = ""
 
             for i in range(len(elements)):
                 match elements[i][0]:
@@ -101,6 +116,10 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                         e_id_ht_cap = elements[i][2]
                         len_ht_cap = elements[i][3]
                         ht_cap = elements[i][4]
+                    case "extended capabilities":
+                        e_id_ext_cap = elements[i][2]
+                        len_ext_cap = elements[i][3]
+                        ext_cap = elements[i][4]
                     case "vht capabilities":
                         e_id_vht_cap = elements[i][2]
                         len_vht_cap = elements[i][3]
@@ -117,8 +136,16 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                             e_id_vst = elements[i][2]
                             len_vst = elements[i][3]
                             vst = elements[i][4]
+                    case "extended tags":
+                        e_id_ext_tags = elements[i][2]
+                        len_ext_tags = elements[i][3]
+                        ext_tags = elements[i][4]
+                    case _:
+                        # logger.log.warning("Unknown Element ID:", elements[i][0])
+                        continue
 
             combined_list = [
+                mac,
                 e_id_ssid,
                 len_ssid,
                 ssid,
@@ -136,10 +163,16 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                 ht_cap,
                 e_id_vht_cap,
                 len_vht_cap,
+                e_id_ext_cap,
+                len_ext_cap,
+                ext_cap,
                 vht_cap,
                 e_id_vst,
                 len_vst,
                 vst,
+                e_id_ext_tags,
+                len_ext_tags,
+                ext_tags,
                 frame_check_seq,
                 label,
             ]
