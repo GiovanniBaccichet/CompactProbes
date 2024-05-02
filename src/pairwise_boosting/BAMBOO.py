@@ -262,38 +262,44 @@ errors = {}
 # Algorithm implementation
 
 # %%
-for m in range(M):  # iterations
+for m in tqdm(range(M), desc="Iterations"):  # iterations
     errors = {}
-    print("FILTERS", filters)
-    for filters_entry in filters:  # for each filter
+    for filters_entry in tqdm(filters, desc="Filters"):  # for each filter
         filters_list, threshold_list = filters_entry
-        for filter, thresholds in zip(
-            filters_list, [threshold_list] * len(filters_list)
+        for filter, thresholds in tqdm(
+            zip(filters_list, [threshold_list] * len(filters_list)),
+            desc="Filter, Threshold zip",
+            total=len(filters_list),
         ):
             for threshold in thresholds:  # for each threshold
                 error = 0
-                for pair in range(len(dataset)):  # for each pair
-                    prediction = weak_classifier(dataset[pair][0:2], threshold, filter)
-                    error += get_error(weights[pair], prediction, dataset[pair][2])
-                    # print("LABEL", dataset[pair][2])
+                for pair in range(len(pairs_index)):  # for each pair
+                    prediction = weak_classifier(
+                        tuple(dataset.iloc[pairs_index.iloc[pair, 0:2], 0]),
+                        threshold,
+                        filter,
+                    )
+                    error += get_error(
+                        weights[pair], prediction, pairs_index.iloc[pair, 2]
+                    )
+                    # print("LABEL", pairs_index.iloc[pair, 2])
                 # print("[!] ERROR", error)
                 errors[(filter, threshold)] = error
-    # print("errors", errors)
+        # print("errors", errors)
     best_filter, best_threshold = min(errors, key=lambda k: abs(errors[k]))
 
     print("Best Filter:", best_filter)
     print("Best Threshold:", best_threshold)
 
     min_error = errors[(best_filter, best_threshold)]
-    print("Min_error", min_error)
+    # print(min_error)
     if min_error == 0:
-        min_error = e**-25
+        min_error = 0.000000000000000000000001
     confidence = math.log(
         (1 - min_error) / min_error
     )  # confidence of the weak classifier
-    print("Confidence:", confidence)
+    # log.debug("Confidence:", confidence)
 
-    # Create a copy of the filters list to iterate over
     for i in range(len(filters) - 1, -1, -1):
         filter_item = filters[i]
         for j in range(len(filter_item[0]) - 1, -1, -1):
@@ -310,17 +316,24 @@ for m in range(M):  # iterations
                 break  # Exit the inner loop once filter is deleted
 
     # Asymmetric Weight Update
-    for pair in range(len(dataset)):
-        if dataset[pair][2] == +1:
-
+    for pair in range(len(pairs_index)):
+        if pairs_index.iloc[pair, 2] == +1:
             if (
-                weak_classifier(dataset[pair][0:2], best_threshold, best_filter)
-                != dataset[pair][2]
+                weak_classifier(
+                    tuple(dataset.iloc[pairs_index.iloc[pair, 0:2], 0]),
+                    best_threshold,
+                    best_filter,
+                )
+                != pairs_index.iloc[pair, 2]
             ):
                 weights[pair] = weights[pair] * math.exp(confidence)
 
+    for pair in range(len(pairs_index)):
+        if pairs_index.iloc[pair, 2] == +1:
             weights[pair] = weights[pair] / sum(
-                weights[pair] for pair in range(len(dataset)) if dataset[pair][2] == +1
+                weights[pair]
+                for pair in range(len(pairs_index))
+                if pairs_index.iloc[pair, 2] == +1
             )
 
 # %%
