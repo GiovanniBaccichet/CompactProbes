@@ -248,7 +248,7 @@ def get_error(weigth: float, prediction: int, ground_truth: int) -> float:
 # Input
 dataset = strings_df.copy()
 # pairs_index = pairs_df.copy()
-pairs_index = pairs_df.head(30000)
+pairs_index = pairs_df.head(100)
 filters = thresholds_list
 M = 3
 
@@ -287,13 +287,13 @@ for m in tqdm(range(M), desc="Iterations"):  # iterations
         # print("errors", errors)
     best_filter, best_threshold = min(errors, key=lambda k: abs(errors[k]))
 
+
     print("Best Filter:", best_filter)
     print("Best Threshold:", best_threshold)
 
     min_error = errors[(best_filter, best_threshold)]
-    # print(min_error)
     if min_error == 0:
-        min_error = 0.000000000000000000000001
+        min_error = 0.0000000000000000000000000000000000000000000000001
     confidence = math.log(
         (1 - min_error) / min_error
     )  # confidence of the weak classifier
@@ -320,10 +320,13 @@ for m in tqdm(range(M), desc="Iterations"):  # iterations
                 if pairs_index.iloc[pair, 2] == +1
             )
 
+    filters.remove(best_filter)
+
 # %%
 print("Best Filter:", best_filter)
 print("Best Threshold:", best_threshold)
 print("Min error", min_error)
+print('Confidence', confidence)
 
 # %%
 
