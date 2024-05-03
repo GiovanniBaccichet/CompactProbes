@@ -248,7 +248,7 @@ def get_error(weigth: float, prediction: int, ground_truth: int) -> float:
 # Input
 dataset = strings_df.copy()
 # pairs_index = pairs_df.copy()
-pairs_index = pairs_df.head(100)
+pairs_index = pairs_df.head(30000)
 filters = thresholds_list
 M = 3
 
