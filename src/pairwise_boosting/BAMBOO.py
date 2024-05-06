@@ -248,9 +248,9 @@ def get_error(weigth: float, prediction: int, ground_truth: int) -> float:
 # Input
 dataset = strings_df.copy()
 # pairs_index = pairs_df.copy()
-pairs_index = pairs_df.head(30000)
+pairs_index = pairs_df.copy()
 filters = thresholds_list
-M = 3
+M = 10
 
 # Initial weights
 weights = np.ones(len(pairs_index)) / len(pairs_index)
@@ -263,13 +263,16 @@ errors = {}
 
 # %%
 for m in tqdm(range(M), desc="Iterations"):  # iterations
-    errors = {}
+    best_filter = None
+    best_threshold = None
     for filters_entry in tqdm(filters, desc="Filters"):  # for each filter
         filters_list, threshold_list = filters_entry
-        for filter, thresholds in tqdm(
-            zip(filters_list, [threshold_list] * len(filters_list)),
-            desc="Filter, Threshold zip",
-            total=len(filters_list),
+
+        for i in range(len(thresholds_list)):
+            del thresholds_list[i][1][-1:-3]
+
+        for filter, thresholds in zip(
+            filters_list, [threshold_list] * len(filters_list)
         ):
             for threshold in thresholds:  # for each threshold
                 error = 0
@@ -282,41 +285,27 @@ for m in tqdm(range(M), desc="Iterations"):  # iterations
                     error += get_error(
                         weights[pair], prediction, pairs_index.iloc[pair, 2]
                     )
-                    # print("LABEL", pairs_index.iloc[pair, 2])
-                # print("[!] ERROR", error)
                 errors[(filter, threshold)] = error
-        # print("errors", errors)
     best_filter, best_threshold = min(errors, key=lambda k: abs(errors[k]))
 
     print("Best Filter:", best_filter)
     print("Best Threshold:", best_threshold)
 
     min_error = errors[(best_filter, best_threshold)]
-    # print(min_error)
-    if min_error == 0:
-        min_error = 0.000000000000000000000001
     confidence = math.log(
         (1 - min_error) / min_error
     )  # confidence of the weak classifier
-    # log.debug("Confidence:", confidence)
-
-    for i in range(len(filters) - 1, -1, -1):
-        filter_item = filters[i]
-        for j in range(len(filter_item[0]) - 1, -1, -1):
-            filter_value = filter_item[0][j]
-            if filter_value == best_filter:
-                print("Deleting best filter")
-                # Remove the filter value from the inner list
-                filters[i][0].pop(j)
-
-                # Check if the inner list is empty after removal
-                if len(filters[i][0]) == 0:
-                    # If empty, delete the filter item from the filters list
-                    del filters[i]
-                break  # Exit the inner loop once filter is deleted
+    print("Min error", min_error)
+    print("Confidence:", confidence)
 
     # Asymmetric Weight Update
     for pair in range(len(pairs_index)):
+
+        # print(
+        #     dataset[pair][2],
+        #     weak_classifier(dataset[pair][0:2], best_threshold, best_filter),
+        # )
+
         if pairs_index.iloc[pair, 2] == +1:
             if (
                 weak_classifier(
@@ -340,7 +329,6 @@ for m in tqdm(range(M), desc="Iterations"):  # iterations
 print("Best Filter:", best_filter)
 print("Best Threshold:", best_threshold)
 print("Min error", min_error)
-print('Confidence', confidence)
 
 # %%
 
