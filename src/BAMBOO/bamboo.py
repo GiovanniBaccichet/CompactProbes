@@ -17,8 +17,6 @@ from utils import title
 
 import argparse
 
-import multiprocessing
-
 traceback.install()
 
 console = Console()
@@ -173,11 +171,6 @@ def main():
             # Asymmetric Weight Update
             for pair in range(len(pairs_index)):
 
-                # print(
-                #     dataset[pair][2],
-                #     weak_classifier(dataset[pair][0:2], best_threshold, best_filter),
-                # )
-
                 if pairs_index.iloc[pair, 2] == +1:
                     if (
                         classifier.weak_classifier(
@@ -199,8 +192,6 @@ def main():
 
             # Update the process at each iteration
             progress.update(iteration_task, advance=1)
-
-            
 
 
 if __name__ == "__main__":
