@@ -17,3 +17,11 @@ def compute_error(args):
         filter,
     )
     return get_error(weights[pair], prediction, pairs_index.iloc[pair, 2])
+
+def parallel_compute_errors(pair_data):
+    pair, pairs_index, thresholds, filter, dataset, weak_classifier, weights = pair_data
+    errors = []
+    for threshold in thresholds:
+        error = compute_error((pair, pairs_index, threshold, filter, dataset, weak_classifier, weights))
+        errors.append(error)
+    return errors
