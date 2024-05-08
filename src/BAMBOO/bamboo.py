@@ -1,6 +1,6 @@
 from configparser import ConfigParser
 import os
-from rich.progress import Progress, BarColumn, TextColumn
+from rich.progress import Progress, BarColumn, TextColumn, TimeRemainingColumn
 from rich.console import Console
 
 from rich import traceback
@@ -61,6 +61,7 @@ def main():
         TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
         " ",  # Spacer
         TextColumn("[progress.remaining]{task.completed}/{task.total}"),
+        TimeRemainingColumn(),
     ]
 
     n_iterations = args.M
@@ -78,7 +79,10 @@ def main():
     # Importing pairs_df w/ index and ground truth from strings_df
 
     if args.d:
-        print("Enabled debug dataset")
+        console.print(
+            Panel("[!] Using debug dataset.", style="bold green"),
+            style="bold green",
+        )
         pairs_df = pd.read_csv(config["DEFAULT"]["df_debug_pairs_path"], index_col=0)
     else:
         pairs_df = pd.read_csv(config["DEFAULT"]["df_pairs_path"], index_col=0)
@@ -90,6 +94,8 @@ def main():
     filters_df = filters_df.head(n_filters).reset_index()
 
     filters = filters_df["Bitmask"]
+
+    best_configs = []
 
     # Generation thresholds for each bitmask
     threshold_list = threshold_gen.generate_thresholds(filters)
@@ -162,6 +168,8 @@ def main():
             print("Min error", min_error)
             print("Confidence:", confidence)
 
+            best_configs.append((best_filter, best_threshold, min_error, confidence))
+
             # Asymmetric Weight Update
             for pair in range(len(pairs_index)):
 
@@ -191,6 +199,8 @@ def main():
 
             # Update the process at each iteration
             progress.update(iteration_task, advance=1)
+
+            
 
 
 if __name__ == "__main__":
