@@ -1,6 +1,8 @@
 from configparser import ConfigParser
 import os
 from rich.progress import Progress, BarColumn, TextColumn
+from rich.console import Console
+
 from rich import traceback
 
 from classifier import classifier, compute_error, threshold_gen
@@ -17,9 +19,9 @@ import argparse
 
 import multiprocessing
 
-from tqdm import tqdm
-
 traceback.install()
+
+console = Console()
 
 
 def main():
@@ -29,17 +31,37 @@ def main():
     parser = argparse.ArgumentParser(description="AsymMetric pairwise BOOsting")
     parser.add_argument("-M", type=int, help="number of iterations")
     parser.add_argument("-F", type=int, help="number of filters to use")
-    parser.add_argument("-X", type=int, help="number of head rows to use from the dataset")
-    parser.add_argument("-d", action='store_true', help="use debug dataset")
+    parser.add_argument(
+        "-X", type=int, help="number of head rows to use from the dataset"
+    )
+    parser.add_argument("-d", action="store_true", help="use debug dataset")
     args = parser.parse_args()
 
+    from rich.panel import Panel
+
     if args.M is None:
-        print("[!] Argument M is missing! Setting it to 1.")
+        console.print(
+            Panel("[!] Argument M is missing! Setting it to 1.", style="bold red"),
+            style="bold red",
+        )
         args.M = 1
 
     if args.F is None:
-        print("[!] Argument F is missing! Setting it to 16.")
+        console.print(
+            Panel("[!] Argument F is missing! Setting it to 16.", style="bold red"),
+            style="bold red",
+        )
         args.F = 16
+
+    # Define custom columns for the progress bar
+    custom_columns = [
+        BarColumn(bar_width=None),
+        " ",  # Spacer
+        TextColumn("[progress.description]{task.description}"),
+        TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+        " ",  # Spacer
+        TextColumn("[progress.remaining]{task.completed}/{task.total}"),
+    ]
 
     n_iterations = args.M
     n_filters = args.F
@@ -56,7 +78,7 @@ def main():
     # Importing pairs_df w/ index and ground truth from strings_df
 
     if args.d:
-        print('Enabled debug dataset')
+        print("Enabled debug dataset")
         pairs_df = pd.read_csv(config["DEFAULT"]["df_debug_pairs_path"], index_col=0)
     else:
         pairs_df = pd.read_csv(config["DEFAULT"]["df_pairs_path"], index_col=0)
@@ -88,65 +110,87 @@ def main():
 
     errors = {}
 
-    for m in tqdm(range(n_iterations), desc="Iterations"):  # iterations
-        best_filter = None
-        best_threshold = None
-        for filters_entry in tqdm(filters, desc="Filters"):  # for each filter
-            filters_list, threshold_list = filters_entry
+    total_inner_iterations = sum(
+        len(sublist) * len(threshold_list) for sublist, threshold_list in filters
+    ) * len(pairs_index)
 
-            for filter, thresholds in zip(
-                filters_list, [threshold_list] * len(filters_list)
-            ):
-                for threshold in thresholds:  # for each threshold
-                    error = 0
-                    for pair in range(len(pairs_index)):  # for each pair
-                        prediction = classifier.weak_classifier(
-                            tuple(dataset.iloc[pairs_index.iloc[pair, 0:2], 0]),
-                            threshold,
-                            filter,
-                        )
-                        error += compute_error.get_error(
-                            weights[pair], prediction, pairs_index.iloc[pair, 2]
-                        )
-                    errors[(filter, threshold)] = error
-        best_filter, best_threshold = min(errors, key=lambda k: abs(errors[k]))
+    # Create a Rich progress context
+    with Progress(*custom_columns) as progress:
+        # Create a task for the outer loop
+        iteration_task = progress.add_task(
+            "[cyan]Going through iterations...", total=n_iterations
+        )
 
-        print("Best Filter:", best_filter)
-        print("Best Threshold:", best_threshold)
+        for _ in range(n_iterations):  # iterations
+            best_filter = None
+            best_threshold = None
 
-        min_error = errors[(best_filter, best_threshold)]
-        confidence = math.log(
-            (1 - min_error) / min_error
-        )  # confidence of the weak classifier
-        print("Min error", min_error)
-        print("Confidence:", confidence)
+            # Create a task for the inner loop
+            filters_task = progress.add_task(
+                f"[green]Processing filters...", total=total_inner_iterations
+            )
 
-        # Asymmetric Weight Update
-        for pair in range(len(pairs_index)):
+            for filters_entry in filters:  # for each filter
+                filters_list, threshold_list = filters_entry
 
-            # print(
-            #     dataset[pair][2],
-            #     weak_classifier(dataset[pair][0:2], best_threshold, best_filter),
-            # )
-
-            if pairs_index.iloc[pair, 2] == +1:
-                if (
-                    classifier.weak_classifier(
-                        tuple(dataset.iloc[pairs_index.iloc[pair, 0:2], 0]),
-                        best_threshold,
-                        best_filter,
-                    )
-                    != pairs_index.iloc[pair, 2]
+                for filter, thresholds in zip(
+                    filters_list, [threshold_list] * len(filters_list)
                 ):
-                    weights[pair] = weights[pair] * math.exp(confidence)
+                    for threshold in thresholds:  # for each threshold
+                        error = 0
+                        for pair in range(len(pairs_index)):  # for each pair
+                            prediction = classifier.weak_classifier(
+                                tuple(dataset.iloc[pairs_index.iloc[pair, 0:2], 0]),
+                                threshold,
+                                filter,
+                            )
+                            error += compute_error.get_error(
+                                weights[pair], prediction, pairs_index.iloc[pair, 2]
+                            )
+                            progress.update(filters_task, advance=1)
 
-        for pair in range(len(pairs_index)):
-            if pairs_index.iloc[pair, 2] == +1:
-                weights[pair] = weights[pair] / sum(
-                    weights[pair]
-                    for pair in range(len(pairs_index))
-                    if pairs_index.iloc[pair, 2] == +1
-                )
+                        errors[(filter, threshold)] = error
+            best_filter, best_threshold = min(errors, key=lambda k: abs(errors[k]))
+
+            print("Best Filter:", best_filter)
+            print("Best Threshold:", best_threshold)
+
+            min_error = errors[(best_filter, best_threshold)]
+            confidence = math.log(
+                (1 - min_error) / min_error
+            )  # confidence of the weak classifier
+            print("Min error", min_error)
+            print("Confidence:", confidence)
+
+            # Asymmetric Weight Update
+            for pair in range(len(pairs_index)):
+
+                # print(
+                #     dataset[pair][2],
+                #     weak_classifier(dataset[pair][0:2], best_threshold, best_filter),
+                # )
+
+                if pairs_index.iloc[pair, 2] == +1:
+                    if (
+                        classifier.weak_classifier(
+                            tuple(dataset.iloc[pairs_index.iloc[pair, 0:2], 0]),
+                            best_threshold,
+                            best_filter,
+                        )
+                        != pairs_index.iloc[pair, 2]
+                    ):
+                        weights[pair] = weights[pair] * math.exp(confidence)
+
+            for pair in range(len(pairs_index)):
+                if pairs_index.iloc[pair, 2] == +1:
+                    weights[pair] = weights[pair] / sum(
+                        weights[pair]
+                        for pair in range(len(pairs_index))
+                        if pairs_index.iloc[pair, 2] == +1
+                    )
+
+            # Update the process at each iteration
+            progress.update(iteration_task, advance=1)
 
 
 if __name__ == "__main__":
