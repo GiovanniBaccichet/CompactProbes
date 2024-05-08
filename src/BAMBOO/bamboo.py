@@ -17,12 +17,16 @@ from utils import title
 
 import argparse
 
+import csv
+
 traceback.install()
 
 console = Console()
 
 
 def main():
+
+    csv_file = "best_configs.csv"
 
     title.print_title()
 
@@ -70,12 +74,10 @@ def main():
     config.read(os.path.join(os.path.dirname(__file__), "config.ini"))
 
     # Import concatenated columns dataframe
-
     strings_df = pd.read_csv(config["DEFAULT"]["df_strings_path"], index_col=0)
     strings_df = strings_df.rename(columns={strings_df.columns[0]: "Probes"})
 
     # Importing pairs_df w/ index and ground truth from strings_df
-
     if args.d:
         console.print(
             Panel("[!] Using debug dataset.", style="bold green"),
@@ -93,13 +95,19 @@ def main():
 
     filters = filters_df["Bitmask"]
 
-    best_configs = []
-
     # Generation thresholds for each bitmask
     threshold_list = threshold_gen.generate_thresholds(filters)
 
     # Removing the last threshold for each bitmask
     threshold_list = threshold_gen.remove_last_threshold(threshold_list)
+
+    # Remove the existing file if it exists
+    if os.path.exists(csv_file):
+        console.print(
+            Panel("[!] Deleted previous best configs.", style="bold yellow"),
+            style="bold yellow",
+        )
+        os.remove(csv_file)
 
     # Renaming algorithm input for better understanding
     dataset = strings_df
@@ -166,7 +174,7 @@ def main():
             print("Min error", min_error)
             print("Confidence:", confidence)
 
-            best_configs.append((best_filter, best_threshold, min_error, confidence))
+            best_configs = (best_filter, best_threshold, min_error, confidence)
 
             # Asymmetric Weight Update
             for pair in range(len(pairs_index)):
@@ -189,6 +197,11 @@ def main():
                         for pair in range(len(pairs_index))
                         if pairs_index.iloc[pair, 2] == +1
                     )
+
+            # Opening the CSV file in append mode
+            with open(csv_file, 'a', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(best_configs)
 
             # Update the process at each iteration
             progress.update(iteration_task, advance=1)
