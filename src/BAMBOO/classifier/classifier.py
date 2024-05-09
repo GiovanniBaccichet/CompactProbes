@@ -36,7 +36,7 @@ def weight_update(
     # Asymmetric Weight Update
     for p_index in range(len(pairs_index)):  # pair index for asymmetric weight update
 
-        if pairs_index.iloc[p_index, 2] == +1:
+        if pairs_index.iloc[p_index, 2] == +1: # if the pair is a matching one
             if (
                 weak_classifier(
                     tuple(dataset.iloc[pairs_index.iloc[p_index, 0:2], 0]),
@@ -44,7 +44,7 @@ def weight_update(
                     best_filter,
                 )
                 != pairs_index.iloc[p_index, 2]
-            ):
+            ): # if the prediction is wrong
                 old_weight = weights[p_index]
                 weights[p_index] = weights[p_index] * math.exp(confidence)
                 logger.log.warning(f"Weight updated @ {p_index}: {old_weight} -> {weights[p_index]}")
