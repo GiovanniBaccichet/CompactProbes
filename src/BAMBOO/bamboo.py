@@ -163,14 +163,18 @@ def main():
 
             best_filter, best_threshold = min(errors, key=lambda k: abs(errors[k]))
 
-            min_error, confidence = compute_error.get_confidence(errors, best_filter, best_threshold)
+            min_error, confidence = compute_error.get_confidence(
+                errors, best_filter, best_threshold
+            )
 
             best_configs = [best_filter, best_threshold, min_error, confidence]
 
             logger.print_best_config(best_configs)
 
             # Asymmetric weight update + normalization
-            weights = classifier.weight_update(pairs_index, dataset, weights, best_filter, best_threshold, confidence)
+            weights = classifier.weight_update(
+                pairs_index, dataset, weights, best_filter, best_threshold, confidence
+            )
 
             # Opening the CSV file in append mode
             with open(csv_file, "a", newline="") as file:
