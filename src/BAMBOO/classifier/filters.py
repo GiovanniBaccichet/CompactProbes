@@ -1,4 +1,10 @@
+from utils import logger
+
+
 def bitwise_and(bit_str1: str, bit_str2: str) -> str:
+
+    logger.log.debug(f"Bit String 1: {bit_str1}\nBit String 2: {bit_str2}")
+
     # Convert bit strings to integers
     int1 = int(bit_str1, 2)
     int2 = int(bit_str2, 2)
@@ -11,6 +17,7 @@ def bitwise_and(bit_str1: str, bit_str2: str) -> str:
 
     # Return result
     return result_str.zfill(max(len(bit_str1), len(bit_str2)))
+
 
 def sumFilter(bitwise_and: str) -> int:
     sum = 0

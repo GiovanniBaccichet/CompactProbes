@@ -2,6 +2,8 @@ from configparser import ConfigParser
 import os
 from rich.progress import Progress, BarColumn, TextColumn, TimeRemainingColumn
 from rich.console import Console
+from rich.panel import Panel
+
 
 from rich import traceback
 
@@ -13,7 +15,7 @@ import numpy as np
 
 import math
 
-from utils import title
+from utils import title, logger
 
 import argparse
 
@@ -38,8 +40,6 @@ def main():
     )
     parser.add_argument("-d", action="store_true", help="use debug dataset")
     args = parser.parse_args()
-
-    from rich.panel import Panel
 
     if args.M is None:
         console.print(
@@ -148,58 +148,32 @@ def main():
                 for filter, thresholds in zip(
                     filters_list, [threshold_list] * len(filters_list)
                 ):
-                    for threshold in thresholds:  # for each threshold
-                        error = 0
-                        for pair in range(len(pairs_index)):  # for each pair
-                            prediction = classifier.weak_classifier(
-                                tuple(dataset.iloc[pairs_index.iloc[pair, 0:2], 0]),
-                                threshold,
-                                filter,
-                            )
-                            error += compute_error.get_error(
-                                weights[pair], prediction, pairs_index.iloc[pair, 2]
-                            )
-                            progress.update(filters_task, advance=1)
 
-                        errors[(filter, threshold)] = error
+                    for threshold in thresholds:  # for each threshold
+                        filter_threshold_error = compute_error.pairs_error(
+                            pairs_index,
+                            dataset,
+                            threshold,
+                            filter,
+                            weights,
+                            progress,
+                            filters_task,
+                        )
+                        errors[(filter, threshold)] = filter_threshold_error
+
             best_filter, best_threshold = min(errors, key=lambda k: abs(errors[k]))
 
-            print("Best Filter:", best_filter)
-            print("Best Threshold:", best_threshold)
+            min_error, confidence = compute_error.get_confidence(errors, best_filter, best_threshold)
 
-            min_error = errors[(best_filter, best_threshold)]
-            confidence = math.log(
-                (1 - min_error) / min_error
-            )  # confidence of the weak classifier
-            print("Min error", min_error)
-            print("Confidence:", confidence)
+            best_configs = [best_filter, best_threshold, min_error, confidence]
 
-            best_configs = (best_filter, best_threshold, min_error, confidence)
+            logger.print_best_config(best_configs)
 
-            # Asymmetric Weight Update
-            for pair in range(len(pairs_index)):
-
-                if pairs_index.iloc[pair, 2] == +1:
-                    if (
-                        classifier.weak_classifier(
-                            tuple(dataset.iloc[pairs_index.iloc[pair, 0:2], 0]),
-                            best_threshold,
-                            best_filter,
-                        )
-                        != pairs_index.iloc[pair, 2]
-                    ):
-                        weights[pair] = weights[pair] * math.exp(confidence)
-
-            for pair in range(len(pairs_index)):
-                if pairs_index.iloc[pair, 2] == +1:
-                    weights[pair] = weights[pair] / sum(
-                        weights[pair]
-                        for pair in range(len(pairs_index))
-                        if pairs_index.iloc[pair, 2] == +1
-                    )
+            # Asymmetric weight update + normalization
+            weights = classifier.weight_update(pairs_index, dataset, weights, best_filter, best_threshold, confidence)
 
             # Opening the CSV file in append mode
-            with open(csv_file, 'a', newline='') as file:
+            with open(csv_file, "a", newline="") as file:
                 writer = csv.writer(file)
                 writer.writerow(best_configs)
 

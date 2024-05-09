@@ -13,4 +13,10 @@ logging.basicConfig(
 
 log = logging.getLogger("rich")
 
-log.setLevel("WARNING")
+log.setLevel("INFO")
+
+def print_best_config(best_configs : tuple) -> None:
+    log.info(f"Best Filter: {str(best_configs[0])}")
+    log.info(f"Best Threshold: {str(best_configs[1])}")
+    log.info(f"Min error: {best_configs[2]}")
+    log.info(f"Confidence: {best_configs[3]}")

@@ -1,27 +1,52 @@
 from . import classifier, func
+from rich.progress import Progress
+
+import math
+
 from utils import logger
+
+import pandas as pd
+
 
 def get_error(weigth: float, prediction: int, ground_truth: int) -> float:
     error = weigth * func.delta(prediction, ground_truth)
 
-    logger.log.debug(f"Weigth {weigth}, Prediction {prediction}, Ground Truth {ground_truth}")
+    logger.log.debug(
+        f"Weigth {weigth}, Prediction {prediction}, Ground Truth {ground_truth}"
+    )
 
     return error
 
 
-def compute_error(args):
-    pair, pairs_index, threshold, filter, dataset, weak_classifier, weights = args
-    prediction = classifier.weak_classifier(
-        tuple(dataset.iloc[pairs_index.iloc[pair, 0:2], 0]),
-        threshold,
-        filter,
-    )
-    return get_error(weights[pair], prediction, pairs_index.iloc[pair, 2])
+def get_confidence(errors: dict, best_filter: str, best_threshold: str) -> tuple:
+    min_error = errors[(best_filter, best_threshold)]
 
-def parallel_compute_errors(pair_data):
-    pair, pairs_index, thresholds, filter, dataset, weak_classifier, weights = pair_data
-    errors = []
-    for threshold in thresholds:
-        error = compute_error((pair, pairs_index, threshold, filter, dataset, weak_classifier, weights))
-        errors.append(error)
-    return errors
+    if min_error == 0:
+        min_error = 10**-20
+
+    confidence = math.log(
+        (1 - min_error) / min_error
+    )  # confidence of the weak classifier
+
+    return min_error, confidence
+
+
+def pairs_error(
+    pairs_index: pd.DataFrame,
+    dataset: pd.DataFrame,
+    threshold: int,
+    selected_filter: str,
+    weights: list,
+    progress: Progress,
+    task,
+) -> float:
+    for pair in range(len(pairs_index)):
+        error = 0
+        prediction = classifier.weak_classifier(
+            tuple(dataset.iloc[pairs_index.iloc[pair, 0:2], 0]),
+            threshold,
+            selected_filter,
+        )
+        error += get_error(weights[pair], prediction, pairs_index.iloc[pair, 2])
+        progress.update(task, advance=1)
+    return error
