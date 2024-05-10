@@ -4,7 +4,6 @@ from rich.progress import Progress, BarColumn, TextColumn, TimeRemainingColumn
 from rich.console import Console
 from rich.panel import Panel
 
-
 from rich import traceback
 
 from classifier import classifier, compute_error, threshold_gen
@@ -96,10 +95,12 @@ def main():
     filters = filters_df["Bitmask"]
 
     # Generation thresholds for each bitmask
-    threshold_list = threshold_gen.generate_thresholds(filters)
+    # threshold_list = threshold_gen.generate_thresholds(filters)
+
+    threshold_list = threshold_gen.generate_thresholds_df(filters)
 
     # Removing the last threshold for each bitmask
-    threshold_list = threshold_gen.remove_last_threshold(threshold_list)
+    # threshold_list = threshold_gen.remove_last_threshold(threshold_list)
 
     # Remove the existing file if it exists
     if os.path.exists(csv_file):
@@ -122,9 +123,7 @@ def main():
 
     errors = {}
 
-    total_inner_iterations = sum(
-        len(sublist) * len(threshold_list) for sublist, threshold_list in filters
-    ) * len(pairs_index)
+    total_inner_iterations = len(pairs_index) * sum(len(row["thresholds"]) for _, row in filters.iterrows())
 
     # Create a Rich progress context
     with Progress(*custom_columns) as progress:
@@ -142,38 +141,29 @@ def main():
                 f"[green]Processing filters...", total=total_inner_iterations
             )
 
-            for filters_entry in filters:  # for each filter
-                filters_list, threshold_list = filters_entry
+            for index, row in filters.iterrows():
+                filter = row["filters"]
+                thresholds = row["thresholds"]
 
-                for filter, thresholds in zip(
-                    filters_list, [threshold_list] * len(filters_list)
-                ):
+                errors = {}
 
-                    for threshold in thresholds:  # for each threshold
-                        filter_threshold_error = compute_error.pairs_error(
-                            pairs_index,
-                            dataset,
-                            threshold,
-                            filter,
-                            weights,
-                            progress,
-                            filters_task,
-                        )
-                        errors[(filter, threshold)] = filter_threshold_error
+                for threshold in thresholds:  # for each threshold
+                    filter_threshold_error = compute_error.pairs_error(
+                        pairs_index,
+                        dataset,
+                        threshold,
+                        filter,
+                        weights,
+                        progress,
+                        filters_task,
+                    )
+                    errors[(filter, threshold)] = filter_threshold_error
 
             best_filter, best_threshold = min(errors, key=lambda k: abs(errors[k]))
 
-            best_errors = {}
-            min_error = min(errors.values(), key=abs)
+            filters.loc[filters['filters'] == best_filter, 'thresholds'] = filters.loc[filters['filters'] == best_filter, 'thresholds'].apply(lambda x: [val for val in x if val != best_threshold])
+            filters = filters[filters['thresholds'].apply(lambda x: len(x) > 0)]
 
-            for k, v in errors.items():
-                if abs(v) == min_error:
-                    best_errors[k] = v
-
-            print(best_errors)
-
-            # for filter, threshold in best_errors.items():
-            #     print(f"Filter: {filter}, Threshold: {threshold}, Error: {abs(threshold)}")
 
             min_error, confidence = compute_error.get_confidence(
                 errors, best_filter, best_threshold

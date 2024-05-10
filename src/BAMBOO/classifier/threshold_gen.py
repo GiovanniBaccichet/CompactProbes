@@ -1,3 +1,5 @@
+import pandas as pd
+
 def generate_thresholds(bitmasks: set) -> list:
     """
     Generate thresholds for each bitmask in a set.
@@ -20,6 +22,24 @@ def generate_thresholds(bitmasks: set) -> list:
         (bitmasks, list(range(threshold + 1)))
         for threshold, bitmasks in threshold_dict.items()
     ]
+
+def generate_thresholds_df(bitmasks: set) -> pd.DataFrame:
+    """
+    Generate a DataFrame with filters and corresponding thresholds.
+
+    Parameters:
+        bitmasks (set): A set containing the bitmasks.
+
+    Returns:
+        pandas.DataFrame: DataFrame with two columns - 'filters' and 'thresholds'.
+    """
+    data = []
+    for bitmask in bitmasks:
+        threshold = bitmask.count("1")
+        thresholds = list(range(threshold + 1))  # Include 0 to the count of '1's
+        data.append((bitmask, thresholds))
+
+    return pd.DataFrame(data, columns=['filters', 'thresholds'])
 
 
 def remove_last_threshold(thresholds_list: list) -> list:
