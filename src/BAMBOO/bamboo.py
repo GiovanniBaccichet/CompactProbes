@@ -163,6 +163,18 @@ def main():
 
             best_filter, best_threshold = min(errors, key=lambda k: abs(errors[k]))
 
+            best_errors = {}
+            min_error = min(errors.values(), key=abs)
+
+            for k, v in errors.items():
+                if abs(v) == min_error:
+                    best_errors[k] = v
+
+            print(best_errors)
+
+            # for filter, threshold in best_errors.items():
+            #     print(f"Filter: {filter}, Threshold: {threshold}, Error: {abs(threshold)}")
+
             min_error, confidence = compute_error.get_confidence(
                 errors, best_filter, best_threshold
             )
@@ -180,6 +192,10 @@ def main():
             with open(csv_file, "a", newline="") as file:
                 writer = csv.writer(file)
                 writer.writerow(best_configs)
+
+            with open("errors.csv", "a", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerow(errors)
 
             # Update the process at each iteration
             progress.update(iteration_task, advance=1)

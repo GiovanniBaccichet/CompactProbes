@@ -40,8 +40,8 @@ def pairs_error(
     progress: Progress,
     task,
 ) -> float:
+    error = 0
     for pair in range(len(pairs_index)):
-        error = 0
         prediction = classifier.weak_classifier(
             tuple(dataset.iloc[pairs_index.iloc[pair, 0:2], 0]),
             threshold,
