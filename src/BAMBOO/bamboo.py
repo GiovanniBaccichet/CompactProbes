@@ -6,6 +6,9 @@ from rich.panel import Panel
 
 from rich import traceback
 
+import cProfile
+import pstats
+
 from classifier import classifier, compute_error, threshold_gen
 
 import pandas as pd
@@ -133,9 +136,6 @@ def main():
         )
 
         for _ in range(n_iterations):  # iterations
-            best_filter = None
-            best_threshold = None
-
             # Create a task for the inner loop
             filters_task = progress.add_task(
                 f"[green]Processing filters...", total=total_inner_iterations
@@ -159,7 +159,18 @@ def main():
                     )
                     errors[(filter, threshold)] = filter_threshold_error
 
-            best_filter, best_threshold = min(errors, key=lambda k: abs(errors[k]))
+            # Find the minimum error
+            min_error = min(errors.values())
+
+            # Find all couples with minimum error
+            min_error_couples = [(f, t, err) for (f, t), err in errors.items() if err == min_error]
+            if len(min_error_couples > 1):
+                logger.log.warning(f'Several Best Filter/Threshold combinations, skipping {len(min_error_couples)}')
+            errors_df = pd.DataFrame(min_error_couples, columns=['filter', 'threshold', 'error'])
+
+            best_filter, best_threshold, _ = min_error_couples[0]
+
+            print(min_error_couples)
 
             filters.loc[filters['filters'] == best_filter, 'thresholds'] = filters.loc[filters['filters'] == best_filter, 'thresholds'].apply(lambda x: [val for val in x if val != best_threshold])
             filters = filters[filters['thresholds'].apply(lambda x: len(x) > 0)]
@@ -192,4 +203,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with cProfile.Profile() as profile:
+        main()
+    results = pstats.Stats(profile)
+    results.sort_stats(pstats.SortKey.TIME)
+    results.dump_stats('profile.prof')
