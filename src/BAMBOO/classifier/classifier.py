@@ -14,14 +14,35 @@ def weak_classifier(pair: tuple, threshold: int, filter: str) -> int:
 
 
 def weight_normalize(pairs_index: pd.DataFrame, weights: list) -> list:
+    """
+    Normalize weights based on the values in the third column of the DataFrame.
+    
+    Parameters:
+    pairs_index (pd.DataFrame): DataFrame containing the pairs.
+    weights (list): List of weights to be normalized.
+    
+    Returns:
+    list: The normalized weights.
+    """
+    # Calculate sums for normalization
+    sum_pos = sum(
+        weights[n_index]
+        for n_index in range(len(pairs_index))
+        if pairs_index.iloc[n_index, 2] == +1
+    )
+    sum_neg = sum(
+        weights[n_index]
+        for n_index in range(len(pairs_index))
+        if pairs_index.iloc[n_index, 2] == -1
+    )
+
     # Weight normalization
-    for n_index in range(len(pairs_index)): # normalization index
+    for n_index in range(len(pairs_index)):
         if pairs_index.iloc[n_index, 2] == +1:
-            weights[n_index] = weights[n_index] / sum(
-                weights[n_index]
-                for pair in range(len(pairs_index))
-                if pairs_index.iloc[pair, 2] == +1
-            )
+            weights[n_index] = weights[n_index] / sum_pos
+        elif pairs_index.iloc[n_index, 2] == -1:
+            weights[n_index] = weights[n_index] / sum_neg
+
     return weights
 
 

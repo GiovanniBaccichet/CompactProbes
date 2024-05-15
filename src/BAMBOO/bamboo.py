@@ -126,7 +126,9 @@ def main():
 
     errors = {}
 
-    total_inner_iterations = len(pairs_index) * sum(len(row["thresholds"]) for _, row in filters.iterrows())
+    total_inner_iterations = len(pairs_index) * sum(
+        len(row["thresholds"]) for _, row in filters.iterrows()
+    )
 
     # Create a Rich progress context
     with Progress(*custom_columns) as progress:
@@ -140,6 +142,9 @@ def main():
             filters_task = progress.add_task(
                 f"[green]Processing filters...", total=total_inner_iterations
             )
+
+            min_error_couples = []
+            print(min_error_couples)
 
             for index, row in filters.iterrows():
                 filter = row["filters"]
@@ -163,18 +168,20 @@ def main():
             min_error = min(errors.values())
 
             # Find all couples with minimum error
-            min_error_couples = [(f, t, err) for (f, t), err in errors.items() if err == min_error]
-            if len(min_error_couples > 1):
-                logger.log.warning(f'Several Best Filter/Threshold combinations, skipping {len(min_error_couples)}')
-            errors_df = pd.DataFrame(min_error_couples, columns=['filter', 'threshold', 'error'])
+            min_error_couples = [
+                (f, t, err) for (f, t), err in errors.items() if err == min_error
+            ]
+            if len(min_error_couples) > 1:
+                logger.log.warning(
+                    f"Several Best Filter/Threshold combinations, skipping {len(min_error_couples)}"
+                )
+            errors_df = pd.DataFrame(
+                min_error_couples, columns=["filter", "threshold", "error"]
+            )
 
             best_filter, best_threshold, _ = min_error_couples[0]
 
-            print(min_error_couples)
-
-            filters.loc[filters['filters'] == best_filter, 'thresholds'] = filters.loc[filters['filters'] == best_filter, 'thresholds'].apply(lambda x: [val for val in x if val != best_threshold])
-            filters = filters[filters['thresholds'].apply(lambda x: len(x) > 0)]
-
+            filters = filters[~filters.apply(lambda row: (row["filters"], row["thresholds"]) in min_error_couples, axis=1)]
 
             min_error, confidence = compute_error.get_confidence(
                 errors, best_filter, best_threshold
@@ -207,4 +214,4 @@ if __name__ == "__main__":
         main()
     results = pstats.Stats(profile)
     results.sort_stats(pstats.SortKey.TIME)
-    results.dump_stats('profile.prof')
+    results.dump_stats("profile.prof")
