@@ -1,27 +1,18 @@
-from configparser import ConfigParser
-import os
-from rich.progress import Progress, BarColumn, TextColumn, TimeRemainingColumn
-from rich.console import Console
-from rich.panel import Panel
-
-from rich import traceback
-
+import argparse
 import cProfile
+import csv
+import os
 import pstats
-
-from classifier import classifier, compute_error, threshold_gen
-
-import pandas as pd
+from configparser import ConfigParser
 
 import numpy as np
-
-import math
-
-from utils import title, logger
-
-import argparse
-
-import csv
+import pandas as pd
+from classifier import classifier, compute_error, threshold_gen
+from rich import traceback
+from rich.console import Console
+from rich.panel import Panel
+from rich.progress import BarColumn, Progress, TextColumn, TimeRemainingColumn
+from utils import logger, title
 
 traceback.install()
 
@@ -29,7 +20,6 @@ console = Console()
 
 
 def main():
-
     csv_file = "best_configs.csv"
 
     title.print_title()
@@ -41,6 +31,7 @@ def main():
         "-X", type=int, help="number of head rows to use from the dataset"
     )
     parser.add_argument("-d", action="store_true", help="use debug dataset")
+    parser.add_argument("-rb", action="store_true", help="remove best filters at each iteration")
     args = parser.parse_args()
 
     if args.M is None:
@@ -102,9 +93,6 @@ def main():
 
     threshold_list = threshold_gen.generate_thresholds_df(filters)
 
-    # Removing the last threshold for each bitmask
-    # threshold_list = threshold_gen.remove_last_threshold(threshold_list)
-
     # Remove the existing file if it exists
     if os.path.exists(csv_file):
         console.print(
@@ -140,13 +128,12 @@ def main():
         for _ in range(n_iterations):  # iterations
             # Create a task for the inner loop
             filters_task = progress.add_task(
-                f"[green]Processing filters...", total=total_inner_iterations
+                "[green]Processing filters...", total=total_inner_iterations
             )
 
             min_error_couples = []
-            print(min_error_couples)
 
-            for index, row in filters.iterrows():
+            for index, row in filters.iterrows(): # for each filter
                 filter = row["filters"]
                 thresholds = row["thresholds"]
 
@@ -171,17 +158,22 @@ def main():
             min_error_couples = [
                 (f, t, err) for (f, t), err in errors.items() if err == min_error
             ]
-            if len(min_error_couples) > 1:
-                logger.log.warning(
-                    f"Several Best Filter/Threshold combinations, skipping {len(min_error_couples)}"
-                )
-            errors_df = pd.DataFrame(
-                min_error_couples, columns=["filter", "threshold", "error"]
-            )
+
+            if args.rb:
+                if len(min_error_couples) > 1:
+                    logger.log.warning(
+                        f"Several Best Filter/Threshold combinations, skipping {len(min_error_couples)}"
+                    )
+
+                filters = filters[
+                    ~filters.apply(
+                        lambda row: (row["filters"], row["thresholds"])
+                        in min_error_couples,
+                        axis=1,
+                    )
+                ]
 
             best_filter, best_threshold, _ = min_error_couples[0]
-
-            filters = filters[~filters.apply(lambda row: (row["filters"], row["thresholds"]) in min_error_couples, axis=1)]
 
             min_error, confidence = compute_error.get_confidence(
                 errors, best_filter, best_threshold

@@ -1,11 +1,10 @@
-from . import classifier, func
-from rich.progress import Progress
-
 import math
 
+import pandas as pd
+from rich.progress import Progress
 from utils import logger
 
-import pandas as pd
+from . import classifier, func
 
 
 def get_error(weigth: float, prediction: int, ground_truth: int) -> float:
