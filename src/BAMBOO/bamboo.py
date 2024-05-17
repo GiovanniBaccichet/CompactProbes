@@ -181,10 +181,6 @@ def main():
 
                     best_filter, best_threshold, _ = min_error_couples[0]
 
-                    with open("min_error_couples.csv", "a", newline="") as file:
-                        writer = csv.writer(file)
-                        writer.writerow(min_error_couples)
-
                 else:
                     best_filter, best_threshold = min(
                         errors, key=lambda k: abs(errors[k])
@@ -210,10 +206,6 @@ def main():
             with open(csv_file, "a", newline="") as file:
                 writer = csv.writer(file)
                 writer.writerow(best_configs)
-
-            with open("errors.csv", "a", newline="") as file:
-                writer = csv.writer(file)
-                writer.writerow(errors)
 
             # Update the process at each iteration
             progress.update(iteration_task, advance=1)
