@@ -175,10 +175,10 @@ def main():
                         f"Several Best Filter/Threshold combinations, skipping {len(min_error_couples)}"
                     )
 
-                    thresholds_to_remove = set(t for f, t, err in min_error_couples)
-                    filters["thresholds"] = filters["thresholds"].apply(
-                        lambda x: remove_thresholds(x, thresholds_to_remove)
-                    )
+                    # thresholds_to_remove = set(t for f, t, err in min_error_couples)
+                    # filters["thresholds"] = filters["thresholds"].apply(
+                    #     lambda x: remove_thresholds(x, thresholds_to_remove)
+                    # )
 
                     filters = filters[filters["thresholds"].apply(len) > 0]
 
