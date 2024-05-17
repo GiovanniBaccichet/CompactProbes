@@ -1,6 +1,25 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,python,jupyternotebooks,latex
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,python,jupyternotebooks,latex
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
