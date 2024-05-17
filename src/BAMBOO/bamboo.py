@@ -86,6 +86,9 @@ def main():
 
     filters_df = pd.read_csv(config["DEFAULT"]["filters_path"], index_col=0)
 
+    if args.F == 0:
+        n_filters = filters_df.shape[0]
+
     filters_df = filters_df.head(n_filters).reset_index()
 
     filters_bitmask = filters_df["Bitmask"]
