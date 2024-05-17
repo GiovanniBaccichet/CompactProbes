@@ -8,40 +8,26 @@ from . import filters, func
 
 def weak_classifier(pair: tuple, threshold: int, filter: str) -> int:
     logger.log.debug(f"Pair {pair}\nThreshold {threshold}\nFilter {filter}")
+
     filtered1 = filters.sumFilter(filters.bitwise_and(pair[0], filter))
     filtered2 = filters.sumFilter(filters.bitwise_and(pair[1], filter))
+
     return func.sign((filtered1 - threshold) * (filtered2 - threshold))
 
 
 def weight_normalize(pairs_index: pd.DataFrame, weights: list) -> list:
-    """
-    Normalize weights based on the values in the third column of the DataFrame.
-
-    Parameters:
-    pairs_index (pd.DataFrame): DataFrame containing the pairs.
-    weights (list): List of weights to be normalized.
-
-    Returns:
-    list: The normalized weights.
-    """
-    # Calculate sums for normalization
-    sum_pos = sum(
-        weights[n_index]
-        for n_index in range(len(pairs_index))
-        if pairs_index.iloc[n_index, 2] == +1
-    )
-    sum_neg = sum(
-        weights[n_index]
-        for n_index in range(len(pairs_index))
-        if pairs_index.iloc[n_index, 2] == -1
-    )
-
     # Weight normalization
+    matching_pairs = []
+
     for n_index in range(len(pairs_index)):
         if pairs_index.iloc[n_index, 2] == +1:
-            weights[n_index] = weights[n_index] / sum_pos
-        elif pairs_index.iloc[n_index, 2] == -1:
-            weights[n_index] = weights[n_index] / sum_neg
+            matching_pairs.append(n_index)
+
+    matching_pairs_weights = [weights[index] for index in matching_pairs]
+    total_weight = sum(matching_pairs_weights)
+    normalized_weights = [weight / total_weight for weight in matching_pairs_weights]
+    for index, matching_pair in enumerate(matching_pairs):
+        weights[matching_pair] = normalized_weights[index]
 
     return weights
 
@@ -63,7 +49,7 @@ def weight_update(
                     best_threshold,
                     best_filter,
                 )
-                != pairs_index.iloc[p_index, 2]
+                != +1
             ):  # if the prediction is wrong
                 old_weight = weights[p_index]
                 weights[p_index] = weights[p_index] * math.exp(confidence)

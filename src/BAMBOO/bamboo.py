@@ -31,7 +31,9 @@ def main():
         "-X", type=int, help="number of head rows to use from the dataset"
     )
     parser.add_argument("-d", action="store_true", help="use debug dataset")
-    parser.add_argument("-rb", action="store_true", help="remove best filters at each iteration")
+    parser.add_argument(
+        "-rb", action="store_true", help="remove best filters at each iteration"
+    )
     args = parser.parse_args()
 
     if args.M is None:
@@ -86,12 +88,12 @@ def main():
 
     filters_df = filters_df.head(n_filters).reset_index()
 
-    filters = filters_df["Bitmask"]
+    filters_bitmask = filters_df["Bitmask"]
 
     # Generation thresholds for each bitmask
-    # threshold_list = threshold_gen.generate_thresholds(filters)
+    # threshold_list = threshold_gen.generate_thresholds(filters_bitmask)
 
-    threshold_list = threshold_gen.generate_thresholds_df(filters)
+    threshold_list = threshold_gen.generate_thresholds_df(filters_bitmask)
 
     # Remove the existing file if it exists
     if os.path.exists(csv_file):
@@ -118,6 +120,10 @@ def main():
         len(row["thresholds"]) for _, row in filters.iterrows()
     )
 
+    # Function to remove thresholds from the list
+    def remove_thresholds(threshold_list, thresholds_to_remove):
+        return [x for x in threshold_list if x not in thresholds_to_remove]
+
     # Create a Rich progress context
     with Progress(*custom_columns) as progress:
         # Create a task for the outer loop
@@ -132,8 +138,9 @@ def main():
             )
 
             min_error_couples = []
+            errors = {}
 
-            for index, row in filters.iterrows(): # for each filter
+            for index, row in filters.iterrows():  # for each filter
                 filter = row["filters"]
                 thresholds = row["thresholds"]
 
@@ -165,15 +172,26 @@ def main():
                         f"Several Best Filter/Threshold combinations, skipping {len(min_error_couples)}"
                     )
 
-                filters = filters[
-                    ~filters.apply(
-                        lambda row: (row["filters"], row["thresholds"])
-                        in min_error_couples,
-                        axis=1,
+                    thresholds_to_remove = set(t for f, t, err in min_error_couples)
+                    filters["thresholds"] = filters["thresholds"].apply(
+                        lambda x: remove_thresholds(x, thresholds_to_remove)
                     )
-                ]
 
-            best_filter, best_threshold, _ = min_error_couples[0]
+                    filters = filters[filters["thresholds"].apply(len) > 0]
+
+                    best_filter, best_threshold, _ = min_error_couples[0]
+
+                    with open("min_error_couples.csv", "a", newline="") as file:
+                        writer = csv.writer(file)
+                        writer.writerow(min_error_couples)
+
+                else:
+                    best_filter, best_threshold = min(
+                        errors, key=lambda k: abs(errors[k])
+                    )
+                    min_error, confidence = compute_error.get_confidence(
+                        errors, best_filter, best_threshold
+                    )
 
             min_error, confidence = compute_error.get_confidence(
                 errors, best_filter, best_threshold

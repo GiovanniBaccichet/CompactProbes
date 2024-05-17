@@ -21,6 +21,8 @@ def bitwise_and(bit_str1: str, bit_str2: str) -> str:
 
 def sumFilter(bitwise_and: str) -> int:
     sum = 0
+    a = 0
     for i in bitwise_and:
-        sum += int(i)
+        sum += (2**a)*int(i, 2)
+        a += 1
     return sum

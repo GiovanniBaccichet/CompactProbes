@@ -8,10 +8,11 @@ def generate_thresholds(bitmasks: set) -> list:
         bitmasks (set): A set containing the bitmasks.
 
     Returns:
-        list: A list of tuples where each tuple contains a list of bitmasks sharing the same threshold list, and their corresponding threshold list.
+        list: A list of tuples where each tuple contains a list of bitmasks sharing the same threshold list, and their corresponding threshold list in decimal format.
     """
     threshold_dict = {}
     for bitmask in bitmasks:
+        # threshold = bitmask.count("1")
         threshold = bitmask.count("1")
         if threshold in threshold_dict:
             threshold_dict[threshold].append(bitmask)
@@ -19,7 +20,7 @@ def generate_thresholds(bitmasks: set) -> list:
             threshold_dict[threshold] = [bitmask]
 
     return [
-        (bitmasks, list(range(threshold + 1)))
+        (bitmasks, [int(bitmask, 2) for bitmask in bitmasks], list(range(threshold + 1)))
         for threshold, bitmasks in threshold_dict.items()
     ]
 
