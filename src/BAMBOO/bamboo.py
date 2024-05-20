@@ -140,7 +140,6 @@ def main():
                 "[green]Processing filters...", total=total_inner_iterations
             )
 
-            min_error_couples = []
             errors = {}
 
             for index, row in filters.iterrows():  # for each filter
@@ -165,12 +164,15 @@ def main():
             min_error = min(errors.values())
 
             # Sorting the list by error, number of '1's in filter, and threshold
-            sorted_error_list = sorted(errors.items(), key=lambda x: (x[1], x[0].count('1'), x[0][1])) # sorting criteria: primary key is x[2] (error), then the filter length, at the end the threshold
+            sorted_error_list = sorted(
+                errors.items(), key=lambda x: (x[1], x[0].count("1"), x[0][1])
+            )  # sorting criteria: primary key is x[2] (error), then the filter length, at the end the threshold
 
-            best_filter, best_threshold, min_error = sorted_error_list[0]
+            best_filter, best_threshold = sorted_error_list[0][0]
+            min_error = sorted_error_list[0][1]
 
             # Delete the row with the best_threshold
-            filters = filters[filters['threshold'] != best_threshold]
+            filters = filters[filters["filters"] != best_filter]
 
             min_error, confidence = compute_error.get_confidence(
                 errors, best_filter, best_threshold
