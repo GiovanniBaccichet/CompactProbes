@@ -9,10 +9,10 @@ from . import filters, func
 def weak_classifier(pair: tuple, threshold: int, filter: str) -> int:
     logger.log.debug(f"Pair {pair}\nThreshold {threshold}\nFilter {filter}")
 
-    filtered1 = filters.sumFilter(filters.bitwise_and(pair[0], filter))
-    filtered2 = filters.sumFilter(filters.bitwise_and(pair[1], filter))
+    filtered1 = filters.sumFilter(filters.bitwise_and(pair[0], filter)) # f(xa)
+    filtered2 = filters.sumFilter(filters.bitwise_and(pair[1], filter)) # f(xb)
 
-    return func.sign((filtered1 - threshold) * (filtered2 - threshold))
+    return func.sign((filtered1 - threshold) * (filtered2 - threshold)) # sign((f(xa)-t)(f(xb)-t))
 
 
 def weight_normalize(pairs_index: pd.DataFrame, weights: list) -> list:
@@ -42,17 +42,18 @@ def weight_update(
 ) -> list:
     # Asymmetric Weight Update
     for p_index in range(len(pairs_index)):  # pair index for asymmetric weight update
-        if pairs_index.iloc[p_index, 2] == +1:  # if the pair is a matching one
-            if (
-                weak_classifier(
-                    tuple(dataset.iloc[pairs_index.iloc[p_index, 0:2], 0]),
-                    best_threshold,
-                    best_filter,
-                )
-                != +1
-            ):  # if the prediction is wrong
+        ground_truth = pairs_index.iloc[p_index, 2]
+        prediction = weak_classifier(
+            tuple(dataset.iloc[pairs_index.iloc[p_index, 0:2], 0]),
+            best_threshold,
+            best_filter,
+        )
+        if ground_truth == +1:  # if the pair is a matching one
+            if prediction != +1:  # if the prediction is wrong
+
                 old_weight = weights[p_index]
                 weights[p_index] = weights[p_index] * math.exp(confidence)
+                
                 logger.log.warning(
                     f"Weight updated @ {p_index}: {old_weight} -> {weights[p_index]}"
                 )
