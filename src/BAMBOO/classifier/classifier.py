@@ -25,8 +25,11 @@ def weight_normalize(pairs_index: pd.DataFrame, weights: list) -> list:
 
     matching_pairs_weights = [weights[index] for index in matching_pairs]
     total_weight = sum(matching_pairs_weights)
+    
     normalized_weights = [weight / total_weight for weight in matching_pairs_weights]
+
     for index, matching_pair in enumerate(matching_pairs):
+
         weights[matching_pair] = normalized_weights[index]
 
     return weights
