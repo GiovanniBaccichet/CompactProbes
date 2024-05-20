@@ -1,12 +1,8 @@
 import argparse
 import csv
-import multiprocessing
 import os
 from configparser import ConfigParser
-from multiprocessing import Manager
-
-import _thread
-
+from multiprocessing import Pool, Manager
 import numpy as np
 import pandas as pd
 from classifier import classifier, compute_error, threshold_gen
@@ -23,20 +19,12 @@ console = Console()
 GRANULARITY = 32
 
 
-def process_filter_threshold(
-    pairs_index,
-    dataset,
-    threshold,
-    selected_filter,
-    weights,
-    progress,
-    task,
-    shared_errors,
-):
+def process_filter_threshold(args):
+    pairs_index, dataset, threshold, filter, weights, progress, filters_task = args
     error = compute_error.pairs_error(
-        pairs_index, dataset, threshold, selected_filter, weights, progress, task
+        pairs_index, dataset, threshold, filter, weights, progress, filters_task
     )
-    shared_errors[(selected_filter, threshold)] = error
+    return (filter, threshold, error)
 
 
 def main():
@@ -137,12 +125,7 @@ def main():
     # Generating init weights
     weights = np.ones(len(pairs_index)) / len(pairs_index)
 
-    # Number of threads to run in parallel
-    num_threads = multiprocessing.cpu_count()  # You can adjust this based on your system
-    
-    # Create a dictionary to store errors
-    shared_errors = {}
-
+    # Create a Rich progress context
     with Progress(*custom_columns) as progress:
         # Create a task for the outer loop
         iteration_task = progress.add_task(
@@ -159,32 +142,30 @@ def main():
                 "[green]Processing filters...", total=total_inner_iterations
             )
 
-            # Clear the shared_errors dictionary for each iteration
-            shared_errors.clear()
+            errors = {}
 
-            tasks = []  # List to store tasks for parallel processing
-
-            for index, row in filters.iterrows():  # for each filter
-                selected_filter = row["filters"]
+            # Prepare tasks for multiprocessing
+            tasks = []
+            for index, row in filters.iterrows():
+                filter = row["filters"]
                 thresholds = row["thresholds"]
+                for threshold in thresholds:
+                    tasks.append((pairs_index, dataset, threshold, filter, weights, progress, filters_task))
 
-                for threshold in thresholds:  # for each threshold
-                    tasks.append((pairs_index, dataset, threshold, selected_filter, weights, progress, filters_task, shared_errors))
+            # Use multiprocessing Pool to parallelize the error computation
+            with Pool() as pool:
+                results = pool.map(process_filter_threshold, tasks)
 
-            # Multithreaded computation of errors
-            for task in tasks:
-                _thread.start_new_thread(process_filter_threshold, task)
-
-            # Wait for all threads to complete
-            while len(shared_errors) < len(tasks):
-                pass
+            # Collect errors from the results
+            for filter, threshold, error in results:
+                errors[(filter, threshold)] = error
 
             # Find the minimum error
-            min_error = min(shared_errors.values())
+            min_error = min(errors.values())
 
             # Sorting the list by error, number of '1's in filter, and threshold
             sorted_error_list = sorted(
-                shared_errors.items(), key=lambda x: (x[1], x[0][0].count("1"), x[0][1])
+                errors.items(), key=lambda x: (x[1], x[0][0].count("1"), x[0][1])
             )  # sorting criteria: primary key is x[2] (error), then the filter length, at the end the threshold
 
             best_filter, best_threshold = sorted_error_list[0][0]
@@ -194,7 +175,7 @@ def main():
             filters = filters[filters["filters"] != best_filter]
 
             min_error, confidence = compute_error.get_confidence(
-                shared_errors, best_filter, best_threshold
+                errors, best_filter, best_threshold
             )
 
             best_configs = [best_filter, best_threshold, min_error, confidence]
