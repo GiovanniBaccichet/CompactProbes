@@ -119,10 +119,6 @@ def main():
 
     errors = {}
 
-    total_inner_iterations = len(pairs_index) * sum(
-        len(row["thresholds"]) for _, row in filters.iterrows()
-    )
-
     # Function to remove thresholds from the list
     def remove_thresholds(threshold_list, thresholds_to_remove):
         return [x for x in threshold_list if x not in thresholds_to_remove]
@@ -135,6 +131,10 @@ def main():
         )
 
         for _ in range(n_iterations):  # iterations
+            total_inner_iterations = len(pairs_index) * sum(
+                len(row["thresholds"]) for _, row in filters.iterrows()
+            )
+
             # Create a task for the inner loop
             filters_task = progress.add_task(
                 "[green]Processing filters...", total=total_inner_iterations
