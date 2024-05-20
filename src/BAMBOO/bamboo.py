@@ -1,8 +1,6 @@
 import argparse
-import cProfile
 import csv
 import os
-import pstats
 from configparser import ConfigParser
 
 import numpy as np
@@ -17,6 +15,8 @@ from utils import logger, title
 traceback.install()
 
 console = Console()
+
+GRANULARITY = 32
 
 
 def main():
@@ -96,7 +96,7 @@ def main():
     # Generation thresholds for each bitmask
     # threshold_list = threshold_gen.generate_thresholds(filters_bitmask)
 
-    threshold_list = threshold_gen.generate_thresholds_df(filters_bitmask)
+    threshold_list = threshold_gen.generate_thresholds_df(filters_bitmask, GRANULARITY)
 
     # Remove the existing file if it exists
     if os.path.exists(csv_file):
@@ -164,33 +164,13 @@ def main():
             # Find the minimum error
             min_error = min(errors.values())
 
-            # Find all couples with minimum error
-            min_error_couples = [
-                (f, t, err) for (f, t), err in errors.items() if err == min_error
-            ]
+            # Sorting the list by error, number of '1's in filter, and threshold
+            sorted_error_list = sorted(errors.items(), key=lambda x: (x[1], x[0].count('1'), x[0][1])) # sorting criteria: primary key is x[2] (error), then the filter length, at the end the threshold
 
-            if args.rb:
-                if len(min_error_couples) > 1:
-                    logger.log.warning(
-                        f"Several Best Filter/Threshold combinations, skipping {len(min_error_couples)}"
-                    )
+            best_filter, best_threshold, min_error = sorted_error_list[0]
 
-                    # thresholds_to_remove = set(t for f, t, err in min_error_couples)
-                    # filters["thresholds"] = filters["thresholds"].apply(
-                    #     lambda x: remove_thresholds(x, thresholds_to_remove)
-                    # )
-
-                    filters = filters[filters["thresholds"].apply(len) > 0]
-
-                    best_filter, best_threshold, _ = min_error_couples[0]
-
-                else:
-                    best_filter, best_threshold = min(
-                        errors, key=lambda k: abs(errors[k])
-                    )
-                    min_error, confidence = compute_error.get_confidence(
-                        errors, best_filter, best_threshold
-                    )
+            # Delete the row with the best_threshold
+            filters = filters[filters['threshold'] != best_threshold]
 
             min_error, confidence = compute_error.get_confidence(
                 errors, best_filter, best_threshold
@@ -215,8 +195,4 @@ def main():
 
 
 if __name__ == "__main__":
-    with cProfile.Profile() as profile:
-        main()
-    results = pstats.Stats(profile)
-    results.sort_stats(pstats.SortKey.TIME)
-    results.dump_stats("profile.prof")
+    main()

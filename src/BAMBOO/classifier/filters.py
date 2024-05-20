@@ -19,7 +19,7 @@ def bitwise_and(bit_str1: str, bit_str2: str) -> str:
     return result_str.zfill(max(len(bit_str1), len(bit_str2)))
 
 
-def sumFilter(bitwise_and: str) -> int:
+def sumFilter(bitwise_and: str) -> int: # decimal - converted sum filter
     sum = 0
     a = 0
     for i in bitwise_and:
