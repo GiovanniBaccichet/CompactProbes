@@ -125,8 +125,11 @@ def main():
             "[cyan]Going through iterations...", total=n_iterations
         )
 
-        for _ in range(n_iterations):  # iterations
-            total_inner_iterations = sum(len(row["thresholds"]) for _, row in filters.iterrows()) * 25
+        for i in range(n_iterations):  # iterations
+
+            total_inner_iterations = sum(
+                len(row["thresholds"]) for _, row in filters.iterrows()
+            )
 
             # Create a task for the inner loop
             filters_task = progress.add_task(
@@ -153,14 +156,12 @@ def main():
                                 threshold,
                                 filter,
                                 weights,
-                                # progress,
-                                # filters_task,
                             )
                         )
+                        progress.update(filters_task, advance=1)
 
                     for future in as_completed(futures):
                         try:
-                            progress.update(filters_task, advance=1)
                             key, error = future.result()
                             errors[key] = error
                         except Exception as e:
