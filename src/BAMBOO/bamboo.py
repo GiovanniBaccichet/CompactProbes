@@ -126,9 +126,7 @@ def main():
         )
 
         for _ in range(n_iterations):  # iterations
-            total_inner_iterations = len(pairs_index) * sum(
-                len(row["thresholds"]) for _, row in filters.iterrows()
-            )
+            total_inner_iterations = sum(len(row["thresholds"]) for _, row in filters.iterrows()) * 25
 
             # Create a task for the inner loop
             filters_task = progress.add_task(
@@ -162,10 +160,11 @@ def main():
 
                     for future in as_completed(futures):
                         try:
+                            progress.update(filters_task, advance=1)
                             key, error = future.result()
                             errors[key] = error
                         except Exception as e:
-                            print(f"An error occurred: {e}")
+                            logger.log.critical(f"An error occurred: {e}")
 
             # Find the minimum error
             min_error = min(errors.values())
@@ -195,9 +194,9 @@ def main():
             )
 
             # Opening the CSV file in append mode
-            with open(csv_file, "a", newline="") as file:
-                writer = csv.writer(file)
-                writer.writerow(best_configs)
+            # with open(csv_file, "a", newline="") as file:
+            #     writer = csv.writer(file)
+            #     writer.writerow(best_configs)
 
             # Update the process at each iteration
             progress.update(iteration_task, advance=1)

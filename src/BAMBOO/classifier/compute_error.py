@@ -36,8 +36,6 @@ def pairs_error(
     threshold: int,
     selected_filter: str,
     weights: list,
-    # progress: Progress,
-    # task,
 ) -> float:
     error = 0
     for pair in range(len(pairs_index)):
@@ -47,6 +45,4 @@ def pairs_error(
             selected_filter,
         )
         error += get_error(weights[pair], prediction, pairs_index.iloc[pair, 2])
-        # progress.update(task, advance=1)
-    # return error
     return (selected_filter, threshold), error
