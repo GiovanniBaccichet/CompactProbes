@@ -1,6 +1,7 @@
 import argparse
 import csv
 import os
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from configparser import ConfigParser
 
 import numpy as np
@@ -136,23 +137,35 @@ def main():
 
             errors = {}
 
-            for index, row in filters.iterrows():  # for each filter
-                filter = row["filters"]
-                thresholds = row["thresholds"]
+            with ProcessPoolExecutor() as executor:
+                futures = []
 
-                errors = {}
+                for index, row in filters.iterrows():  # for each filter
+                    filter = row["filters"]
+                    thresholds = row["thresholds"]
 
-                for threshold in thresholds:  # for each threshold
-                    filter_threshold_error = compute_error.pairs_error(
-                        pairs_index,
-                        dataset,
-                        threshold,
-                        filter,
-                        weights,
-                        progress,
-                        filters_task,
-                    )
-                    errors[(filter, threshold)] = filter_threshold_error
+                    errors = {}
+
+                    for threshold in thresholds:  # for each threshold
+                        futures.append(
+                            executor.submit(
+                                compute_error.pairs_error,
+                                pairs_index,
+                                dataset,
+                                threshold,
+                                filter,
+                                weights,
+                                # progress,
+                                # filters_task,
+                            )
+                        )
+
+                    for future in as_completed(futures):
+                        try:
+                            key, error = future.result()
+                            errors[key] = error
+                        except Exception as e:
+                            print(f"An error occurred: {e}")
 
             # Find the minimum error
             min_error = min(errors.values())
