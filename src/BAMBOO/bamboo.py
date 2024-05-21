@@ -117,12 +117,6 @@ def main():
     # Generating init weights
     weights = np.ones(len(pairs_index)) / len(pairs_index)
 
-    errors = {}
-
-    # Function to remove thresholds from the list
-    def remove_thresholds(threshold_list, thresholds_to_remove):
-        return [x for x in threshold_list if x not in thresholds_to_remove]
-
     # Create a Rich progress context
     with Progress(*custom_columns) as progress:
         # Create a task for the outer loop
