@@ -1,4 +1,5 @@
 import logging
+
 from rich.logging import RichHandler
 
 logging.getLogger("scapy.runtime").setLevel(logging.CRITICAL)
@@ -8,17 +9,15 @@ logging.basicConfig(
     level="NOTSET",
     format=FORMAT,
     datefmt="[%X]",
-    handlers=[
-        RichHandler(rich_tracebacks=True),
-        logging.FileHandler("bamboo.log")
-    ],
+    handlers=[RichHandler(rich_tracebacks=True), logging.FileHandler("bamboo.log")],
 )
 
 log = logging.getLogger("rich")
 
 log.setLevel("INFO")
 
-def print_best_config(best_configs : tuple) -> None:
+
+def print_best_config(best_configs: tuple) -> None:
     log.info(f"Best Filter: {str(best_configs[0])}")
     log.info(f"Best Threshold: {str(best_configs[1])}")
     log.info(f"Min error: {best_configs[2]}")
