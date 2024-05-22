@@ -3,7 +3,7 @@ from rich.logging import RichHandler
 
 logging.getLogger("scapy.runtime").setLevel(logging.CRITICAL)
 
-FORMAT = "%(message)s"
+FORMAT = "%(asctime)s %(message)s"  # Include timestamp in the log message
 logging.basicConfig(
     level="NOTSET",
     format=FORMAT,
