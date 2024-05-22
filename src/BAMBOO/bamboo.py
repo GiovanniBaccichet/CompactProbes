@@ -21,7 +21,7 @@ console = Console()
 
 GRANULARITY = 32
 
-MAX_WORKERS = 32
+MAX_WORKERS = 20
 
 
 def main():
@@ -54,6 +54,15 @@ def main():
             style="bold red",
         )
         args.F = 16
+
+    if args.M > args.F:
+        console.print(
+            Panel(
+                "[!] The number of iterations should be less than the number of filters.",
+                style="bold red",
+            ),
+            style="bold red",
+        )
 
     # Define custom columns for the progress bar
     custom_columns = [
