@@ -5,12 +5,13 @@ logging.getLogger("scapy.runtime").setLevel(logging.CRITICAL)
 
 FORMAT = "%(message)s"
 logging.basicConfig(
-    filename='bamboo.log',
-    filemode='a',
     level="NOTSET",
     format=FORMAT,
     datefmt="[%X]",
-    handlers=[RichHandler(rich_tracebacks=True)],
+    handlers=[
+        RichHandler(rich_tracebacks=True),
+        logging.FileHandler("bamboo.log")
+    ],
 )
 
 log = logging.getLogger("rich")
