@@ -5,6 +5,8 @@ logging.getLogger("scapy.runtime").setLevel(logging.CRITICAL)
 
 FORMAT = "%(message)s"
 logging.basicConfig(
+    filename='bamboo.log',
+    filemode='a',
     level="NOTSET",
     format=FORMAT,
     datefmt="[%X]",
