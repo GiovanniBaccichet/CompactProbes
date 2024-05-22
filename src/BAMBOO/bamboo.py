@@ -21,6 +21,8 @@ console = Console()
 
 GRANULARITY = 32
 
+MAX_WORKERS = 32
+
 
 def main():
     csv_file = "best_configs.csv"
@@ -128,7 +130,6 @@ def main():
         )
 
         for i in range(n_iterations):  # iterations
-
             total_inner_iterations = sum(
                 len(row["thresholds"]) for _, row in filters.iterrows()
             )
@@ -140,7 +141,7 @@ def main():
 
             errors = {}
 
-            with ProcessPoolExecutor() as executor:
+            with ProcessPoolExecutor(max_workers=MAX_WORKERS) as executor:
                 futures = []
 
                 for index, row in filters.iterrows():  # for each filter
