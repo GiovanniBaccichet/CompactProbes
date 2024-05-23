@@ -12,8 +12,8 @@ from classifier import classifier, compute_error, threshold_gen
 from rich import traceback
 from rich.console import Console
 from rich.panel import Panel
-from rich.progress import BarColumn, Progress, TextColumn, TimeRemainingColumn
-from utils import logger, title
+from rich.progress import Progress
+from utils import argsUtil, logger, matrixUtil, progressBarUtil, title
 
 traceback.install()
 
@@ -23,68 +23,30 @@ GRANULARITY = 32
 
 MAX_WORKERS = 20
 
+CSV_FILE = "best_configs.csv"
+
 
 def main():
-    csv_file = "best_configs.csv"
-
     title.print_title()
 
     parser = argparse.ArgumentParser(description="AsymMetric pairwise BOOsting")
-    parser.add_argument("-M", type=int, help="number of iterations")
-    parser.add_argument("-F", type=int, help="number of filters to use")
-    parser.add_argument(
-        "-X", type=int, help="number of head rows to use from the dataset"
-    )
-    parser.add_argument("-d", action="store_true", help="use debug dataset")
-    parser.add_argument(
-        "-rb", action="store_true", help="remove best filters at each iteration"
-    )
-    args = parser.parse_args()
 
-    if args.M is None:
-        console.print(
-            Panel("[!] Argument M is missing! Setting it to 1.", style="bold red"),
-            style="bold red",
-        )
-        args.M = 1
-
-    if args.F is None:
-        console.print(
-            Panel("[!] Argument F is missing! Setting it to 16.", style="bold red"),
-            style="bold red",
-        )
-        args.F = 16
-
-    if args.M > args.F:
-        console.print(
-            Panel(
-                "[!] The number of iterations should be less than the number of filters.",
-                style="bold red",
-            ),
-            style="bold red",
-        )
-
-    # Define custom columns for the progress bar
-    custom_columns = [
-        BarColumn(bar_width=None),
-        " ",  # Spacer
-        TextColumn("[progress.description]{task.description}"),
-        TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
-        " ",  # Spacer
-        TextColumn("[progress.remaining]{task.completed}/{task.total}"),
-        TimeRemainingColumn(),
-    ]
+    args = argsUtil.argsHandler(parser, console)
 
     n_iterations = args.M
     n_filters = args.F
 
+    # Define custom columns for the progress bar
+    custom_columns = progressBarUtil.generateColumns()
+
     # Import the config file
+
     config = ConfigParser()
     config.read(os.path.join(os.path.dirname(__file__), "config.ini"))
 
     # Import concatenated columns dataframe
     strings_df = pd.read_csv(config["DEFAULT"]["df_strings_path"], index_col=0)
-    strings_df = strings_df.rename(columns={strings_df.columns[0]: "Probes"})
+    dataset = strings_df.rename(columns={strings_df.columns[0]: "Probes"})
 
     # Importing pairs_df w/ index and ground truth from strings_df
     if args.d:
@@ -97,39 +59,37 @@ def main():
         pairs_df = pd.read_csv(config["DEFAULT"]["df_pairs_path"], index_col=0)
 
     # Import bitmask filters
-
     filters_df = pd.read_csv(config["DEFAULT"]["filters_path"], index_col=0)
 
+    # Check if user selected a number of filters
     if args.F == 0:
         n_filters = filters_df.shape[0]
 
+    # Slice filters
     filters_df = filters_df.head(n_filters).reset_index()
 
     filters_bitmask = filters_df["Bitmask"]
 
-    # Generation thresholds for each bitmask
-    # threshold_list = threshold_gen.generate_thresholds(filters_bitmask)
-
-    threshold_list = threshold_gen.generate_thresholds_df(filters_bitmask, GRANULARITY)
+    # Generate thresholds for each filter, depending on its size
+    filters = threshold_gen.generate_thresholds_df(filters_bitmask, GRANULARITY)
 
     # Remove the existing file if it exists
-    if os.path.exists(csv_file):
+    if os.path.exists(CSV_FILE):
         console.print(
             Panel("[!] Deleted previous best configs.", style="bold yellow"),
             style="bold yellow",
         )
-        os.remove(csv_file)
+        os.remove(CSV_FILE)
 
-    # Renaming algorithm input for better understanding
-    dataset = strings_df
     if args.X:
         pairs_index = pairs_df.head(args.X)
     else:
         pairs_index = pairs_df
-    filters = threshold_list
 
     # Generating init weights
     weights = np.ones(len(pairs_index)) / len(pairs_index)
+
+    string_pair_df = matrixUtil.generateStringPairDf(pairs_index, dataset)
 
     # Create a Rich progress context
     with Progress(*custom_columns) as progress:
@@ -207,7 +167,7 @@ def main():
             )
 
             # Opening the CSV file in append mode
-            # with open(csv_file, "a", newline="") as file:
+            # with open(CSV_FILE, "a", newline="") as file:
             #     writer = csv.writer(file)
             #     writer.writerow(best_configs)
 
