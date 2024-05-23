@@ -1,3 +1,4 @@
+import gc
 import math
 
 import numpy as np
@@ -80,5 +81,18 @@ def matrix_error(
 
         # error = sum(errors * weights) + 1
         error = 0.5
+
+        del (
+            items_1,
+            items_2,
+            M_xa,
+            M_xb,
+            M_f_xa,
+            M_f_xb,
+            M_f_xa_t,
+            M_f_xb_t,
+            predictions,
+        )
+        gc.collect()
 
     return (f"{filter_start}:{filter_end}", threshold), error
