@@ -21,7 +21,7 @@ console = Console()
 
 GRANULARITY = 32
 
-MAX_WORKERS = 20
+MAX_WORKERS = 4
 
 CSV_FILE = "best_configs.csv"
 
@@ -73,6 +73,8 @@ def main():
     # Generate thresholds for each filter, depending on its size
     filters = threshold_gen.generate_thresholds_df(filters_bitmask, GRANULARITY)
 
+    filters["filters"] = filters["filters"].apply(threshold_gen.binary_to_range)
+
     # Remove the existing file if it exists
     if os.path.exists(CSV_FILE):
         console.print(
@@ -98,20 +100,19 @@ def main():
             "[cyan]Going through iterations...", total=n_iterations
         )
 
-        for _ in range(n_iterations):  # iterations
-            total_inner_iterations = sum(
-                len(row["thresholds"]) for _, row in filters.iterrows()
-            )
+        with ProcessPoolExecutor(max_workers=MAX_WORKERS) as executor:
+            
+            futures = []
 
-            # Create a task for the inner loop
-            filters_task = progress.add_task(
-                "[green]Processing filters...", total=total_inner_iterations
-            )
+            for _ in range(n_iterations):  # iterations
+                total_inner_iterations = args.F
 
-            errors = {}
+                # Create a task for the inner loop
+                filters_task = progress.add_task(
+                    "[green]Processing filters...", total=total_inner_iterations
+                )
 
-            with ProcessPoolExecutor(max_workers=MAX_WORKERS) as executor:
-                futures = []
+                errors = {}
 
                 for _, row in filters.iterrows():  # for each filter
                     filter = row["filters"]
@@ -119,60 +120,53 @@ def main():
 
                     errors = {}
 
-                    for threshold in thresholds:  # for each threshold
-                        futures.append(
-                            executor.submit(
-                                compute_error.pairs_error,
-                                pairs_index,
-                                dataset,
-                                threshold,
-                                filter,
-                                weights,
-                            )
+                    futures.append(
+                        executor.submit(
+                            compute_error.matrix_error,
+                            string_pair_df,
+                            thresholds,
+                            filter,
+                            weights,
                         )
+                    )
+
+                for future in as_completed(futures):
+                    try:
+                        key, error = future.result()
+                        errors[key] = error
                         progress.update(filters_task, advance=1)
+                    except Exception as e:
+                        logger.log.critical(f"An error occurred: {e}")
 
-                    for future in as_completed(futures):
-                        try:
-                            key, error = future.result()
-                            errors[key] = error
-                        except Exception as e:
-                            logger.log.critical(f"An error occurred: {e}")
+                # Find the minimum error
+                min_error = min(errors.values())
 
-            # Find the minimum error
-            min_error = min(errors.values())
+                # Sorting the list by error, number of '1's in filter, and threshold
+                sorted_error_list = sorted(
+                    errors.items(), key=lambda x: (x[1], x[0].count("1"), x[0][1])
+                )  # sorting criteria: primary key is x[2] (error), then the filter length, at the end the threshold
 
-            # Sorting the list by error, number of '1's in filter, and threshold
-            sorted_error_list = sorted(
-                errors.items(), key=lambda x: (x[1], x[0].count("1"), x[0][1])
-            )  # sorting criteria: primary key is x[2] (error), then the filter length, at the end the threshold
+                best_filter, best_threshold = sorted_error_list[0][0]
+                min_error = sorted_error_list[0][1]
 
-            best_filter, best_threshold = sorted_error_list[0][0]
-            min_error = sorted_error_list[0][1]
+                # Delete the row with the best_threshold
+                filters = filters[filters["filters"] != best_filter]
 
-            # Delete the row with the best_threshold
-            filters = filters[filters["filters"] != best_filter]
+                min_error, confidence = compute_error.get_confidence(
+                    errors, best_filter, best_threshold
+                )
 
-            min_error, confidence = compute_error.get_confidence(
-                errors, best_filter, best_threshold
-            )
+                best_configs = [best_filter, best_threshold, min_error, confidence]
 
-            best_configs = [best_filter, best_threshold, min_error, confidence]
+                logger.print_best_config(best_configs)
 
-            logger.print_best_config(best_configs)
+                # Asymmetric weight update + normalization
+                # weights = classifier.weight_update(
+                #     pairs_index, dataset, weights, best_filter, best_threshold, confidence
+                # )
 
-            # Asymmetric weight update + normalization
-            weights = classifier.weight_update(
-                pairs_index, dataset, weights, best_filter, best_threshold, confidence
-            )
-
-            # Opening the CSV file in append mode
-            # with open(CSV_FILE, "a", newline="") as file:
-            #     writer = csv.writer(file)
-            #     writer.writerow(best_configs)
-
-            # Update the process at each iteration
-            progress.update(iteration_task, advance=1)
+                # Update the process at each iteration
+                progress.update(iteration_task, advance=1)
 
 
 if __name__ == "__main__":

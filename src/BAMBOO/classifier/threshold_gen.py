@@ -28,6 +28,12 @@ def generate_thresholds_df(bitmasks: set, granularity: int) -> pd.DataFrame:
 
     return pd.DataFrame(data, columns=["filters", "thresholds"])
 
+def binary_to_range(binary_string):
+    indices = [i for i, bit in enumerate(binary_string) if bit == '1']
+    if indices:
+        return [indices[0], indices[-1] + 1]  # return range [start, end)
+    else:
+        return []
 
 def remove_last_threshold(thresholds_list: list) -> list:
     for i in range(len(thresholds_list)):
