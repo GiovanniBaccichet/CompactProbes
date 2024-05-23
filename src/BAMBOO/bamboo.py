@@ -2,6 +2,7 @@
 
 import argparse
 import csv
+import gc
 import os
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from configparser import ConfigParser
@@ -93,6 +94,8 @@ def main():
 
     string_pair_df = matrixUtil.generateStringPairDf(pairs_index, dataset)
 
+    del (dataset, strings_df, filters_bitmask, pairs_df, pairs_index, filters_df)
+
     # Create a Rich progress context
     with Progress(*custom_columns) as progress:
         # Create a task for the outer loop
@@ -101,7 +104,6 @@ def main():
         )
 
         with ProcessPoolExecutor(max_workers=MAX_WORKERS) as executor:
-            
             futures = []
 
             for _ in range(n_iterations):  # iterations
@@ -132,7 +134,10 @@ def main():
 
                 for future in as_completed(futures):
                     try:
-                        if progress.tasks[filters_task].completed == total_inner_iterations:
+                        if (
+                            progress.tasks[filters_task].completed
+                            == total_inner_iterations
+                        ):
                             progress.update(filters_task, completed=0)
                         key, error = future.result()
                         errors[key] = error
@@ -164,7 +169,12 @@ def main():
 
                 # Asymmetric weight update + normalization
                 # weights = classifier.weight_update(
-                #     pairs_index, dataset, weights, best_filter, best_threshold, confidence
+                #     pairs_index,
+                #     dataset,
+                #     weights,
+                #     best_filter,
+                #     best_threshold,
+                #     confidence,
                 # )
 
                 # Update the process at each iteration
