@@ -132,6 +132,8 @@ def main():
 
                 for future in as_completed(futures):
                     try:
+                        if progress.tasks[filters_task].completed == total_inner_iterations:
+                            progress.update(filters_task, completed=0)
                         key, error = future.result()
                         errors[key] = error
                         progress.update(filters_task, advance=1)

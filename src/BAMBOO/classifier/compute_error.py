@@ -77,10 +77,9 @@ def matrix_error(
 
         ground_truth = string_pair_df["Equality"].to_list()
 
-        errors = np.ones(len(M_f_xa))
+        errors = np.not_equal(predictions, ground_truth).astype(int)
 
-        # error = sum(errors * weights) + 1
-        error = 0.5
+        error = sum(errors * weights)
 
         del (
             items_1,
