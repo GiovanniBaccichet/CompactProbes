@@ -96,6 +96,8 @@ def main():
 
     del (dataset, strings_df, filters_bitmask, pairs_df, pairs_index, filters_df)
 
+    gc.collect()
+
     # Create a Rich progress context
     with Progress(*custom_columns) as progress:
         # Create a task for the outer loop
