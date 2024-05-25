@@ -170,14 +170,9 @@ def main():
                 logger.print_best_config(best_configs)
 
                 # Asymmetric weight update + normalization
-                # weights = classifier.weight_update(
-                #     pairs_index,
-                #     dataset,
-                #     weights,
-                #     best_filter,
-                #     best_threshold,
-                #     confidence,
-                # )
+                weights = classifier.matrix_weight_update(
+                    string_pair_df, weights, best_filter, best_threshold, confidence
+                )
 
                 # Update the process at each iteration
                 progress.update(iteration_task, advance=1)
