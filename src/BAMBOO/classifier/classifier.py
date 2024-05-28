@@ -3,6 +3,8 @@ import math
 import pandas as pd
 from utils import logger
 
+import numpy as np
+
 from . import filters, func
 
 
@@ -71,4 +73,26 @@ def matrix_weight_update(
     best_threshold: int,
     confidence: float,
 ) -> list:
+    
+    # Keep only 1s in the ground truth matrix
     ground_truth = df["Equality"].to_list()
+    ground_truth_matrix = np.array(ground_truth).reshape(-1, 1)
+
+    # Convert -1 to 0 for later matrix product
+    ground_truth_matrix[ground_truth_matrix != 1] = 0
+
+    # Keep only != 1 in the prediction matrix
+    prediction = []
+
+    prediction_matrix = np.array(prediction).reshape(-1, 1)
+
+    prediction_matrix[prediction_matrix == 1] = 0
+
+
+    print(best_filter, best_threshold, confidence)
+
+    updatedWeights = weights
+
+
+
+    return updatedWeights

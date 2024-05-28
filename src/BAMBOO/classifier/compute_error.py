@@ -90,7 +90,7 @@ def matrix_error(
             M_f_xb,
             M_f_xa_t,
             M_f_xb_t,
-            predictions,
+            # predictions,
         )
         gc.collect()
 
