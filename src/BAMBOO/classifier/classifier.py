@@ -38,6 +38,16 @@ def weight_normalize(pairs_index: pd.DataFrame, weights: list) -> list:
     return weights
 
 
+def normalize_weight_matrix(ground_truth: list, updated_weights: list) -> list:
+    mask = ground_truth == 1
+
+    sum_values_to_normalize = np.sum(updated_weights[mask])
+
+    updated_weights[mask] = updated_weights[mask] / sum_values_to_normalize
+
+    return updated_weights
+
+
 def weight_update(
     pairs_index: pd.DataFrame,
     dataset: pd.DataFrame,
@@ -73,7 +83,6 @@ def matrix_weight_update(
     best_threshold: int,
     confidence: float,
 ) -> list:
-    
     # Keep only 1s in the ground truth matrix
     ground_truth = df["Equality"].to_list()
     ground_truth_matrix = np.array(ground_truth).reshape(-1, 1)
@@ -81,18 +90,35 @@ def matrix_weight_update(
     # Convert -1 to 0 for later matrix product
     ground_truth_matrix[ground_truth_matrix != 1] = 0
 
-    # Keep only != 1 in the prediction matrix
-    prediction = []
+    # Creating predictions using best filter and best threshold
+    items_1 = np.array(df["Item 1"].tolist())
+    items_2 = np.array(df["Item 2"].tolist())
 
-    prediction_matrix = np.array(prediction).reshape(-1, 1)
+    filter_start, filter_end = best_filter.split(":")
+
+    filter_start = int(filter_start)
+    filter_end = int(filter_end)
+
+    M_xa = items_1[:, filter_start:filter_end].astype(int)
+    M_xb = items_2[:, filter_start:filter_end].astype(int)
+
+    M_f_xa = np.sum(M_xa, axis=1)
+    M_f_xb = np.sum(M_xb, axis=1)
+
+    M_f_xa_t = M_f_xa - best_threshold * np.ones(len(M_f_xa))
+    M_f_xb_t = M_f_xb - best_threshold * np.ones(len(M_f_xb))
+
+    predictions = np.sign(M_f_xa_t * M_f_xb_t)
+
+    prediction_matrix = np.array(predictions).reshape(-1, 1)
 
     prediction_matrix[prediction_matrix == 1] = 0
+    prediction_matrix[prediction_matrix != 1] = 1
 
+    confidence_weight_matrix = math.exp(confidence) * np.ones(len(weights))
 
-    print(best_filter, best_threshold, confidence)
+    updatedWeights = ground_truth_matrix * prediction_matrix * confidence_weight_matrix
 
-    updatedWeights = weights
+    normalized_updated_weigths = normalize_weight_matrix(ground_truth, updatedWeights)
 
-
-
-    return updatedWeights
+    return normalized_updated_weigths

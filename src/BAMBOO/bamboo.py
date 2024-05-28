@@ -148,7 +148,8 @@ def main():
                         logger.log.critical(f"An error occurred: {e}")
 
                 # Find the minimum error
-                min_error = min(errors.values())
+                # min_error = min(errors.values())
+                min(errors.values(), key=lambda x: x.min())
 
                 # Sorting the list by error, number of '1's in filter, and threshold
                 sorted_error_list = sorted(
