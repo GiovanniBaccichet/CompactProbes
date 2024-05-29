@@ -10,7 +10,7 @@ from configparser import ConfigParser
 import numpy as np
 import pandas as pd
 from classifier import classifier, compute_error, threshold_gen
-from classifier import filters as futil
+from classifier import filters as filter_utility
 from rich import traceback
 from rich.console import Console
 from rich.panel import Panel
@@ -23,7 +23,7 @@ console = Console()
 
 GRANULARITY = 32
 
-MAX_WORKERS = 4
+MAX_WORKERS = 1
 
 CSV_FILE = "best_configs.csv"
 
@@ -117,7 +117,7 @@ def main():
                     "[green]Processing filters...", total=total_inner_iterations
                 )
 
-                errors = {}
+                errors_dictionary = {}
                 best_filter = None
                 best_threshold = None
 
@@ -125,7 +125,7 @@ def main():
                     filter = row["filters"]
                     thresholds = row["thresholds"]
 
-                    errors = {}
+                    errors_dictionary = {}
 
                     futures.append(
                         executor.submit(
@@ -144,16 +144,27 @@ def main():
                             == total_inner_iterations
                         ):
                             progress.update(filters_task, completed=0)
-                        key, error = future.result()
-                        errors[key] = error
+
+                        key, error = (
+                            future.result()
+                        )  # key is a tuple (filter, threshold)
+
+                        errors_dictionary[key] = error
+
                         progress.update(filters_task, advance=1)
+
                     except Exception as e:
                         logger.log.critical(f"An error occurred: {e}")
 
                 sorted_error_list = []
 
                 sorted_error_list = sorted(
-                    errors.items(), key=lambda x: (x[1], futil.calculate_filter_width(x[0]), x[0][1])
+                    errors_dictionary.items(),
+                    key=lambda x: (
+                        x[1],
+                        filter_utility.calculate_filter_width(x[0]),
+                        x[0][1],
+                    ),
                 )  # sorting criteria: primary key is x[2] (error), then the filter length, at the end the threshold
 
                 best_filter, best_threshold = sorted_error_list[0][0]
@@ -163,7 +174,7 @@ def main():
                 filters = filters[filters["filters"] != best_filter]
 
                 min_error, confidence = compute_error.get_confidence(
-                    errors, best_filter, best_threshold
+                    errors_dictionary, best_filter, best_threshold
                 )
 
                 best_configs = [best_filter, best_threshold, min_error, confidence]
@@ -171,9 +182,19 @@ def main():
                 logger.print_best_config(best_configs)
 
                 # Asymmetric weight update + normalization
-                weights = classifier.matrix_weight_update(
-                    string_pair_df, weights, best_filter, best_threshold, confidence
+                # weights = classifier.matrix_weight_update(
+                #     string_pair_df, weights, best_filter, best_threshold, confidence
+                # )
+
+                del (
+                    sorted_error_list,
+                    errors_dictionary,
+                    best_filter,
+                    best_threshold,
+                    min_error,
+                    confidence,
                 )
+                gc.collect()
 
                 # Update the process at each iteration
                 progress.update(iteration_task, advance=1)
