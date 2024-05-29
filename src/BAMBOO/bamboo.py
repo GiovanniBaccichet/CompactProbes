@@ -41,11 +41,9 @@ def main():
     # Define custom columns for the progress bar
     custom_columns = utils.progressBarUtil.generateColumns()
 
-    # Import the config file for capture paths
     config = ConfigParser()
     config.read(os.path.join(os.path.dirname(__file__), "config.ini"))
 
-    # Import concatenated columns dataframe
     strings_df = pd.read_csv(config["DEFAULT"]["df_strings_path"], index_col=0)
     dataset = strings_df.rename(columns={strings_df.columns[0]: "Probes"})
 
@@ -59,7 +57,6 @@ def main():
     else:
         pairs_df = pd.read_csv(config["DEFAULT"]["df_pairs_path"], index_col=0)
 
-    # Import bitmask filters
     filters_df = pd.read_csv(config["DEFAULT"]["filters_path"], index_col=0)
 
     # Check if user selected a number of filters
@@ -160,9 +157,11 @@ def main():
                 sorted_error_list = sorted(
                     errors_dictionary.items(),
                     key=lambda x: (
-                        x[1], # primary key -> error
-                        filter_utility.calculate_filter_width(x[0]), # secondary key -> filter length
-                        x[0][1], # tertiary key -> threshold
+                        x[1],  # primary key -> error
+                        filter_utility.calculate_filter_width(
+                            x[0]
+                        ),  # secondary key -> filter length
+                        x[0][1],  # tertiary key -> threshold
                     ),
                 )
 
