@@ -23,7 +23,7 @@ console = Console()
 
 GRANULARITY = 32
 
-MAX_WORKERS = 1
+MAX_WORKERS = 4
 
 CSV_FILE = "best_configs.csv"
 
@@ -182,9 +182,9 @@ def main():
                 logger.print_best_config(best_configs)
 
                 # Asymmetric weight update + normalization
-                # weights = classifier.matrix_weight_update(
-                #     string_pair_df, weights, best_filter, best_threshold, confidence
-                # )
+                weights = classifier.matrix_weight_update(
+                    string_pair_df, weights, best_filter, best_threshold, confidence
+                )
 
                 del (
                     sorted_error_list,

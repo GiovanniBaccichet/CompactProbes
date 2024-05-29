@@ -121,4 +121,4 @@ def matrix_weight_update(
 
     normalized_updated_weights = normalize_weight_matrix(ground_truth, updatedWeights)
 
-    return normalized_updated_weights
+    return normalized_updated_weights.flatten()
