@@ -10,6 +10,7 @@ from configparser import ConfigParser
 import numpy as np
 import pandas as pd
 from classifier import classifier, compute_error, threshold_gen
+from classifier import filters as futil
 from rich import traceback
 from rich.console import Console
 from rich.panel import Panel
@@ -117,6 +118,8 @@ def main():
                 )
 
                 errors = {}
+                best_filter = None
+                best_threshold = None
 
                 for _, row in filters.iterrows():  # for each filter
                     filter = row["filters"]
@@ -147,13 +150,10 @@ def main():
                     except Exception as e:
                         logger.log.critical(f"An error occurred: {e}")
 
-                # Find the minimum error
-                # min_error = min(errors.values())
-                min(errors.values(), key=lambda x: x.min())
+                sorted_error_list = []
 
-                # Sorting the list by error, number of '1's in filter, and threshold
                 sorted_error_list = sorted(
-                    errors.items(), key=lambda x: (x[1], x[0].count("1"), x[0][1])
+                    errors.items(), key=lambda x: (x[1], futil.calculate_filter_width(x[0]), x[0][1])
                 )  # sorting criteria: primary key is x[2] (error), then the filter length, at the end the threshold
 
                 best_filter, best_threshold = sorted_error_list[0][0]
