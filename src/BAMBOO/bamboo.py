@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import argparse
-import csv
 import gc
 import os
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -15,7 +14,8 @@ from rich import traceback
 from rich.console import Console
 from rich.panel import Panel
 from rich.progress import Progress
-from utils import argsUtil, logger, matrixUtil, progressBarUtil, title
+
+import utils as utils
 
 traceback.install()
 
@@ -29,20 +29,19 @@ CSV_FILE = "best_configs.csv"
 
 
 def main():
-    title.print_title()
+    utils.title.print_title()
 
     parser = argparse.ArgumentParser(description="AsymMetric pairwise BOOsting")
 
-    args = argsUtil.argsHandler(parser, console)
+    args = utils.argsUtil.argsHandler(parser, console)
 
     n_iterations = args.M
     n_filters = args.F
 
     # Define custom columns for the progress bar
-    custom_columns = progressBarUtil.generateColumns()
+    custom_columns = utils.progressBarUtil.generateColumns()
 
-    # Import the config file
-
+    # Import the config file for capture paths
     config = ConfigParser()
     config.read(os.path.join(os.path.dirname(__file__), "config.ini"))
 
@@ -73,7 +72,7 @@ def main():
     filters_bitmask = filters_df["Bitmask"]
 
     # Generate thresholds for each filter, depending on its size
-    filters = threshold_gen.generate_thresholds_df(filters_bitmask, GRANULARITY)
+    filters = threshold_gen.generate_thresholds_df(filters_bitmask)
 
     filters["filters"] = filters["filters"].apply(threshold_gen.binary_to_range)
 
@@ -93,7 +92,7 @@ def main():
     # Generating init weights
     weights = np.ones(len(pairs_index)) / len(pairs_index)
 
-    string_pair_df = matrixUtil.generateStringPairDf(pairs_index, dataset)
+    string_pair_df = utils.matrixUtil.generateStringPairDf(pairs_index, dataset)
 
     del (dataset, strings_df, filters_bitmask, pairs_df, pairs_index, filters_df)
 
@@ -154,23 +153,23 @@ def main():
                         progress.update(filters_task, advance=1)
 
                     except Exception as e:
-                        logger.log.critical(f"An error occurred: {e}")
+                        utils.logger.log.critical(f"An error occurred: {e}")
 
                 sorted_error_list = []
 
                 sorted_error_list = sorted(
                     errors_dictionary.items(),
                     key=lambda x: (
-                        x[1],
-                        filter_utility.calculate_filter_width(x[0]),
-                        x[0][1],
+                        x[1], # primary key -> error
+                        filter_utility.calculate_filter_width(x[0]), # secondary key -> filter length
+                        x[0][1], # tertiary key -> threshold
                     ),
-                )  # sorting criteria: primary key is x[2] (error), then the filter length, at the end the threshold
+                )
 
                 best_filter, best_threshold = sorted_error_list[0][0]
                 min_error = sorted_error_list[0][1]
 
-                # Delete the row with the best_threshold
+                # Delete the row with the best_filter
                 filters = filters[filters["filters"] != best_filter]
 
                 min_error, confidence = compute_error.get_confidence(
@@ -179,7 +178,7 @@ def main():
 
                 best_configs = [best_filter, best_threshold, min_error, confidence]
 
-                logger.print_best_config(best_configs)
+                utils.logger.print_best_config(best_configs)
 
                 # Asymmetric weight update + normalization
                 weights = classifier.matrix_weight_update(
@@ -194,9 +193,9 @@ def main():
                     min_error,
                     confidence,
                 )
+
                 gc.collect()
 
-                # Update the process at each iteration
                 progress.update(iteration_task, advance=1)
 
 
