@@ -85,7 +85,7 @@ def main():
             "[cyan]Going through iterations...", total=n_iterations
         )
 
-        with ProcessPoolExecutor(max_workers=config["MULTI-PROCESSING"]["max_workers"]) as executor:
+        with ProcessPoolExecutor(max_workers=int(config["MULTI-PROCESSING"]["max_workers"])) as executor:
             futures = []
 
             for _ in range(n_iterations):  # iterations
