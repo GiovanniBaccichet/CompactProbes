@@ -3,17 +3,18 @@ import math
 import numpy as np
 import pandas as pd
 
+from . import filters
 
-def weak_classifier_matrix(string_pair_df: pd.DataFrame, threshold: int, filter: list) -> list:
 
-    filter_start = filter[0]
-    filter_end = filter[1]
+def weak_classifier(string_pair_df: pd.DataFrame, threshold: int, filter_str: str) -> list:
+
+    filter = filters.filter_to_vector(filter_str)
 
     items_1 = np.array(string_pair_df["Item 1"].tolist())
     items_2 = np.array(string_pair_df["Item 2"].tolist())
 
-    M_xa = items_1[:, filter_start:filter_end].astype(int)
-    M_xb = items_2[:, filter_start:filter_end].astype(int)
+    M_xa = np.multiply(items_1.astype(int), filter.T.astype(int))
+    M_xb = np.multiply(items_2.astype(int), filter.T.astype(int))
 
     M_f_xa = np.sum(M_xa, axis=1)
     M_f_xb = np.sum(M_xb, axis=1)
@@ -26,7 +27,7 @@ def weak_classifier_matrix(string_pair_df: pd.DataFrame, threshold: int, filter:
     return predictions
 
 
-def normalize_weight_matrix(ground_truth: list, updated_weights: list) -> list:
+def normalize_weight(ground_truth: list, updated_weights: list) -> list:
     mask = ground_truth == 1
 
     sum_values_to_normalize = np.sum(updated_weights[mask])
@@ -36,7 +37,7 @@ def normalize_weight_matrix(ground_truth: list, updated_weights: list) -> list:
     return updated_weights
 
 
-def matrix_weight_update(
+def weight_update(
     df: pd.DataFrame,
     weights: list,
     best_filter: str,
@@ -50,16 +51,7 @@ def matrix_weight_update(
     # Convert -1 to 0 for later matrix product
     ground_truth_matrix[ground_truth_matrix != 1] = 0
 
-    # Creating predictions using best filter and best threshold
-    items_1 = np.array(df["Item 1"].tolist())
-    items_2 = np.array(df["Item 2"].tolist())
-
-    filter_start, filter_end = best_filter.split(":")
-
-    filter_start = int(filter_start)
-    filter_end = int(filter_end)
-
-    predictions = weak_classifier_matrix(df, best_threshold, best_filter)
+    predictions = weak_classifier(df, best_threshold, best_filter)
 
     prediction_matrix = np.array(predictions).reshape(-1, 1)
 
@@ -74,6 +66,6 @@ def matrix_weight_update(
         np.multiply(ground_truth_matrix, prediction_matrix), confidence_weight_matrix
     ) + np.multiply((~ground_truth_matrix.astype(bool)), weights.reshape(-1, 1))
 
-    normalized_updated_weights = normalize_weight_matrix(ground_truth, updatedWeights)
+    normalized_updated_weights = normalize_weight(ground_truth, updatedWeights)
 
     return normalized_updated_weights.flatten()

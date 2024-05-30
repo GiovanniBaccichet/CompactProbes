@@ -71,16 +71,6 @@ def main():
     # Generate thresholds for each filter, depending on its size
     filters = threshold_gen.generate_thresholds_df(filters_bitmask)
 
-    filters["filters"] = filters["filters"].apply(threshold_gen.binary_to_range)
-
-    # Remove the existing file if it exists
-    if os.path.exists(CSV_FILE):
-        console.print(
-            Panel("[!] Deleted previous best configs.", style="bold yellow"),
-            style="bold yellow",
-        )
-        os.remove(CSV_FILE)
-
     if args.X:
         pairs_index = pairs_df.head(args.X)
     else:
@@ -106,11 +96,9 @@ def main():
             futures = []
 
             for _ in range(n_iterations):  # iterations
-                total_inner_iterations = n_filters
-
                 # Create a task for the inner loop
                 filters_task = progress.add_task(
-                    "[green]Processing filters...", total=total_inner_iterations
+                    "[green]Processing filters...", total=n_filters
                 )
 
                 errors_dictionary = {}
@@ -135,10 +123,7 @@ def main():
 
                 for future in as_completed(futures):
                     try:
-                        if (
-                            progress.tasks[filters_task].completed
-                            == total_inner_iterations
-                        ):
+                        if progress.tasks[filters_task].completed == n_filters:
                             progress.update(filters_task, completed=0)
 
                         key, error = (
@@ -180,7 +165,7 @@ def main():
                 utils.logger.print_best_config(best_configs)
 
                 # Asymmetric weight update + normalization
-                weights = classifier.matrix_weight_update(
+                weights = classifier.weight_update(
                     string_pair_df, weights, best_filter, best_threshold, confidence
                 )
 
