@@ -149,6 +149,8 @@ def main():
                 # Delete the row with the best_filter
                 filters = filters[filters["filters"] != best_filter]
 
+                n_filters -= 1 
+
                 min_error, confidence = compute_error.get_confidence(
                     errors_dictionary, best_filter, best_threshold
                 )

@@ -23,7 +23,7 @@ def get_confidence(errors: dict, best_filter: str, best_threshold: str) -> tuple
 def matrix_error(
     string_pair_df: pd.DataFrame,
     thresholds: list,
-    filter: list,
+    filter: str,
     weights: list,
 ) -> float:
     for threshold in thresholds:
