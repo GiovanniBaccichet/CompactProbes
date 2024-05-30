@@ -1,41 +1,29 @@
 import math
 
-import pandas as pd
-from utils import logger
-
 import numpy as np
-
-from . import filters, func
-
-
-def weak_classifier(pair: tuple, threshold: int, filter: str) -> int:
-    logger.log.debug(f"Pair {pair}\nThreshold {threshold}\nFilter {filter}")
-
-    filtered1 = filters.sumFilter(filters.bitwise_and(pair[0], filter))  # f(xa)
-    filtered2 = filters.sumFilter(filters.bitwise_and(pair[1], filter))  # f(xb)
-
-    return func.sign(
-        (filtered1 - threshold) * (filtered2 - threshold)
-    )  # sign((f(xa)-t)(f(xb)-t))
+import pandas as pd
 
 
-def weight_normalize(pairs_index: pd.DataFrame, weights: list) -> list:
-    # Weight normalization
-    matching_pairs = []
+def weak_classifier_matrix(string_pair_df: pd.DataFrame, threshold: int, filter: list) -> list:
 
-    for n_index in range(len(pairs_index)):
-        if pairs_index.iloc[n_index, 2] == +1:
-            matching_pairs.append(n_index)
+    filter_start = filter[0]
+    filter_end = filter[1]
 
-    matching_pairs_weights = [weights[index] for index in matching_pairs]
-    total_weight = sum(matching_pairs_weights)
+    items_1 = np.array(string_pair_df["Item 1"].tolist())
+    items_2 = np.array(string_pair_df["Item 2"].tolist())
 
-    normalized_weights = [weight / total_weight for weight in matching_pairs_weights]
+    M_xa = items_1[:, filter_start:filter_end].astype(int)
+    M_xb = items_2[:, filter_start:filter_end].astype(int)
 
-    for index, matching_pair in enumerate(matching_pairs):
-        weights[matching_pair] = normalized_weights[index]
+    M_f_xa = np.sum(M_xa, axis=1)
+    M_f_xb = np.sum(M_xb, axis=1)
 
-    return weights
+    M_f_xa_t = M_f_xa - threshold * np.ones(len(M_f_xa))
+    M_f_xb_t = M_f_xb - threshold * np.ones(len(M_f_xb))
+
+    predictions = np.sign(M_f_xa_t * M_f_xb_t)
+
+    return predictions
 
 
 def normalize_weight_matrix(ground_truth: list, updated_weights: list) -> list:
@@ -46,34 +34,6 @@ def normalize_weight_matrix(ground_truth: list, updated_weights: list) -> list:
     updated_weights[mask] = updated_weights[mask] / sum_values_to_normalize
 
     return updated_weights
-
-
-def weight_update(
-    pairs_index: pd.DataFrame,
-    dataset: pd.DataFrame,
-    weights: list,
-    best_filter: str,
-    best_threshold: int,
-    confidence: float,
-) -> list:
-    # Asymmetric Weight Update
-    for p_index in range(len(pairs_index)):  # pair index for asymmetric weight update
-        ground_truth = pairs_index.iloc[p_index, 2]
-        prediction = weak_classifier(
-            tuple(dataset.iloc[pairs_index.iloc[p_index, 0:2], 0]),
-            best_threshold,
-            best_filter,
-        )
-        if ground_truth == +1:  # if the pair is a matching one
-            if prediction != +1:  # if the prediction is wrong
-                old_weight = weights[p_index]
-                weights[p_index] = weights[p_index] * math.exp(confidence)
-
-                logger.log.warning(
-                    f"Weight updated @ {p_index}: {old_weight} -> {weights[p_index]}"
-                )
-
-    return weight_normalize(pairs_index, weights)
 
 
 def matrix_weight_update(
@@ -99,25 +59,20 @@ def matrix_weight_update(
     filter_start = int(filter_start)
     filter_end = int(filter_end)
 
-    M_xa = items_1[:, filter_start:filter_end].astype(int)
-    M_xb = items_2[:, filter_start:filter_end].astype(int)
-
-    M_f_xa = np.sum(M_xa, axis=1)
-    M_f_xb = np.sum(M_xb, axis=1)
-
-    M_f_xa_t = M_f_xa - best_threshold * np.ones(len(M_f_xa))
-    M_f_xb_t = M_f_xb - best_threshold * np.ones(len(M_f_xb))
-
-    predictions = np.sign(M_f_xa_t * M_f_xb_t)
+    predictions = weak_classifier_matrix(df, best_threshold, best_filter)
 
     prediction_matrix = np.array(predictions).reshape(-1, 1)
 
     prediction_matrix[prediction_matrix == 1] = 0
     prediction_matrix[prediction_matrix != 1] = 1
 
-    confidence_weight_matrix = (math.exp(confidence) * np.ones(len(weights))).reshape(-1, 1)
+    confidence_weight_matrix = (math.exp(confidence) * np.ones(len(weights))).reshape(
+        -1, 1
+    )
 
-    updatedWeights = np.multiply(np.multiply(ground_truth_matrix, prediction_matrix), confidence_weight_matrix) + np.multiply((~ground_truth_matrix.astype(bool)), weights.reshape(-1, 1))
+    updatedWeights = np.multiply(
+        np.multiply(ground_truth_matrix, prediction_matrix), confidence_weight_matrix
+    ) + np.multiply((~ground_truth_matrix.astype(bool)), weights.reshape(-1, 1))
 
     normalized_updated_weights = normalize_weight_matrix(ground_truth, updatedWeights)
 
