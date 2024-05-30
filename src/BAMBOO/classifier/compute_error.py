@@ -29,10 +29,7 @@ def matrix_error(
     for threshold in thresholds:
         error = 0
 
-        filter_start = filter[0]
-        filter_end = filter[1]
-
-        predictions = classifier.weak_classifier_matrix(
+        predictions = classifier.weak_classifier(
             string_pair_df, threshold, filter
         )
 
@@ -48,4 +45,4 @@ def matrix_error(
         )
         gc.collect()
 
-    return (f"{filter_start}:{filter_end}", threshold), error
+    return (f"{filter}", threshold), error
