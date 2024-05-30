@@ -21,13 +21,6 @@ traceback.install()
 
 console = Console()
 
-GRANULARITY = 32
-
-MAX_WORKERS = 4
-
-CSV_FILE = "best_configs.csv"
-
-
 def main():
     utils.title.print_title()
 
@@ -92,7 +85,7 @@ def main():
             "[cyan]Going through iterations...", total=n_iterations
         )
 
-        with ProcessPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        with ProcessPoolExecutor(max_workers=config["MULTI-PROCESSING"]["max_workers"]) as executor:
             futures = []
 
             for _ in range(n_iterations):  # iterations
