@@ -1,5 +1,3 @@
-import argparse
-
 from rich.panel import Panel
 
 def argsHandler(parser, console) -> None:
