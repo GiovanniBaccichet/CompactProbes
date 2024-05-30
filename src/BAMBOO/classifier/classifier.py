@@ -13,8 +13,8 @@ def weak_classifier(string_pair_df: pd.DataFrame, threshold: int, filter_str: st
     items_1 = np.array(string_pair_df["Item 1"].tolist())
     items_2 = np.array(string_pair_df["Item 2"].tolist())
 
-    M_xa = np.multiply(items_1.astype(int), filter.T.astype(int))
-    M_xb = np.multiply(items_2.astype(int), filter.T.astype(int))
+    M_xa = np.multiply(items_1.astype(int), filter)
+    M_xb = np.multiply(items_2.astype(int), filter)
 
     M_f_xa = np.sum(M_xa, axis=1)
     M_f_xb = np.sum(M_xb, axis=1)
