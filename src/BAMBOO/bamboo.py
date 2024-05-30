@@ -57,7 +57,7 @@ def main():
     else:
         pairs_df = pd.read_csv(config["DEFAULT"]["df_pairs_path"], index_col=0)
 
-    filters_df = pd.read_csv(config["DEFAULT"]["filters_path"], index_col=0)
+    filters_df = pd.read_csv(config["DEFAULT"]["advanced_filters_path"], index_col=0)
 
     # Check if user selected a number of filters
     if args.F == 0:
@@ -106,7 +106,7 @@ def main():
             futures = []
 
             for _ in range(n_iterations):  # iterations
-                total_inner_iterations = args.F
+                total_inner_iterations = n_filters
 
                 # Create a task for the inner loop
                 filters_task = progress.add_task(
