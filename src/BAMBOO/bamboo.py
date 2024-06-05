@@ -85,14 +85,15 @@ def main():
             "[cyan]Going through iterations...", total=n_iterations
         )
 
-        with ProcessPoolExecutor(max_workers=int(config["MULTI-PROCESSING"]["max_workers"])) as executor:
-            futures = []
 
-            for _ in range(n_iterations):  # iterations
-                # Create a task for the inner loop
-                filters_task = progress.add_task(
-                    "[green]Processing filters...", total=n_filters
-                )
+        for _ in range(n_iterations):  # iterations
+            # Create a task for the inner loop
+            filters_task = progress.add_task(
+                "[green]Processing filters...", total=n_filters
+            )
+
+            with ProcessPoolExecutor(max_workers=int(config["MULTI-PROCESSING"]["max_workers"])) as executor:
+                futures = []
 
                 errors_dictionary = {}
                 best_filter = None
@@ -130,18 +131,18 @@ def main():
                     except Exception as e:
                         utils.logger.log.critical(f"An error occurred: {e}")
 
-                sorted_error_list = []
+                    sorted_error_list = []
 
-                sorted_error_list = sorted(
-                    errors_dictionary.items(),
-                    key=lambda x: (
-                        x[1],  # primary key -> error
-                        filter_utility.calculate_filter_width(
-                            x[0]
-                        ),  # secondary key -> filter length
-                        x[0][1],  # tertiary key -> threshold
-                    ),
-                )
+                    sorted_error_list = sorted(
+                        errors_dictionary.items(),
+                        key=lambda x: (
+                            x[1],  # primary key -> error
+                            filter_utility.calculate_filter_width(
+                                x[0]
+                            ),  # secondary key -> filter length
+                            x[0][1],  # tertiary key -> threshold
+                        ),
+                    )
 
                 best_filter, best_threshold = sorted_error_list[0][0]
                 min_error = sorted_error_list[0][1]
