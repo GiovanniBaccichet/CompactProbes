@@ -6,8 +6,9 @@ import pandas as pd
 from . import filters
 
 
-def weak_classifier(string_pair_df: pd.DataFrame, threshold: int, filter_str: str) -> list:
-
+def weak_classifier(
+    string_pair_df: pd.DataFrame, threshold: int, filter_str: str
+) -> list:
     filter = filters.filter_to_vector(filter_str)
 
     items_1 = np.array(string_pair_df["Item 1"].tolist())

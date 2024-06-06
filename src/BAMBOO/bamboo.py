@@ -21,6 +21,7 @@ traceback.install()
 
 console = Console()
 
+
 def main():
     utils.title.print_title()
 
@@ -85,14 +86,15 @@ def main():
             "[cyan]Going through iterations...", total=n_iterations
         )
 
-
         for _ in range(n_iterations):  # iterations
             # Create a task for the inner loop
             filters_task = progress.add_task(
                 "[green]Processing filters...", total=n_filters
             )
 
-            with ProcessPoolExecutor(max_workers=int(config["MULTI-PROCESSING"]["max_workers"])) as executor:
+            with ProcessPoolExecutor(
+                max_workers=int(config["MULTI-PROCESSING"]["max_workers"])
+            ) as executor:
                 futures = []
 
                 errors_dictionary = {}
@@ -150,7 +152,7 @@ def main():
                 # Delete the row with the best_filter
                 filters = filters[filters["filters"] != best_filter]
 
-                n_filters -= 1 
+                n_filters -= 1
 
                 min_error, confidence = compute_error.get_confidence(
                     errors_dictionary, best_filter, best_threshold
