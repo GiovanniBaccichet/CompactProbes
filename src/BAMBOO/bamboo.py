@@ -79,6 +79,10 @@ def main():
 
     gc.collect()
 
+    n_processes = int(config["MULTI-PROCESSING"]["max_workers"])
+
+    chunked_indices = np.array_split(filters.index, n_processes)
+
     # Create a Rich progress context
     with Progress(*custom_columns) as progress:
         # Create a task for the outer loop
@@ -92,27 +96,36 @@ def main():
                 "[green]Processing filters...", total=n_filters
             )
 
-            with ProcessPoolExecutor(
-                max_workers=int(config["MULTI-PROCESSING"]["max_workers"])
-            ) as executor:
+            with ProcessPoolExecutor(max_workers=n_processes) as executor:
                 futures = []
 
                 errors_dictionary = {}
                 best_filter = None
                 best_threshold = None
 
-                for _, row in filters.iterrows():  # for each filter
-                    filter = row["filters"]
-                    thresholds = row["thresholds"]
+                # for _, row in filters.iterrows():  # for each filter
+                #     filter = row["filters"]
+                #     thresholds = row["thresholds"]
 
-                    errors_dictionary = {}
+                #     errors_dictionary = {}
 
+                #     futures.append(
+                #         executor.submit(
+                #             compute_error.matrix_error,
+                #             string_pair_df,
+                #             thresholds,
+                #             filter,
+                #             weights,
+                #         )
+                #     )
+
+                for chunk_index in chunked_indices:
+                    chunk = filters.loc[chunk_index]
                     futures.append(
                         executor.submit(
-                            compute_error.matrix_error,
+                            filter_utility.process_filters_chunk,
+                            chunk,
                             string_pair_df,
-                            thresholds,
-                            filter,
                             weights,
                         )
                     )
