@@ -130,34 +130,55 @@ def main():
                         )
                     )
 
+                # for future in as_completed(futures):
+                #     try:
+                #         if progress.tasks[filters_task].completed == n_filters:
+                #             progress.update(filters_task, completed=0)
+
+                #         key, error = (
+                #             future.result()
+                #         )  # key is a tuple (filter, threshold)
+
+                #         errors_dictionary[key] = error
+
+                #         progress.update(filters_task, advance=1)
+
+                #     except Exception as e:
+                #         utils.logger.log.critical(f"An error occurred: {e}")
+
+                #     sorted_error_list = []
+
+                #     sorted_error_list = sorted(
+                #         errors_dictionary.items(),
+                #         key=lambda x: (
+                #             x[1],  # primary key -> error
+                #             filter_utility.calculate_filter_width(
+                #                 x[0]
+                #             ),  # secondary key -> filter length
+                #             x[0][1],  # tertiary key -> threshold
+                #         ),
+                #     )
+
                 for future in as_completed(futures):
                     try:
-                        if progress.tasks[filters_task].completed == n_filters:
-                            progress.update(filters_task, completed=0)
+                        chunk_errors = future.result()
+                        errors_dictionary.update(chunk_errors)
 
-                        key, error = (
-                            future.result()
-                        )  # key is a tuple (filter, threshold)
-
-                        errors_dictionary[key] = error
-
-                        progress.update(filters_task, advance=1)
+                        progress.update(filters_task, advance=len(chunk_errors))
 
                     except Exception as e:
                         utils.logger.log.critical(f"An error occurred: {e}")
 
-                    sorted_error_list = []
-
-                    sorted_error_list = sorted(
-                        errors_dictionary.items(),
-                        key=lambda x: (
-                            x[1],  # primary key -> error
-                            filter_utility.calculate_filter_width(
-                                x[0]
-                            ),  # secondary key -> filter length
-                            x[0][1],  # tertiary key -> threshold
-                        ),
-                    )
+                sorted_error_list = sorted(
+                    errors_dictionary.items(),
+                    key=lambda x: (
+                        x[1],  # primary key -> error
+                        filter_utility.calculate_filter_width(
+                            x[0]
+                        ),  # secondary key -> filter length
+                        x[0][1],  # tertiary key -> threshold
+                    ),
+                )
 
                 best_filter, best_threshold = sorted_error_list[0][0]
                 min_error = sorted_error_list[0][1]
