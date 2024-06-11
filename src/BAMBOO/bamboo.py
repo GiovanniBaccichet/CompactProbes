@@ -103,24 +103,8 @@ def main():
                 best_filter = None
                 best_threshold = None
 
-                # for _, row in filters.iterrows():  # for each filter
-                #     filter = row["filters"]
-                #     thresholds = row["thresholds"]
-
-                #     errors_dictionary = {}
-
-                #     futures.append(
-                #         executor.submit(
-                #             compute_error.matrix_error,
-                #             string_pair_df,
-                #             thresholds,
-                #             filter,
-                #             weights,
-                #         )
-                #     )
-
                 for chunk_index in chunked_indices:
-                    chunk = filters.loc[chunk_index]
+                    chunk = filters.iloc[chunk_index]
                     futures.append(
                         executor.submit(
                             filter_utility.process_filters_chunk,
@@ -129,35 +113,6 @@ def main():
                             weights,
                         )
                     )
-
-                # for future in as_completed(futures):
-                #     try:
-                #         if progress.tasks[filters_task].completed == n_filters:
-                #             progress.update(filters_task, completed=0)
-
-                #         key, error = (
-                #             future.result()
-                #         )  # key is a tuple (filter, threshold)
-
-                #         errors_dictionary[key] = error
-
-                #         progress.update(filters_task, advance=1)
-
-                #     except Exception as e:
-                #         utils.logger.log.critical(f"An error occurred: {e}")
-
-                #     sorted_error_list = []
-
-                #     sorted_error_list = sorted(
-                #         errors_dictionary.items(),
-                #         key=lambda x: (
-                #             x[1],  # primary key -> error
-                #             filter_utility.calculate_filter_width(
-                #                 x[0]
-                #             ),  # secondary key -> filter length
-                #             x[0][1],  # tertiary key -> threshold
-                #         ),
-                #     )
 
                 for future in as_completed(futures):
                     try:
@@ -182,6 +137,14 @@ def main():
 
                 best_filter, best_threshold = sorted_error_list[0][0]
                 min_error = sorted_error_list[0][1]
+
+                indices_to_remove = filters[filters['filters'] == best_filter].index.to_list()
+
+                # Finding the positions of the indices to remove
+                positions_to_remove = np.where(np.isin(chunked_indices, indices_to_remove))[0]
+
+                # Using np.delete to remove the positions
+                chunked_indices = np.delete(chunked_indices, positions_to_remove)
 
                 # Delete the row with the best_filter
                 filters = filters[filters["filters"] != best_filter]
