@@ -81,8 +81,6 @@ def main():
 
     n_processes = int(config["MULTI-PROCESSING"]["max_workers"])
 
-    chunked_indices = np.array_split(filters.index, n_processes)
-
     # Create a Rich progress context
     with Progress(*custom_columns) as progress:
         # Create a task for the outer loop
@@ -96,6 +94,8 @@ def main():
                 "[green]Processing filters...", total=n_filters
             )
 
+            chunked_indices = np.array_split(filters.index, n_processes)
+
             with ProcessPoolExecutor(max_workers=n_processes) as executor:
                 futures = []
 
@@ -104,7 +104,7 @@ def main():
                 best_threshold = None
 
                 for chunk_index in chunked_indices:
-                    chunk = filters.iloc[chunk_index]
+                    chunk = filters.loc[chunk_index]
                     futures.append(
                         executor.submit(
                             filter_utility.process_filters_chunk,
@@ -137,14 +137,6 @@ def main():
 
                 best_filter, best_threshold = sorted_error_list[0][0]
                 min_error = sorted_error_list[0][1]
-
-                indices_to_remove = filters[filters['filters'] == best_filter].index.to_list()
-
-                # Finding the positions of the indices to remove
-                positions_to_remove = np.where(np.isin(chunked_indices, indices_to_remove))[0]
-
-                # Using np.delete to remove the positions
-                chunked_indices = np.delete(chunked_indices, positions_to_remove)
 
                 # Delete the row with the best_filter
                 filters = filters[filters["filters"] != best_filter]
