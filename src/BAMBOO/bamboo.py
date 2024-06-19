@@ -81,6 +81,8 @@ def main():
 
     n_processes = int(config["MULTI-PROCESSING"]["max_workers"])
 
+    chunk_errors = {}
+
     # Create a Rich progress context
     with Progress(*custom_columns) as progress:
         # Create a task for the outer loop
@@ -116,58 +118,60 @@ def main():
 
                 for future in as_completed(futures):
                     try:
-                        chunk_errors = future.result()
-                        errors_dictionary.update(chunk_errors)
+                        result = future.result()
+                        chunk_errors.update(result)  # Collect errors from each future
 
                         progress.update(filters_task, advance=len(chunk_errors))
 
                     except Exception as e:
                         utils.logger.log.critical(f"An error occurred: {e}")
 
-                sorted_error_list = sorted(
-                    errors_dictionary.items(),
-                    key=lambda x: (
-                        x[1],  # primary key -> error
-                        filter_utility.calculate_filter_width(
-                            x[0]
-                        ),  # secondary key -> filter length
-                        x[0][1],  # tertiary key -> threshold
-                    ),
-                )
+            errors_dictionary.update(chunk_errors)
 
-                best_filter, best_threshold = sorted_error_list[0][0]
-                min_error = sorted_error_list[0][1]
+            sorted_error_list = sorted(
+                errors_dictionary.items(),
+                key=lambda x: (
+                    x[1],  # primary key -> error
+                    filter_utility.calculate_filter_width(
+                        x[0]
+                    ),  # secondary key -> filter length
+                    x[0][1],  # tertiary key -> threshold
+                ),
+            )
 
-                # Delete the row with the best_filter
-                filters = filters[filters["filters"] != best_filter]
+            best_filter, best_threshold = sorted_error_list[0][0]
+            min_error = sorted_error_list[0][1]
 
-                n_filters -= 1
+            # Delete the row with the best_filter
+            filters = filters[filters["filters"] != best_filter]
 
-                min_error, confidence = compute_error.get_confidence(
-                    errors_dictionary, best_filter, best_threshold
-                )
+            n_filters -= 1
 
-                best_configs = [best_filter, best_threshold, min_error, confidence]
+            min_error, confidence = compute_error.get_confidence(
+                errors_dictionary, best_filter, best_threshold
+            )
 
-                utils.logger.print_best_config(best_configs)
+            best_configs = [best_filter, best_threshold, min_error, confidence]
 
-                # Asymmetric weight update + normalization
-                weights = classifier.weight_update(
-                    string_pair_df, weights, best_filter, best_threshold, confidence
-                )
+            utils.logger.print_best_config(best_configs)
 
-                del (
-                    sorted_error_list,
-                    errors_dictionary,
-                    best_filter,
-                    best_threshold,
-                    min_error,
-                    confidence,
-                )
+            # Asymmetric weight update + normalization
+            weights = classifier.weight_update(
+                string_pair_df, weights, best_filter, best_threshold, confidence
+            )
 
-                gc.collect()
+            del (
+                sorted_error_list,
+                errors_dictionary,
+                best_filter,
+                best_threshold,
+                min_error,
+                confidence,
+            )
 
-                progress.update(iteration_task, advance=1)
+            gc.collect()
+
+            progress.update(iteration_task, advance=1)
 
 
 if __name__ == "__main__":
