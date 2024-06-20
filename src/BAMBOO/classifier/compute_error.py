@@ -26,6 +26,7 @@ def matrix_error(
     filter: str,
     weights: list,
 ) -> float:
+    errors_dict = {}
     for threshold in thresholds:
         error = 0
 
@@ -39,10 +40,13 @@ def matrix_error(
 
         error = sum(errors * weights)
 
+        errors_dict[(f"{filter}", threshold)] = error
+
         del (
             predictions,
             errors,
         )
         gc.collect()
 
-    return (f"{filter}", threshold), error
+    # return (f"{filter}", threshold), error
+    return errors_dict

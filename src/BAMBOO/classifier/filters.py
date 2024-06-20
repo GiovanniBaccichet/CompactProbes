@@ -15,11 +15,10 @@ def filter_to_vector(filter_str: str) -> np.ndarray:
 
 
 def process_filters_chunk(chunk, string_pair_df, weights):
-    errors_dictionary = {}
     for _, row in chunk.iterrows():
         filter = row["filters"]
         thresholds = row["thresholds"]
         result = compute_error.matrix_error(string_pair_df, thresholds, filter, weights)
-        key, error = result
-        errors_dictionary[key] = error
-    return errors_dictionary
+        # key, error = result
+        # errors_dictionary[key] = error
+    return result
