@@ -19,6 +19,4 @@ def process_filters_chunk(chunk, string_pair_df, weights):
         filter = row["filters"]
         thresholds = row["thresholds"]
         result = compute_error.matrix_error(string_pair_df, thresholds, filter, weights)
-        # key, error = result
-        # errors_dictionary[key] = error
     return result
