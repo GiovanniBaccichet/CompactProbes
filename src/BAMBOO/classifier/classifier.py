@@ -23,7 +23,15 @@ def weak_classifier(
     M_f_xa_t = M_f_xa - threshold * np.ones(len(M_f_xa))
     M_f_xb_t = M_f_xb - threshold * np.ones(len(M_f_xb))
 
-    predictions = np.sign(M_f_xa_t * M_f_xb_t)
+    # Calculate element-wise product
+    product = M_f_xa_t * M_f_xb_t
+
+    # Generate array with +1 where elements match and -1 otherwise
+    result_array = np.where(product == 1, 1, -1)
+
+    # predictions = np.sign(M_f_xa_t * M_f_xb_t)
+
+    predictions = result_array.tolist() 
 
     return predictions
 
