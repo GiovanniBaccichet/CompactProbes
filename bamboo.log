@@ -80,3 +80,26 @@
 [09:49:20] Best Threshold: 1
 [09:49:20] Min error: 1e-20
 [09:49:20] Confidence: 46.051701859880914
+[15:31:15] An error occurred: cannot access local variable 'result' where it is not associated with a value
+[15:31:15] An error occurred: cannot access local variable 'result' where it is not associated with a value
+[15:42:30] Best Filter: 0[0] 🀆🀆🀆🀆🀫🀫🀫🀫 0[2280]
+[15:42:30] Best Threshold: 1
+[15:42:30] Min error: 0.02
+[15:42:30] Confidence: 3.8918202981106265
+[15:43:59] An error occurred: cannot access local variable 'result' where it is not associated with a value
+[15:46:17] An error occurred: cannot access local variable 'result' where it is not associated with a value
+[15:46:18] Best Filter: 0[0] 🀆🀆🀆🀆🀫🀫🀫🀫 0[2280]
+[15:46:18] Best Threshold: 1
+[15:46:18] Min error: 1e-20
+[15:46:18] Confidence: 46.051701859880914
+[15:46:21] An error occurred: cannot access local variable 'result' where it is not associated with a value
+[15:46:21] An error occurred: cannot access local variable 'result' where it is not associated with a value
+[15:46:21] An error occurred: cannot access local variable 'result' where it is not associated with a value
+[15:46:23] Best Filter: 0[0] 🀆🀆🀆🀆🀫🀫🀫🀫 0[2280]
+[15:46:23] Best Threshold: 1
+[15:46:23] Min error: 1e-20
+[15:46:23] Confidence: 46.051701859880914
+[15:49:27] Best Filter: 0[0] 🀫🀫🀫🀫🀆🀆🀆🀆 0[2280]
+[15:49:27] Best Threshold: 1
+[15:49:27] Min error: 1e-20
+[15:49:27] Confidence: 46.051701859880914

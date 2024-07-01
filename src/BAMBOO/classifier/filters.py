@@ -16,6 +16,8 @@ def filter_to_vector(filter_str: str) -> np.ndarray:
 
 def process_filters_chunk(chunk, string_pair_df, weights):
     for _, row in chunk.iterrows():
+        if chunk.empty:
+            break
         filter = row["filters"]
         thresholds = row["thresholds"]
         result = compute_error.matrix_error(string_pair_df, thresholds, filter, weights)
