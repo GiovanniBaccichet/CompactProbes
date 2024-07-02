@@ -16,16 +16,24 @@ def filter_to_vector(filter_str: str) -> np.ndarray:
 
 
 def process_filters_chunk(chunk, string_pair_df, weights) -> dict:
+
+    filter_threshold_errors_dict = {}
+
     for _, row in chunk.iterrows():
-        
+
         if chunk.empty:
             logger.log.critical("The input chunk is empty, cannot process filters.")
             raise ValueError("The input chunk is empty, cannot process filters.")
         
         filter = row["filters"]
         thresholds = row["thresholds"]
-        filter_threshold_errors_dict = compute_error.matrix_error(string_pair_df, thresholds, filter, weights)
+        current_errors = compute_error.matrix_error(string_pair_df, thresholds, filter, weights)
 
-        print(len(filter_threshold_errors_dict))
+        # Merge errors
+        for key, value in current_errors.items():
+            if key in filter_threshold_errors_dict:
+                filter_threshold_errors_dict[key].extend(value)
+            else:
+                filter_threshold_errors_dict[key] = value
 
     return filter_threshold_errors_dict

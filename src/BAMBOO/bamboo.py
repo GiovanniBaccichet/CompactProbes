@@ -84,8 +84,6 @@ def main():
 
     n_processes = int(config["MULTI-PROCESSING"]["max_workers"])
 
-    chunk_errors = {}
-
     # Create a Rich progress context
     with Progress(*custom_columns) as progress:
         # Create a task for the outer loop
@@ -102,6 +100,8 @@ def main():
             chunked_indices = np.array_split(filters.index, n_processes)
 
             sorted_error_list = []
+
+            chunk_errors = {}
 
             with ProcessPoolExecutor(max_workers=n_processes) as executor:
                 futures = []
