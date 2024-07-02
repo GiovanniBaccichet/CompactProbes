@@ -53,6 +53,9 @@ def main():
 
     filters_df = pd.read_csv(config["DEFAULT"]["advanced_filters_path"], index_col=0)
 
+    pairs_df.drop_duplicates(inplace=True)
+    pairs_df.reset_index(drop=True, inplace=True)
+
     # Check if user selected a number of filters
     if args.F == 0:
         n_filters = filters_df.shape[0]
@@ -100,6 +103,7 @@ def main():
 
             with ProcessPoolExecutor(max_workers=n_processes) as executor:
                 futures = []
+                chunk = []
 
                 errors_dictionary = {}
                 best_filter = None
@@ -125,6 +129,7 @@ def main():
 
                     except Exception as e:
                         utils.logger.log.critical(f"An error occurred: {e}")
+                        raise e
 
             errors_dictionary.update(chunk_errors)
 

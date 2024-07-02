@@ -51,5 +51,11 @@ def format_non_zero_part(filter_str: str) -> str:
 def print_best_config(best_configs: tuple) -> None:
     log.info(f"Best Filter: {format_non_zero_part(best_configs[0])}")
     log.info(f"Best Threshold: {str(best_configs[1])}")
-    log.info(f"Min error: {best_configs[2]}")
-    log.info(f"Confidence: {best_configs[3]}")
+    if best_configs[2] < 10**-10:
+        log.info("Min error: 0")
+    else:
+        log.info(f"Min error: {best_configs[2]}")
+    if best_configs[3] > 40:
+        log.info("Confidence: inf")
+    else:
+        log.info(f"Confidence: {best_configs[3]}")

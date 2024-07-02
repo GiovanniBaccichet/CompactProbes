@@ -30,9 +30,7 @@ def matrix_error(
     for threshold in thresholds:
         error = 0
 
-        predictions = classifier.weak_classifier(
-            string_pair_df, threshold, filter
-        )
+        predictions = classifier.weak_classifier(string_pair_df, threshold, filter)
 
         ground_truth = string_pair_df["Equality"].to_list()
 
@@ -48,5 +46,4 @@ def matrix_error(
         )
         gc.collect()
 
-    # return (f"{filter}", threshold), error
     return errors_dict
