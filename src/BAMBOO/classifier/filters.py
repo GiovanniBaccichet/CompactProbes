@@ -15,7 +15,7 @@ def filter_to_vector(filter_str: str) -> np.ndarray:
     return vector
 
 
-def process_filters_chunk(chunk, string_pair_df, weights, filters_task) -> dict:
+def process_filters_chunk(chunk, string_pair_df, weights) -> dict:
     filter_threshold_errors_dict = {}
 
     for _, row in chunk.iterrows():
