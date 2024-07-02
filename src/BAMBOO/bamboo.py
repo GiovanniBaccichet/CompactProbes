@@ -101,6 +101,8 @@ def main():
 
             chunked_indices = np.array_split(filters.index, n_processes)
 
+            sorted_error_list = []
+
             with ProcessPoolExecutor(max_workers=n_processes) as executor:
                 futures = []
                 chunk = []
@@ -172,6 +174,7 @@ def main():
                 best_threshold,
                 min_error,
                 confidence,
+                chunk_errors,
             )
 
             gc.collect()
