@@ -94,7 +94,7 @@ def main():
         for _ in range(n_iterations):  # iterations
             # Create a task for the inner loop
             filters_task = progress.add_task(
-                "[green]Processing filters...", total=n_filters
+                "[green]Processing filters...", total=n_processes
             )
 
             chunked_indices = np.array_split(filters.index, n_processes)
@@ -127,7 +127,7 @@ def main():
                         result = future.result()
                         chunk_errors.update(result)  # Collect errors from each future
 
-                        progress.update(filters_task, advance=len(chunk_errors))
+                        progress.update(filters_task, advance=1)
 
                     except Exception as e:
                         utils.logger.log.critical(f"An error occurred: {e}")

@@ -1,7 +1,7 @@
 import numpy as np
+from utils import logger
 
 from . import compute_error
-from utils import logger
 
 
 def calculate_filter_width(filter_str: str) -> int:
@@ -15,19 +15,19 @@ def filter_to_vector(filter_str: str) -> np.ndarray:
     return vector
 
 
-def process_filters_chunk(chunk, string_pair_df, weights) -> dict:
-
+def process_filters_chunk(chunk, string_pair_df, weights, filters_task) -> dict:
     filter_threshold_errors_dict = {}
 
     for _, row in chunk.iterrows():
-
         if chunk.empty:
             logger.log.critical("The input chunk is empty, cannot process filters.")
             raise ValueError("The input chunk is empty, cannot process filters.")
-        
+
         filter = row["filters"]
         thresholds = row["thresholds"]
-        current_errors = compute_error.matrix_error(string_pair_df, thresholds, filter, weights)
+        current_errors = compute_error.matrix_error(
+            string_pair_df, thresholds, filter, weights
+        )
 
         # Merge errors
         for key, value in current_errors.items():
