@@ -1279,3 +1279,51 @@
 [09:29:16] Best Threshold: 1
 [09:29:16] Min error: 0
 [09:29:16] Confidence: inf
+[10:00:12] Best Filter: 0[0] 🀆🀆🀆🀆🀫🀫🀫🀫 0[2280]
+[10:00:12] Best Threshold: 1
+[10:00:12] Min error: 0
+[10:00:12] Confidence: inf
+[10:02:00] Best Filter: 0[600] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1680]
+[10:02:00] Best Threshold: 1
+[10:02:00] Min error: 0
+[10:02:00] Confidence: inf
+[10:03:48] Best Filter: 0[256] 🀫🀫🀫🀫🀆🀆🀆🀆 0[2024]
+[10:03:48] Best Threshold: 1
+[10:03:48] Min error: 0
+[10:03:48] Confidence: inf
+[10:05:39] Best Filter: 0[512] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1768]
+[10:05:39] Best Threshold: 1
+[10:05:39] Min error: 0
+[10:05:39] Confidence: inf
+[10:07:28] Best Filter: 0[424] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1856]
+[10:07:28] Best Threshold: 1
+[10:07:28] Min error: 0
+[10:07:28] Confidence: inf
+[10:09:21] Best Filter: 0[608] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1672]
+[10:09:21] Best Threshold: 1
+[10:09:21] Min error: 0
+[10:09:21] Confidence: inf
+[10:11:11] Best Filter: 0[424] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1856]
+[10:11:11] Best Threshold: 1
+[10:11:11] Min error: 0
+[10:11:11] Confidence: inf
+[10:13:03] Best Filter: 0[88] 🀆🀆🀆🀆🀫🀫🀫🀫 0[2192]
+[10:13:03] Best Threshold: 1
+[10:13:03] Min error: 0
+[10:13:03] Confidence: inf
+[10:15:37] Best Filter: 0[512] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1768]
+[10:15:37] Best Threshold: 1
+[10:15:37] Min error: 0
+[10:15:37] Confidence: inf
+[10:17:48] Best Filter: 0[608] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1672]
+[10:17:48] Best Threshold: 1
+[10:17:49] Min error: 0
+[10:17:49] Confidence: inf
+[10:19:42] Best Filter: 0[608] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1672]
+[10:19:42] Best Threshold: 1
+[10:19:42] Min error: 0
+[10:19:42] Confidence: inf
+[10:21:33] Best Filter: 0[416] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1864]
+[10:21:33] Best Threshold: 1
+[10:21:33] Min error: 0
+[10:21:33] Confidence: inf
