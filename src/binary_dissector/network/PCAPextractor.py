@@ -113,14 +113,14 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                         e_id_ht_cap = elements[i][2]
                         len_ht_cap = elements[i][3]
                         ht_cap = elements[i][4]
-                    case "extended capabilities":
-                        e_id_ext_cap = elements[i][2]
-                        len_ext_cap = elements[i][3]
-                        ext_cap = elements[i][4]
                     case "vht capabilities":
                         e_id_vht_cap = elements[i][2]
                         len_vht_cap = elements[i][3]
                         vht_cap = elements[i][4]
+                    case "extended capabilities":
+                        e_id_ext_cap = elements[i][2]
+                        len_ext_cap = elements[i][3]
+                        ext_cap = elements[i][4]
                     case "vendor specific tags":
                         if len(vst) != 0:
                             e_id_vst = elements[i][2]
@@ -159,10 +159,10 @@ def extract_pcap_info(file_path: str, label: str, progress=None) -> list:
                 ht_cap,
                 e_id_vht_cap,
                 len_vht_cap,
+                vht_cap,
                 e_id_ext_cap,
                 len_ext_cap,
                 ext_cap,
-                vht_cap,
                 e_id_vst,
                 len_vst,
                 vst,
