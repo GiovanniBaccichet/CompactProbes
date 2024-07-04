@@ -61,7 +61,7 @@ def main():
         n_filters = filters_df.shape[0]
 
     # Slice filters
-    filters_df = filters_df.head(n_filters).reset_index()
+    filters_df = filters_df.tail(n_filters).reset_index()
 
     filters_bitmask = filters_df["Bitmask"]
 
@@ -148,6 +148,13 @@ def main():
 
             best_filter, best_threshold = sorted_error_list[0][0]
             min_error = sorted_error_list[0][1]
+
+            # Count how many configurations have the minimum error
+            min_error_count = sum(1 for _, error in sorted_error_list if error == min_error)
+
+            # Log a warning if there is more than one configuration with the minimum error
+            if min_error_count > 1:
+                utils.logger.log.warning(f'There are {min_error_count} configurations with the minimum error.')
 
             # Delete the row with the best_filter
             filters = filters[filters["filters"] != best_filter]
