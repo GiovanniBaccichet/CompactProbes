@@ -61,7 +61,7 @@ def main():
         n_filters = filters_df.shape[0]
 
     # Slice filters
-    filters_df = filters_df.tail(n_filters).reset_index()
+    filters_df = filters_df.head(n_filters).reset_index()
 
     filters_bitmask = filters_df["Bitmask"]
 
