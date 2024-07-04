@@ -60,16 +60,18 @@ def weight_update(
 
     prediction_matrix = np.array(predictions).reshape(-1, 1)
 
-    prediction_matrix[prediction_matrix == 1] = 0
-    prediction_matrix[prediction_matrix != 1] = 1
+    # prediction_matrix[prediction_matrix == 1] = 0
+    # prediction_matrix[prediction_matrix != 1] = 1
 
     confidence_weight_matrix = (math.exp(confidence) * np.ones(len(weights))).reshape(
         -1, 1
     )
 
-    updatedWeights = np.multiply(
-        np.multiply(ground_truth_matrix, prediction_matrix), confidence_weight_matrix
-    ) + np.multiply((~ground_truth_matrix.astype(bool)), weights.reshape(-1, 1))
+    updatedWeights = np.multiply(np.not_equal(ground_truth_matrix, prediction_matrix), weights.reshape(-1, 1))*confidence_weight_matrix
+
+    # updatedWeights = np.multiply(
+    #     np.multiply(ground_truth_matrix, prediction_matrix), confidence_weight_matrix
+    # ) + np.multiply((~ground_truth_matrix.astype(bool)), weights.reshape(-1, 1))
 
     normalized_updated_weights = normalize_weight(ground_truth, updatedWeights)
 
