@@ -53,26 +53,26 @@ def weight_update(
     ground_truth = df["Equality"].to_list()
     ground_truth_matrix = np.array(ground_truth).reshape(-1, 1)
 
-    # Convert -1 to 0 for later matrix product
-    ground_truth_matrix[ground_truth_matrix != 1] = 0
+    weights = weights.reshape(-1, 1)
+
+    ground_truth_matrix[ground_truth_matrix == -1] = 0
 
     predictions = weak_classifier(df, best_threshold, best_filter)
-
     prediction_matrix = np.array(predictions).reshape(-1, 1)
 
-    # prediction_matrix[prediction_matrix == 1] = 0
-    # prediction_matrix[prediction_matrix != 1] = 1
+    prediction_matrix[prediction_matrix == 1] = 0
 
-    confidence_weight_matrix = (math.exp(confidence) * np.ones(len(weights))).reshape(
-        -1, 1
+    matching_mispredicted_pairs = (ground_truth_matrix * prediction_matrix).astype(int)
+
+    matching_mispredicted_pairs[matching_mispredicted_pairs == -1] = 1
+
+    confidence_vector = (math.exp(confidence) * np.ones(len(weights))).reshape(-1, 1)
+
+    updated_weights = (
+        matching_mispredicted_pairs * weights * confidence_vector
+        + np.logical_not(matching_mispredicted_pairs).astype(int) * weights
     )
 
-    updatedWeights = np.multiply(np.not_equal(ground_truth_matrix, prediction_matrix), weights.reshape(-1, 1))*confidence_weight_matrix
+    normalized_updated_weights = updated_weights / np.sum(updated_weights)
 
-    # updatedWeights = np.multiply(
-    #     np.multiply(ground_truth_matrix, prediction_matrix), confidence_weight_matrix
-    # ) + np.multiply((~ground_truth_matrix.astype(bool)), weights.reshape(-1, 1))
-
-    normalized_updated_weights = normalize_weight(ground_truth, updatedWeights)
-
-    return normalized_updated_weights.flatten()
+    return normalized_updated_weights
