@@ -25,7 +25,7 @@ def matrix_error(
     filter: str,
     weights: list,
 ) -> dict:
-    weights.reshape(-1, 1)
+    weights = weights.reshape(-1, 1)
     errors_dict = {}
 
     for threshold in thresholds:
@@ -35,11 +35,13 @@ def matrix_error(
 
         predictions = predictions.reshape(-1, 1)
 
-        ground_truth = string_pair_df["Equality"].to_list()
+        ground_truth = np.array(string_pair_df["Equality"].to_list())
+
+        ground_truth = ground_truth.reshape(-1, 1)
 
         errors = np.not_equal(predictions, ground_truth).astype(int)
 
-        error = sum(errors * weights)
+        error = np.sum(errors * weights)
 
         errors_dict[(f"{filter}", threshold)] = error
 
