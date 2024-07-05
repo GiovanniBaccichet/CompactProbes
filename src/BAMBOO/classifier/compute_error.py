@@ -25,11 +25,15 @@ def matrix_error(
     filter: str,
     weights: list,
 ) -> dict:
+    weights.reshape(-1, 1)
     errors_dict = {}
+
     for threshold in thresholds:
         error = 0
 
         predictions = classifier.weak_classifier(string_pair_df, threshold, filter)
+
+        predictions = predictions.reshape(-1, 1)
 
         ground_truth = string_pair_df["Equality"].to_list()
 
