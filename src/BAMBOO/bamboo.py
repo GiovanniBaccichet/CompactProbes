@@ -132,6 +132,8 @@ def main():
                     except Exception as e:
                         utils.logger.log.critical(f"An error occurred: {e}")
                         raise e
+                    
+            executor.shutdown(wait=True)
 
             errors_dictionary.update(chunk_errors)
 
