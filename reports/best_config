@@ -201,3 +201,934 @@
 [16:28:11] Best Threshold: 1
 [16:28:12] Min error: 0.45010724000149493
 [16:28:12] Confidence: 0.2002374119069745
+[11:49:48] Best Filter: 0[1712] 🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫 0[56]
+[11:49:48] Best Threshold: 5
+[11:49:49] Min error: 0.45074809247472664
+[11:49:49] Confidence: 0.19764855403974452
+[12:56:39] Best Filter: 0[1696] 🀫🀫🀫🀫🀫🀫🀫🀫 0[80]
+[12:56:39] Best Threshold: 2
+[12:56:40] Min error: 0.4502039249657433
+[12:56:40] Confidence: 0.19984679010241235
+[14:02:54] There are 4 configurations with the minimum error.
+[14:02:55] Best Filter: 0[1656] 🀆🀆🀆🀆🀫🀫🀫🀫 0[120]
+[14:02:55] Best Threshold: 2
+[14:02:55] Min error: 0.4498994448464217
+[14:02:55] Confidence: 0.20107698717002095
+[15:10:07] There are 3 configurations with the minimum error.
+[15:10:07] Best Filter: 0[1656] 🀫🀫🀫🀫🀫🀫🀫🀫 0[120]
+[15:10:07] Best Threshold: 2
+[15:10:07] Min error: 0.4498994448464217
+[15:10:07] Confidence: 0.20107698717002095
+[16:16:51] There are 2 configurations with the minimum error.
+[16:16:51] Best Filter: 0[1648] 🀆🀆🀆🀆🀆🀆🀆🀆🀫🀫🀫🀫🀫🀫🀫🀫 0[120]
+[16:16:51] Best Threshold: 2
+[16:16:51] Min error: 0.4498994448464217
+[16:16:51] Confidence: 0.20107698717002095
+[17:23:43] Best Filter: 0[1648] 🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫 0[120]
+[17:23:43] Best Threshold: 2
+[17:23:43] Min error: 0.4498994448464217
+[17:23:43] Confidence: 0.20107698717002095
+[18:28:28] Best Filter: 0[616] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1160]
+[18:28:28] Best Threshold: 1
+[18:28:28] Min error: 0.44989944484642175
+[18:28:28] Confidence: 0.2010769871700208
+[19:33:58] Best Filter: 0[464] 🀫🀫🀫🀫🀫🀫🀫🀫🀆🀆🀆🀆🀆🀆🀆🀆 0[1304]
+[19:33:58] Best Threshold: 2
+[19:33:58] Min error: 0.4505630417826991
+[19:33:58] Confidence: 0.19839603692042473
+[20:39:20] There are 61 configurations with the minimum error.
+[20:39:20] Best Filter: 0[552] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1224]
+[20:39:20] Best Threshold: 1
+[20:39:20] Min error: 0.44984411065989927
+[20:39:21] Confidence: 0.2013005712391238
+[21:44:59] There are 60 configurations with the minimum error.
+[21:44:59] Best Filter: 0[464] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1312]
+[21:44:59] Best Threshold: 1
+[21:44:59] Min error: 0.44984411065989927
+[21:45:00] Confidence: 0.2013005712391238
+[22:50:49] There are 59 configurations with the minimum error.
+[22:50:49] Best Filter: 0[560] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1216]
+[22:50:49] Best Threshold: 1
+[22:50:49] Min error: 0.44984411065989927
+[22:50:50] Confidence: 0.2013005712391238
+[23:56:01] There are 57 configurations with the minimum error.
+[23:56:01] Best Filter: 0[600] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1176]
+[23:56:01] Best Threshold: 1
+[23:56:01] Min error: 0.44984411065989927
+[23:56:02] Confidence: 0.2013005712391238
+[01:02:02] There are 54 configurations with the minimum error.
+[01:02:02] Best Filter: 0[608] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1168]
+[01:02:02] Best Threshold: 1
+[01:02:02] Min error: 0.44984411065989927
+[01:02:02] Confidence: 0.2013005712391238
+[02:07:47] There are 49 configurations with the minimum error.
+[02:07:47] Best Filter: 0[616] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1160]
+[02:07:47] Best Threshold: 1
+[02:07:47] Min error: 0.44984411065989927
+[02:07:48] Confidence: 0.2013005712391238
+[03:13:25] There are 48 configurations with the minimum error.
+[03:13:26] Best Filter: 0[576] 🀆🀆🀆🀆🀆🀆🀆🀆🀫🀫🀫🀫🀫🀫🀫🀫 0[1192]
+[03:13:26] Best Threshold: 1
+[03:13:26] Min error: 0.44984411065989927
+[03:13:26] Confidence: 0.2013005712391238
+[04:19:23] There are 47 configurations with the minimum error.
+[04:19:23] Best Filter: 0[592] 🀆🀆🀆🀆🀆🀆🀆🀆🀫🀫🀫🀫🀫🀫🀫🀫 0[1176]
+[04:19:23] Best Threshold: 1
+[04:19:23] Min error: 0.44984411065989927
+[04:19:24] Confidence: 0.2013005712391238
+[05:25:25] There are 44 configurations with the minimum error.
+[05:25:25] Best Filter: 0[592] 🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫 0[1176]
+[05:25:25] Best Threshold: 1
+[05:25:25] Min error: 0.44984411065989927
+[05:25:26] Confidence: 0.2013005712391238
+[06:31:08] There are 41 configurations with the minimum error.
+[06:31:08] Best Filter: 0[608] 🀫🀫🀫🀫🀫🀫🀫🀫🀆🀆🀆🀆🀆🀆🀆🀆 0[1160]
+[06:31:08] Best Threshold: 1
+[06:31:08] Min error: 0.44984411065989927
+[06:31:08] Confidence: 0.2013005712391238
+[07:37:06] There are 38 configurations with the minimum error.
+[07:37:06] Best Filter: 0[528] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1248]
+[07:37:06] Best Threshold: 2
+[07:37:06] Min error: 0.44984411065989927
+[07:37:06] Confidence: 0.2013005712391238
+[08:42:53] There are 34 configurations with the minimum error.
+[08:42:53] Best Filter: 0[368] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1408]
+[08:42:53] Best Threshold: 2
+[08:42:53] Min error: 0.44984411065989927
+[08:42:54] Confidence: 0.2013005712391238
+[09:49:07] There are 33 configurations with the minimum error.
+[09:49:07] Best Filter: 0[560] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1216]
+[09:49:07] Best Threshold: 2
+[09:49:08] Min error: 0.44984411065989927
+[09:49:08] Confidence: 0.2013005712391238
+[10:54:17] There are 30 configurations with the minimum error.
+[10:54:18] Best Filter: 0[528] 🀫🀫🀫🀫🀫🀫🀫🀫🀆🀆🀆🀆🀆🀆🀆🀆 0[1240]
+[10:54:18] Best Threshold: 2
+[10:54:18] Min error: 0.44984411065989927
+[10:54:18] Confidence: 0.2013005712391238
+[12:00:02] There are 27 configurations with the minimum error.
+[12:00:02] Best Filter: 0[528] 🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫 0[1240]
+[12:00:02] Best Threshold: 2
+[12:00:03] Min error: 0.44984411065989927
+[12:00:03] Confidence: 0.2013005712391238
+[13:04:57] There are 22 configurations with the minimum error.
+[13:04:57] Best Filter: 0[560] 🀫🀫🀫🀫🀫🀫🀫🀫🀆🀆🀆🀆🀆🀆🀆🀆 0[1208]
+[13:04:57] Best Threshold: 2
+[13:04:58] Min error: 0.44984411065989927
+[13:04:58] Confidence: 0.2013005712391238
+[14:09:08] There are 20 configurations with the minimum error.
+[14:09:09] Best Filter: 0[560] 🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫 0[1208]
+[14:09:09] Best Threshold: 2
+[14:09:09] Min error: 0.44984411065989927
+[14:09:09] Confidence: 0.2013005712391238
+[15:13:35] There are 16 configurations with the minimum error.
+[15:13:35] Best Filter: 0[608] 🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫 0[1160]
+[15:13:35] Best Threshold: 2
+[15:13:36] Min error: 0.44984411065989927
+[15:13:36] Confidence: 0.2013005712391238
+[16:17:12] There are 10 configurations with the minimum error.
+[16:17:12] Best Filter: 0[368] 🀫🀫🀫🀫🀫🀫🀫🀫🀆🀆🀆🀆🀆🀆🀆🀆 0[1400]
+[16:17:12] Best Threshold: 2
+[16:17:12] Min error: 0.44984411065989927
+[16:17:12] Confidence: 0.2013005712391238
+[17:20:56] There are 9 configurations with the minimum error.
+[17:20:56] Best Filter: 0[504] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1272]
+[17:20:56] Best Threshold: 5
+[17:20:57] Min error: 0.44984411065989927
+[17:20:57] Confidence: 0.2013005712391238
+[18:24:48] There are 6 configurations with the minimum error.
+[18:24:48] Best Filter: 0[472] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1304]
+[18:24:48] Best Threshold: 6
+[18:24:49] Min error: 0.44984411065989927
+[18:24:49] Confidence: 0.2013005712391238
+[19:28:37] There are 4 configurations with the minimum error.
+[19:28:37] Best Filter: 0[416] 🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫 0[1352]
+[19:28:37] Best Threshold: 8
+[19:28:37] Min error: 0.44984411065989927
+[19:28:37] Confidence: 0.2013005712391238
+[20:32:19] There are 3 configurations with the minimum error.
+[20:32:19] Best Filter: 0[496] 🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫 0[1272]
+[20:32:19] Best Threshold: 11
+[20:32:19] Min error: 0.44984411065989927
+[20:32:19] Confidence: 0.2013005712391238
+[21:36:21] There are 27 configurations with the minimum error.
+[21:36:21] Best Filter: 0[416] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1360]
+[21:36:21] Best Threshold: 1
+[21:36:21] Min error: 0.45004184433491456
+[21:36:21] Confidence: 0.20050162887107925
+[22:37:58] There are 26 configurations with the minimum error.
+[22:37:58] Best Filter: 0[656] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1120]
+[22:37:59] Best Threshold: 1
+[22:37:59] Min error: 0.45004184433491456
+[22:37:59] Confidence: 0.20050162887107925
+[23:40:49] There are 24 configurations with the minimum error.
+[23:40:49] Best Filter: 0[672] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1104]
+[23:40:49] Best Threshold: 1
+[23:40:49] Min error: 0.45004184433491456
+[23:40:50] Confidence: 0.20050162887107925
+[00:42:44] There are 23 configurations with the minimum error.
+[00:42:44] Best Filter: 0[680] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1096]
+[00:42:45] Best Threshold: 1
+[00:42:45] Min error: 0.45004184433491456
+[00:42:45] Confidence: 0.20050162887107925
+[01:44:20] There are 21 configurations with the minimum error.
+[01:44:21] Best Filter: 0[704] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1072]
+[01:44:21] Best Threshold: 1
+[01:44:21] Min error: 0.45004184433491456
+[01:44:21] Confidence: 0.20050162887107925
+[02:45:44] There are 20 configurations with the minimum error.
+[02:45:44] Best Filter: 0[1664] 🀆🀆🀆🀆🀆🀆🀆🀆🀫🀫🀫🀫🀫🀫🀫🀫 0[104]
+[02:45:44] Best Threshold: 1
+[02:45:45] Min error: 0.45004184433491456
+[02:45:45] Confidence: 0.20050162887107925
+[03:46:50] There are 19 configurations with the minimum error.
+[03:46:50] Best Filter: 0[384] 🀆🀆🀆🀆🀆🀆🀆🀆🀫🀫🀫🀫🀫🀫🀫🀫 0[1384]
+[03:46:50] Best Threshold: 1
+[03:46:50] Min error: 0.45004184433491456
+[03:46:50] Confidence: 0.20050162887107925
+[04:48:40] There are 14 configurations with the minimum error.
+[04:48:40] Best Filter: 0[640] 🀆🀆🀆🀆🀆🀆🀆🀆🀫🀫🀫🀫🀫🀫🀫🀫 0[1128]
+[04:48:40] Best Threshold: 1
+[04:48:40] Min error: 0.45004184433491456
+[04:48:40] Confidence: 0.20050162887107925
+[05:49:31] There are 9 configurations with the minimum error.
+[05:49:31] Best Filter: 0[656] 🀫🀫🀫🀫🀫🀫🀫🀫🀆🀆🀆🀆🀆🀆🀆🀆 0[1112]
+[05:49:32] Best Threshold: 1
+[05:49:32] Min error: 0.45004184433491456
+[05:49:32] Confidence: 0.20050162887107925
+[06:50:17] There are 7 configurations with the minimum error.
+[06:50:17] Best Filter: 0[672] 🀆🀆🀆🀆🀆🀆🀆🀆🀫🀫🀫🀫🀫🀫🀫🀫 0[1096]
+[06:50:17] Best Threshold: 1
+[06:50:17] Min error: 0.45004184433491456
+[06:50:17] Confidence: 0.20050162887107925
+[07:52:20] There are 5 configurations with the minimum error.
+[07:52:21] Best Filter: 0[704] 🀫🀫🀫🀫🀫🀫🀫🀫🀆🀆🀆🀆🀆🀆🀆🀆 0[1064]
+[07:52:21] Best Threshold: 1
+[07:52:21] Min error: 0.45004184433491456
+[07:52:21] Confidence: 0.20050162887107925
+[08:53:29] There are 4 configurations with the minimum error.
+[08:53:29] Best Filter: 0[424] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1352]
+[08:53:29] Best Threshold: 2
+[08:53:29] Min error: 0.45004184433491456
+[08:53:29] Confidence: 0.20050162887107925
+[09:54:42] There are 3 configurations with the minimum error.
+[09:54:42] Best Filter: 0[400] 🀫🀫🀫🀫🀫🀫🀫🀫🀆🀆🀆🀆🀆🀆🀆🀆 0[1368]
+[09:54:42] Best Threshold: 2
+[09:54:42] Min error: 0.45004184433491456
+[09:54:42] Confidence: 0.20050162887107925
+[10:55:46] Best Filter: 0[432] 🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫 0[1336]
+[10:55:46] Best Threshold: 7
+[10:55:46] Min error: 0.45004184433491456
+[10:55:47] Confidence: 0.20050162887107925
+[11:56:08] Best Filter: 0[1696] 🀆🀆🀆🀆🀆🀆🀆🀆🀫🀫🀫🀫🀫🀫🀫🀫 0[72]
+[11:56:09] Best Threshold: 1
+[11:56:09] Min error: 0.45049308581657577
+[11:56:09] Confidence: 0.19867862731423544
+[12:57:05] Best Filter: 0[1680] 🀆🀆🀆🀆🀆🀆🀆🀆🀫🀫🀫🀫🀫🀫🀫🀫 0[88]
+[12:57:06] Best Threshold: 1
+[12:57:06] Min error: 0.45043376577564986
+[12:57:06] Confidence: 0.19891825958609644
+[13:57:31] There are 2 configurations with the minimum error.
+[13:57:31] Best Filter: 0[1688] 🀆🀆🀆🀆🀫🀫🀫🀫 0[88]
+[13:57:31] Best Threshold: 2
+[13:57:31] Min error: 0.45048336132430433
+[13:57:32] Confidence: 0.19871791048085605
+[14:57:23] There are 2 configurations with the minimum error.
+[14:57:23] Best Filter: 0[544] 🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫🀫 0[1224]
+[14:57:23] Best Threshold: 8
+[14:57:23] Min error: 0.4504932948533772
+[14:57:23] Confidence: 0.19867778288853638
+[15:57:30] Best Filter: 0[360] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1416]
+[15:57:30] Best Threshold: 1
+[15:57:30] Min error: 0.45069070646374243
+[15:57:30] Confidence: 0.19788034982009522
+[16:58:26] There are 4 configurations with the minimum error.
+[16:58:26] Best Filter: 0[384] 🀫🀫🀫🀫🀫🀫🀫🀫🀆🀆🀆🀆🀆🀆🀆🀆 0[1384]
+[16:58:26] Best Threshold: 1
+[16:58:26] Min error: 0.4510855296844728
+[16:58:27] Confidence: 0.19628567154210944
+[17:58:12] There are 3 configurations with the minimum error.
+[17:58:12] Best Filter: 0[240] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1536]
+[17:58:12] Best Threshold: 2
+[17:58:13] Min error: 0.4510855296844728
+[17:58:13] Confidence: 0.19628567154210944
+[18:58:24] Best Filter: 0[240] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1536]
+[18:58:24] Best Threshold: 3
+[18:58:24] Min error: 0.4510855296844728
+[18:58:25] Confidence: 0.19628567154210944
+[19:58:50] Best Filter: 0[1688] 🀫🀫🀫🀫🀫🀫🀫🀫 0[88]
+[19:58:50] Best Threshold: 2
+[19:58:51] Min error: 0.45113324749456096
+[19:58:51] Confidence: 0.19609295773258528
+[20:58:52] There are 4 configurations with the minimum error.
+[20:58:52] Best Filter: 0[544] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1232]
+[20:58:52] Best Threshold: 1
+[20:58:53] Min error: 0.4506422826054483
+[20:58:53] Confidence: 0.19807594945085724
+[21:59:36] Best Filter: 0[608] 🀆🀆🀆🀆🀆🀆🀆🀆🀫🀫🀫🀫🀫🀫🀫🀫 0[1160]
+[21:59:36] Best Threshold: 1
+[21:59:36] Min error: 0.4506422826054483
+[21:59:37] Confidence: 0.19807594945085724
+[22:59:44] Best Filter: 0[240] 🀫🀫🀫🀫🀫🀫🀫🀫🀆🀆🀆🀆🀆🀆🀆🀆 0[1528]
+[22:59:44] Best Threshold: 1
+[22:59:45] Min error: 0.450751417921906
+[22:59:45] Confidence: 0.19763512192802574
+[00:00:39] Best Filter: 0[392] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1384]
+[00:00:39] Best Threshold: 1
+[00:00:39] Min error: 0.45118404580895866
+[00:00:39] Confidence: 0.1958878069442086
+[01:02:13] There are 8934 configurations with the minimum error.
+[01:02:13] Best Filter: 0[1312] 🀫🀫🀫🀫🀆🀆🀆🀆 0[464]
+[01:02:13] Best Threshold: 1
+[01:02:13] Min error: 0.45138115548384256
+[01:02:13] Confidence: 0.19509181141860765
+[02:04:44] There are 8926 configurations with the minimum error.
+[02:04:44] Best Filter: 0[1192] 🀫🀫🀫🀫🀆🀆🀆🀆 0[584]
+[02:04:45] Best Threshold: 1
+[02:04:45] Min error: 0.45138115548384244
+[02:04:45] Confidence: 0.19509181141860785
+[03:07:13] There are 8918 configurations with the minimum error.
+[03:07:13] Best Filter: 0[0] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1776]
+[03:07:13] Best Threshold: 1
+[03:07:13] Min error: 0.45138115548384256
+[03:07:14] Confidence: 0.19509181141860765
+[04:09:22] There are 8910 configurations with the minimum error.
+[04:09:23] Best Filter: 0[0] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1776]
+[04:09:23] Best Threshold: 1
+[04:09:23] Min error: 0.45138115548384244
+[04:09:23] Confidence: 0.19509181141860785
+[05:10:53] There are 8902 configurations with the minimum error.
+[05:10:53] Best Filter: 0[1320] 🀆🀆🀆🀆🀫🀫🀫🀫 0[456]
+[05:10:54] Best Threshold: 1
+[05:10:54] Min error: 0.45138115548384256
+[05:10:54] Confidence: 0.19509181141860765
+[06:12:45] There are 8894 configurations with the minimum error.
+[06:12:46] Best Filter: 0[840] 🀫🀫🀫🀫🀫🀫🀫🀫 0[936]
+[06:12:46] Best Threshold: 1
+[06:12:46] Min error: 0.45138115548384244
+[06:12:46] Confidence: 0.19509181141860785
+[07:13:35] There are 8886 configurations with the minimum error.
+[07:13:35] Best Filter: 0[400] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1376]
+[07:13:35] Best Threshold: 1
+[07:13:35] Min error: 0.45138115548384256
+[07:13:36] Confidence: 0.19509181141860765
+[08:16:33] There are 8878 configurations with the minimum error.
+[08:16:34] Best Filter: 0[1440] 🀫🀫🀫🀫🀫🀫🀫🀫 0[336]
+[08:16:34] Best Threshold: 1
+[08:16:34] Min error: 0.45138115548384244
+[08:16:35] Confidence: 0.19509181141860785
+[09:17:42] There are 8870 configurations with the minimum error.
+[09:17:42] Best Filter: 0[408] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1368]
+[09:17:43] Best Threshold: 1
+[09:17:43] Min error: 0.45138115548384256
+[09:17:43] Confidence: 0.19509181141860765
+[10:18:38] There are 8862 configurations with the minimum error.
+[10:18:38] Best Filter: 0[128] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1648]
+[10:18:39] Best Threshold: 1
+[10:18:39] Min error: 0.45138115548384244
+[10:18:39] Confidence: 0.19509181141860785
+[11:19:36] There are 8854 configurations with the minimum error.
+[11:19:37] Best Filter: 0[1448] 🀫🀫🀫🀫🀫🀫🀫🀫 0[328]
+[11:19:37] Best Threshold: 1
+[11:19:37] Min error: 0.45138115548384256
+[11:19:37] Confidence: 0.19509181141860765
+[12:20:38] There are 8846 configurations with the minimum error.
+[12:20:38] Best Filter: 0[256] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1520]
+[12:20:39] Best Threshold: 1
+[12:20:39] Min error: 0.45138115548384244
+[12:20:39] Confidence: 0.19509181141860785
+[13:22:27] There are 8838 configurations with the minimum error.
+[13:22:28] Best Filter: 0[1456] 🀆🀆🀆🀆🀫🀫🀫🀫 0[320]
+[13:22:28] Best Threshold: 1
+[13:22:28] Min error: 0.45138115548384256
+[13:22:28] Confidence: 0.19509181141860765
+[14:24:02] There are 8830 configurations with the minimum error.
+[14:24:03] Best Filter: 0[568] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1208]
+[14:24:03] Best Threshold: 1
+[14:24:03] Min error: 0.45138115548384244
+[14:24:03] Confidence: 0.19509181141860785
+[15:25:10] There are 8822 configurations with the minimum error.
+[15:25:11] Best Filter: 0[1448] 🀫🀫🀫🀫🀆🀆🀆🀆 0[328]
+[15:25:11] Best Threshold: 1
+[15:25:11] Min error: 0.45138115548384256
+[15:25:12] Confidence: 0.19509181141860765
+[16:24:25] There are 8814 configurations with the minimum error.
+[16:24:26] Best Filter: 0[1568] 🀫🀫🀫🀫🀆🀆🀆🀆 0[208]
+[16:24:26] Best Threshold: 1
+[16:24:26] Min error: 0.45138115548384244
+[16:24:26] Confidence: 0.19509181141860785
+[17:22:41] There are 8806 configurations with the minimum error.
+[17:22:42] Best Filter: 0[976] 🀆🀆🀆🀆🀫🀫🀫🀫 0[800]
+[17:22:42] Best Threshold: 1
+[17:22:42] Min error: 0.45138115548384256
+[17:22:43] Confidence: 0.19509181141860765
+[18:20:44] There are 8798 configurations with the minimum error.
+[18:20:45] Best Filter: 0[1568] 🀆🀆🀆🀆🀫🀫🀫🀫 0[208]
+[18:20:45] Best Threshold: 1
+[18:20:45] Min error: 0.45138115548384244
+[18:20:45] Confidence: 0.19509181141860785
+[19:17:06] There are 8790 configurations with the minimum error.
+[19:17:06] Best Filter: 0[736] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1040]
+[19:17:07] Best Threshold: 1
+[19:17:07] Min error: 0.45138115548384256
+[19:17:07] Confidence: 0.19509181141860765
+[20:13:16] There are 8782 configurations with the minimum error.
+[20:13:16] Best Filter: 0[1088] 🀆🀆🀆🀆🀫🀫🀫🀫 0[688]
+[20:13:17] Best Threshold: 1
+[20:13:17] Min error: 0.45138115548384244
+[20:13:17] Confidence: 0.19509181141860785
+[21:09:49] There are 8774 configurations with the minimum error.
+[21:09:49] Best Filter: 0[1440] 🀆🀆🀆🀆🀫🀫🀫🀫 0[336]
+[21:09:50] Best Threshold: 1
+[21:09:50] Min error: 0.45138115548384256
+[21:09:50] Confidence: 0.19509181141860765
+[22:05:13] There are 8766 configurations with the minimum error.
+[22:05:13] Best Filter: 0[256] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1520]
+[22:05:13] Best Threshold: 1
+[22:05:13] Min error: 0.45138115548384244
+[22:05:14] Confidence: 0.19509181141860785
+[23:03:09] There are 8758 configurations with the minimum error.
+[23:03:09] Best Filter: 0[128] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1648]
+[23:03:09] Best Threshold: 1
+[23:03:09] Min error: 0.45138115548384256
+[23:03:10] Confidence: 0.19509181141860765
+[00:04:44] There are 8750 configurations with the minimum error.
+[00:04:44] Best Filter: 0[968] 🀆🀆🀆🀆🀫🀫🀫🀫 0[808]
+[00:04:44] Best Threshold: 1
+[00:04:45] Min error: 0.45138115548384244
+[00:04:45] Confidence: 0.19509181141860785
+[01:03:00] There are 8742 configurations with the minimum error.
+[01:03:01] Best Filter: 0[848] 🀫🀫🀫🀫🀫🀫🀫🀫 0[928]
+[01:03:01] Best Threshold: 1
+[01:03:01] Min error: 0.45138115548384256
+[01:03:01] Confidence: 0.19509181141860765
+[02:00:18] There are 8734 configurations with the minimum error.
+[02:00:19] Best Filter: 0[128] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1648]
+[02:00:19] Best Threshold: 1
+[02:00:19] Min error: 0.45138115548384244
+[02:00:20] Confidence: 0.19509181141860785
+[02:57:02] There are 8726 configurations with the minimum error.
+[02:57:02] Best Filter: 0[568] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1208]
+[02:57:02] Best Threshold: 1
+[02:57:03] Min error: 0.45138115548384256
+[02:57:03] Confidence: 0.19509181141860765
+[03:53:40] There are 8718 configurations with the minimum error.
+[03:53:40] Best Filter: 0[976] 🀫🀫🀫🀫🀫🀫🀫🀫 0[800]
+[03:53:40] Best Threshold: 1
+[03:53:40] Min error: 0.45138115548384244
+[03:53:41] Confidence: 0.19509181141860785
+[04:51:18] There are 8710 configurations with the minimum error.
+[04:51:18] Best Filter: 0[416] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1360]
+[04:51:19] Best Threshold: 1
+[04:51:19] Min error: 0.45138115548384256
+[04:51:19] Confidence: 0.19509181141860765
+[05:48:26] There are 8702 configurations with the minimum error.
+[05:48:27] Best Filter: 0[1584] 🀫🀫🀫🀫🀫🀫🀫🀫 0[192]
+[05:48:27] Best Threshold: 1
+[05:48:27] Min error: 0.45138115548384244
+[05:48:28] Confidence: 0.19509181141860785
+[06:44:49] There are 8694 configurations with the minimum error.
+[06:44:50] Best Filter: 0[568] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1208]
+[06:44:50] Best Threshold: 1
+[06:44:50] Min error: 0.45138115548384256
+[06:44:50] Confidence: 0.19509181141860765
+[07:42:29] There are 8686 configurations with the minimum error.
+[07:42:29] Best Filter: 0[864] 🀫🀫🀫🀫🀆🀆🀆🀆 0[912]
+[07:42:29] Best Threshold: 1
+[07:42:30] Min error: 0.45138115548384244
+[07:42:30] Confidence: 0.19509181141860785
+[08:39:08] There are 8678 configurations with the minimum error.
+[08:39:09] Best Filter: 0[1344] 🀫🀫🀫🀫🀆🀆🀆🀆 0[432]
+[08:39:09] Best Threshold: 1
+[08:39:09] Min error: 0.45138115548384256
+[08:39:10] Confidence: 0.19509181141860765
+[09:35:42] There are 8670 configurations with the minimum error.
+[09:35:43] Best Filter: 0[1592] 🀆🀆🀆🀆🀫🀫🀫🀫 0[184]
+[09:35:43] Best Threshold: 1
+[09:35:43] Min error: 0.45138115548384244
+[09:35:44] Confidence: 0.19509181141860785
+[10:32:25] There are 8662 configurations with the minimum error.
+[10:32:25] Best Filter: 0[1336] 🀫🀫🀫🀫🀫🀫🀫🀫 0[440]
+[10:32:26] Best Threshold: 1
+[10:32:26] Min error: 0.45138115548384256
+[10:32:26] Confidence: 0.19509181141860765
+[11:28:40] There are 8654 configurations with the minimum error.
+[11:28:40] Best Filter: 0[1464] 🀫🀫🀫🀫🀫🀫🀫🀫 0[312]
+[11:28:40] Best Threshold: 1
+[11:28:41] Min error: 0.45138115548384244
+[11:28:41] Confidence: 0.19509181141860785
+[12:25:09] There are 8646 configurations with the minimum error.
+[12:25:09] Best Filter: 0[1464] 🀫🀫🀫🀫🀆🀆🀆🀆 0[312]
+[12:25:10] Best Threshold: 1
+[12:25:10] Min error: 0.45138115548384256
+[12:25:10] Confidence: 0.19509181141860765
+[13:21:31] There are 8638 configurations with the minimum error.
+[13:21:32] Best Filter: 0[744] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1032]
+[13:21:32] Best Threshold: 1
+[13:21:32] Min error: 0.45138115548384244
+[13:21:33] Confidence: 0.19509181141860785
+[14:16:40] There are 8630 configurations with the minimum error.
+[14:16:40] Best Filter: 0[744] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1032]
+[14:16:40] Best Threshold: 1
+[14:16:41] Min error: 0.45138115548384256
+[14:16:41] Confidence: 0.19509181141860765
+[15:12:36] There are 8622 configurations with the minimum error.
+[15:12:36] Best Filter: 0[1216] 🀆🀆🀆🀆🀫🀫🀫🀫 0[560]
+[15:12:37] Best Threshold: 1
+[15:12:37] Min error: 0.45138115548384244
+[15:12:37] Confidence: 0.19509181141860785
+[16:09:06] There are 8614 configurations with the minimum error.
+[16:09:06] Best Filter: 0[856] 🀫🀫🀫🀫🀫🀫🀫🀫 0[920]
+[16:09:06] Best Threshold: 1
+[16:09:07] Min error: 0.45138115548384256
+[16:09:07] Confidence: 0.19509181141860765
+[17:06:10] There are 8606 configurations with the minimum error.
+[17:06:10] Best Filter: 0[856] 🀫🀫🀫🀫🀆🀆🀆🀆 0[920]
+[17:06:11] Best Threshold: 1
+[17:06:11] Min error: 0.45138115548384244
+[17:06:11] Confidence: 0.19509181141860785
+[18:03:31] There are 8598 configurations with the minimum error.
+[18:03:31] Best Filter: 0[424] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1352]
+[18:03:31] Best Threshold: 1
+[18:03:32] Min error: 0.45138115548384256
+[18:03:32] Confidence: 0.19509181141860765
+[18:59:11] There are 8590 configurations with the minimum error.
+[18:59:11] Best Filter: 0[1472] 🀆🀆🀆🀆🀫🀫🀫🀫 0[304]
+[18:59:12] Best Threshold: 1
+[18:59:12] Min error: 0.45138115548384244
+[18:59:12] Confidence: 0.19509181141860785
+[19:56:02] There are 8582 configurations with the minimum error.
+[19:56:02] Best Filter: 0[432] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1344]
+[19:56:02] Best Threshold: 1
+[19:56:03] Min error: 0.45138115548384256
+[19:56:03] Confidence: 0.19509181141860765
+[20:52:00] There are 8574 configurations with the minimum error.
+[20:52:00] Best Filter: 0[256] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1520]
+[20:52:00] Best Threshold: 1
+[20:52:01] Min error: 0.45138115548384244
+[20:52:01] Confidence: 0.19509181141860785
+[21:48:43] There are 8566 configurations with the minimum error.
+[21:48:44] Best Filter: 0[1480] 🀆🀆🀆🀆🀫🀫🀫🀫 0[296]
+[21:48:44] Best Threshold: 1
+[21:48:44] Min error: 0.45138115548384256
+[21:48:45] Confidence: 0.19509181141860765
+[22:42:45] There are 8558 configurations with the minimum error.
+[22:42:46] Best Filter: 0[1600] 🀫🀫🀫🀫🀫🀫🀫🀫 0[176]
+[22:42:46] Best Threshold: 1
+[22:42:46] Min error: 0.45138115548384244
+[22:42:47] Confidence: 0.19509181141860785
+[23:37:16] There are 8550 configurations with the minimum error.
+[23:37:16] Best Filter: 0[736] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1040]
+[23:37:16] Best Threshold: 1
+[23:37:17] Min error: 0.45138115548384256
+[23:37:17] Confidence: 0.19509181141860765
+[00:33:26] There are 8542 configurations with the minimum error.
+[00:33:26] Best Filter: 0[120] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1656]
+[00:33:27] Best Threshold: 1
+[00:33:27] Min error: 0.45138115548384244
+[00:33:27] Confidence: 0.19509181141860785
+[01:29:07] There are 8534 configurations with the minimum error.
+[01:29:07] Best Filter: 0[448] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1328]
+[01:29:07] Best Threshold: 1
+[01:29:08] Min error: 0.45138115548384256
+[01:29:08] Confidence: 0.19509181141860765
+[02:24:35] There are 8526 configurations with the minimum error.
+[02:24:35] Best Filter: 0[448] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1328]
+[02:24:35] Best Threshold: 1
+[02:24:36] Min error: 0.45138115548384244
+[02:24:36] Confidence: 0.19509181141860785
+[03:20:47] There are 8518 configurations with the minimum error.
+[03:20:47] Best Filter: 0[1352] 🀫🀫🀫🀫🀫🀫🀫🀫 0[424]
+[03:20:48] Best Threshold: 1
+[03:20:48] Min error: 0.45138115548384256
+[03:20:48] Confidence: 0.19509181141860765
+[04:15:35] There are 8510 configurations with the minimum error.
+[04:15:36] Best Filter: 0[8] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1768]
+[04:15:36] Best Threshold: 1
+[04:15:36] Min error: 0.45138115548384244
+[04:15:37] Confidence: 0.19509181141860785
+[05:10:13] There are 8502 configurations with the minimum error.
+[05:10:13] Best Filter: 0[1352] 🀫🀫🀫🀫🀆🀆🀆🀆 0[424]
+[05:10:13] Best Threshold: 1
+[05:10:14] Min error: 0.45138115548384256
+[05:10:14] Confidence: 0.19509181141860765
+[06:05:26] There are 8494 configurations with the minimum error.
+[06:05:26] Best Filter: 0[16] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1760]
+[06:05:27] Best Threshold: 1
+[06:05:27] Min error: 0.45138115548384244
+[06:05:27] Confidence: 0.19509181141860785
+[06:59:44] There are 8486 configurations with the minimum error.
+[06:59:45] Best Filter: 0[1112] 🀫🀫🀫🀫🀫🀫🀫🀫 0[664]
+[06:59:45] Best Threshold: 1
+[06:59:45] Min error: 0.45138115548384256
+[06:59:46] Confidence: 0.19509181141860765
+[07:54:34] There are 8478 configurations with the minimum error.
+[07:54:35] Best Filter: 0[1608] 🀫🀫🀫🀫🀫🀫🀫🀫 0[168]
+[07:54:35] Best Threshold: 1
+[07:54:35] Min error: 0.45138115548384244
+[07:54:36] Confidence: 0.19509181141860785
+[08:50:09] There are 8470 configurations with the minimum error.
+[08:50:10] Best Filter: 0[1488] 🀆🀆🀆🀆🀫🀫🀫🀫 0[288]
+[08:50:10] Best Threshold: 1
+[08:50:10] Min error: 0.45138115548384256
+[08:50:11] Confidence: 0.19509181141860765
+[09:45:35] There are 8462 configurations with the minimum error.
+[09:45:36] Best Filter: 0[584] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1192]
+[09:45:36] Best Threshold: 1
+[09:45:36] Min error: 0.45138115548384244
+[09:45:37] Confidence: 0.19509181141860785
+[10:41:17] There are 8454 configurations with the minimum error.
+[10:41:18] Best Filter: 0[24] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1752]
+[10:41:18] Best Threshold: 1
+[10:41:19] Min error: 0.45138115548384256
+[10:41:19] Confidence: 0.19509181141860765
+[11:36:07] There are 8446 configurations with the minimum error.
+[11:36:08] Best Filter: 0[752] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1024]
+[11:36:08] Best Threshold: 1
+[11:36:09] Min error: 0.45138115548384244
+[11:36:09] Confidence: 0.19509181141860785
+[12:24:43] There are 8438 configurations with the minimum error.
+[12:24:43] Best Filter: 0[1480] 🀫🀫🀫🀫🀫🀫🀫🀫 0[296]
+[12:24:44] Best Threshold: 1
+[12:24:44] Min error: 0.45138115548384256
+[12:24:44] Confidence: 0.19509181141860765
+[13:12:24] There are 8430 configurations with the minimum error.
+[13:12:24] Best Filter: 0[1104] 🀫🀫🀫🀫🀫🀫🀫🀫 0[672]
+[13:12:24] Best Threshold: 1
+[13:12:25] Min error: 0.45138115548384244
+[13:12:25] Confidence: 0.19509181141860785
+[14:00:22] There are 8422 configurations with the minimum error.
+[14:00:22] Best Filter: 0[1344] 🀫🀫🀫🀫🀫🀫🀫🀫 0[432]
+[14:00:22] Best Threshold: 1
+[14:00:23] Min error: 0.45138115548384256
+[14:00:23] Confidence: 0.19509181141860765
+[14:48:49] There are 8414 configurations with the minimum error.
+[14:48:49] Best Filter: 0[1352] 🀆🀆🀆🀆🀫🀫🀫🀫 0[424]
+[14:48:50] Best Threshold: 1
+[14:48:50] Min error: 0.45138115548384244
+[14:48:50] Confidence: 0.19509181141860785
+[15:36:46] There are 8406 configurations with the minimum error.
+[15:36:46] Best Filter: 0[880] 🀆🀆🀆🀆🀫🀫🀫🀫 0[896]
+[15:36:47] Best Threshold: 1
+[15:36:47] Min error: 0.45138115548384256
+[15:36:48] Confidence: 0.19509181141860765
+[16:24:06] There are 8398 configurations with the minimum error.
+[16:24:06] Best Filter: 0[264] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1512]
+[16:24:07] Best Threshold: 1
+[16:24:07] Min error: 0.45138115548384244
+[16:24:08] Confidence: 0.19509181141860785
+[17:11:20] There are 8390 configurations with the minimum error.
+[17:11:21] Best Filter: 0[272] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1504]
+[17:11:21] Best Threshold: 1
+[17:11:22] Min error: 0.45138115548384256
+[17:11:22] Confidence: 0.19509181141860765
+[17:56:58] There are 8382 configurations with the minimum error.
+[17:56:58] Best Filter: 0[32] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1744]
+[17:56:58] Best Threshold: 1
+[17:56:59] Min error: 0.45138115548384244
+[17:56:59] Confidence: 0.19509181141860785
+[18:44:07] There are 8374 configurations with the minimum error.
+[18:44:07] Best Filter: 0[1632] 🀫🀫🀫🀫🀆🀆🀆🀆 0[144]
+[18:44:07] Best Threshold: 1
+[18:44:08] Min error: 0.45138115548384256
+[18:44:08] Confidence: 0.19509181141860765
+[19:33:24] There are 8366 configurations with the minimum error.
+[19:33:25] Best Filter: 0[1632] 🀆🀆🀆🀆🀫🀫🀫🀫 0[144]
+[19:33:25] Best Threshold: 1
+[19:33:26] Min error: 0.45138115548384244
+[19:33:26] Confidence: 0.19509181141860785
+[20:20:16] There are 8358 configurations with the minimum error.
+[20:20:16] Best Filter: 0[1624] 🀫🀫🀫🀫🀫🀫🀫🀫 0[152]
+[20:20:17] Best Threshold: 1
+[20:20:17] Min error: 0.45138115548384256
+[20:20:17] Confidence: 0.19509181141860765
+[21:06:56] There are 8350 configurations with the minimum error.
+[21:06:56] Best Filter: 0[1368] 🀆🀆🀆🀆🀫🀫🀫🀫 0[408]
+[21:06:56] Best Threshold: 1
+[21:06:57] Min error: 0.45138115548384244
+[21:06:57] Confidence: 0.19509181141860785
+[21:53:27] There are 8342 configurations with the minimum error.
+[21:53:27] Best Filter: 0[1232] 🀫🀫🀫🀫🀫🀫🀫🀫 0[544]
+[21:53:28] Best Threshold: 1
+[21:53:28] Min error: 0.45138115548384256
+[21:53:28] Confidence: 0.19509181141860765
+[22:39:37] There are 8334 configurations with the minimum error.
+[22:39:37] Best Filter: 0[1624] 🀫🀫🀫🀫🀆🀆🀆🀆 0[152]
+[22:39:37] Best Threshold: 1
+[22:39:38] Min error: 0.45138115548384244
+[22:39:38] Confidence: 0.19509181141860785
+[23:26:15] There are 8326 configurations with the minimum error.
+[23:26:16] Best Filter: 0[1120] 🀆🀆🀆🀆🀫🀫🀫🀫 0[656]
+[23:26:16] Best Threshold: 1
+[23:26:16] Min error: 0.45138115548384256
+[23:26:17] Confidence: 0.19509181141860765
+[00:13:18] There are 8318 configurations with the minimum error.
+[00:13:18] Best Filter: 0[760] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1016]
+[00:13:19] Best Threshold: 1
+[00:13:19] Min error: 0.45138115548384244
+[00:13:20] Confidence: 0.19509181141860785
+[01:00:16] There are 8310 configurations with the minimum error.
+[01:00:16] Best Filter: 0[1360] 🀫🀫🀫🀫🀆🀆🀆🀆 0[416]
+[01:00:17] Best Threshold: 1
+[01:00:17] Min error: 0.45138115548384256
+[01:00:18] Confidence: 0.19509181141860765
+[01:46:51] There are 8302 configurations with the minimum error.
+[01:46:52] Best Filter: 0[1112] 🀆🀆🀆🀆🀫🀫🀫🀫 0[664]
+[01:46:52] Best Threshold: 1
+[01:46:52] Min error: 0.45138115548384244
+[01:46:53] Confidence: 0.19509181141860785
+[02:33:57] There are 8294 configurations with the minimum error.
+[02:33:57] Best Filter: 0[456] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1320]
+[02:33:58] Best Threshold: 1
+[02:33:58] Min error: 0.45138115548384256
+[02:33:58] Confidence: 0.19509181141860765
+[03:21:18] There are 8286 configurations with the minimum error.
+[03:21:18] Best Filter: 0[1496] 🀫🀫🀫🀫🀫🀫🀫🀫 0[280]
+[03:21:19] Best Threshold: 1
+[03:21:19] Min error: 0.45138115548384244
+[03:21:19] Confidence: 0.19509181141860785
+[04:08:01] There are 8278 configurations with the minimum error.
+[04:08:02] Best Filter: 0[1104] 🀆🀆🀆🀆🀫🀫🀫🀫 0[672]
+[04:08:02] Best Threshold: 1
+[04:08:02] Min error: 0.45138115548384256
+[04:08:03] Confidence: 0.19509181141860765
+[04:54:43] There are 8270 configurations with the minimum error.
+[04:54:43] Best Filter: 0[472] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1304]
+[04:54:43] Best Threshold: 1
+[04:54:44] Min error: 0.45138115548384244
+[04:54:44] Confidence: 0.19509181141860785
+[05:41:38] There are 8262 configurations with the minimum error.
+[05:41:38] Best Filter: 0[584] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1192]
+[05:41:39] Best Threshold: 1
+[05:41:39] Min error: 0.45138115548384256
+[05:41:40] Confidence: 0.19509181141860765
+[06:28:18] There are 8254 configurations with the minimum error.
+[06:28:18] Best Filter: 0[472] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1304]
+[06:28:19] Best Threshold: 1
+[06:28:19] Min error: 0.45138115548384244
+[06:28:20] Confidence: 0.19509181141860785
+[07:15:10] There are 8246 configurations with the minimum error.
+[07:15:10] Best Filter: 0[1368] 🀫🀫🀫🀫🀫🀫🀫🀫 0[408]
+[07:15:11] Best Threshold: 1
+[07:15:11] Min error: 0.45138115548384256
+[07:15:12] Confidence: 0.19509181141860765
+[08:02:02] There are 8238 configurations with the minimum error.
+[08:02:03] Best Filter: 0[264] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1512]
+[08:02:03] Best Threshold: 1
+[08:02:03] Min error: 0.45138115548384244
+[08:02:04] Confidence: 0.19509181141860785
+[08:48:11] There are 8230 configurations with the minimum error.
+[08:48:12] Best Filter: 0[136] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1640]
+[08:48:12] Best Threshold: 1
+[08:48:12] Min error: 0.45138115548384256
+[08:48:13] Confidence: 0.19509181141860765
+[09:33:54] There are 8222 configurations with the minimum error.
+[09:33:54] Best Filter: 0[1128] 🀫🀫🀫🀫🀆🀆🀆🀆 0[648]
+[09:33:55] Best Threshold: 1
+[09:33:55] Min error: 0.45138115548384244
+[09:33:55] Confidence: 0.19509181141860785
+[10:19:46] There are 8214 configurations with the minimum error.
+[10:19:46] Best Filter: 0[1128] 🀫🀫🀫🀫🀫🀫🀫🀫 0[648]
+[10:19:46] Best Threshold: 1
+[10:19:47] Min error: 0.45138115548384256
+[10:19:47] Confidence: 0.19509181141860765
+[11:07:51] There are 8206 configurations with the minimum error.
+[11:07:51] Best Filter: 0[1520] 🀫🀫🀫🀫🀫🀫🀫🀫 0[256]
+[11:07:52] Best Threshold: 1
+[11:07:52] Min error: 0.45138115548384244
+[11:07:52] Confidence: 0.19509181141860785
+[11:55:34] There are 8198 configurations with the minimum error.
+[11:55:35] Best Filter: 0[1384] 🀫🀫🀫🀫🀆🀆🀆🀆 0[392]
+[11:55:35] Best Threshold: 1
+[11:55:36] Min error: 0.45138115548384256
+[11:55:36] Confidence: 0.19509181141860765
+[12:42:39] There are 8190 configurations with the minimum error.
+[12:42:39] Best Filter: 0[1384] 🀆🀆🀆🀆🀫🀫🀫🀫 0[392]
+[12:42:40] Best Threshold: 1
+[12:42:40] Min error: 0.45138115548384244
+[12:42:41] Confidence: 0.19509181141860785
+[13:28:28] There are 8182 configurations with the minimum error.
+[13:28:28] Best Filter: 0[1136] 🀆🀆🀆🀆🀫🀫🀫🀫 0[640]
+[13:28:29] Best Threshold: 1
+[13:28:29] Min error: 0.45138115548384256
+[13:28:30] Confidence: 0.19509181141860765
+[14:14:08] There are 8174 configurations with the minimum error.
+[14:14:08] Best Filter: 0[1008] 🀆🀆🀆🀆🀫🀫🀫🀫 0[768]
+[14:14:09] Best Threshold: 1
+[14:14:09] Min error: 0.45138115548384244
+[14:14:10] Confidence: 0.19509181141860785
+[14:59:57] There are 8166 configurations with the minimum error.
+[14:59:57] Best Filter: 0[1128] 🀆🀆🀆🀆🀫🀫🀫🀫 0[648]
+[14:59:57] Best Threshold: 1
+[14:59:58] Min error: 0.45138115548384256
+[14:59:58] Confidence: 0.19509181141860765
+[15:46:05] There are 8158 configurations with the minimum error.
+[15:46:05] Best Filter: 0[1520] 🀫🀫🀫🀫🀆🀆🀆🀆 0[256]
+[15:46:06] Best Threshold: 1
+[15:46:06] Min error: 0.45138115548384244
+[15:46:07] Confidence: 0.19509181141860785
+[16:30:54] There are 8150 configurations with the minimum error.
+[16:30:55] Best Filter: 0[1240] 🀫🀫🀫🀫🀫🀫🀫🀫 0[536]
+[16:30:55] Best Threshold: 1
+[16:30:55] Min error: 0.45138115548384256
+[16:30:56] Confidence: 0.19509181141860765
+[17:16:37] There are 8142 configurations with the minimum error.
+[17:16:38] Best Filter: 0[592] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1184]
+[17:16:38] Best Threshold: 1
+[17:16:39] Min error: 0.45138115548384244
+[17:16:39] Confidence: 0.19509181141860785
+[18:03:07] There are 8134 configurations with the minimum error.
+[18:03:08] Best Filter: 0[760] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1016]
+[18:03:08] Best Threshold: 1
+[18:03:09] Min error: 0.45138115548384256
+[18:03:09] Confidence: 0.19509181141860765
+[18:47:53] There are 8126 configurations with the minimum error.
+[18:47:54] Best Filter: 0[592] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1184]
+[18:47:54] Best Threshold: 1
+[18:47:55] Min error: 0.45138115548384244
+[18:47:55] Confidence: 0.19509181141860785
+[19:37:56] There are 8118 configurations with the minimum error.
+[19:37:57] Best Filter: 0[136] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1640]
+[19:37:57] Best Threshold: 1
+[19:37:58] Min error: 0.45138115548384256
+[19:37:58] Confidence: 0.19509181141860765
+[20:23:36] There are 8110 configurations with the minimum error.
+[20:23:37] Best Filter: 0[1528] 🀆🀆🀆🀆🀫🀫🀫🀫 0[248]
+[20:23:37] Best Threshold: 1
+[20:23:38] Min error: 0.45138115548384244
+[20:23:38] Confidence: 0.19509181141860785
+[21:09:25] There are 8102 configurations with the minimum error.
+[21:09:26] Best Filter: 0[888] 🀆🀆🀆🀆🀫🀫🀫🀫 0[888]
+[21:09:26] Best Threshold: 1
+[21:09:26] Min error: 0.45138115548384256
+[21:09:27] Confidence: 0.19509181141860765
+[21:54:40] There are 8094 configurations with the minimum error.
+[21:54:40] Best Filter: 0[272] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1504]
+[21:54:41] Best Threshold: 1
+[21:54:41] Min error: 0.45138115548384244
+[21:54:42] Confidence: 0.19509181141860785
+[22:40:04] There are 8086 configurations with the minimum error.
+[22:40:04] Best Filter: 0[144] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1632]
+[22:40:05] Best Threshold: 1
+[22:40:05] Min error: 0.45138115548384256
+[22:40:06] Confidence: 0.19509181141860765
+[23:25:22] There are 8078 configurations with the minimum error.
+[23:25:23] Best Filter: 0[280] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1496]
+[23:25:23] Best Threshold: 1
+[23:25:24] Min error: 0.45138115548384244
+[23:25:24] Confidence: 0.19509181141860785
+[00:10:37] There are 8070 configurations with the minimum error.
+[00:10:37] Best Filter: 0[896] 🀫🀫🀫🀫🀆🀆🀆🀆 0[880]
+[00:10:37] Best Threshold: 1
+[00:10:38] Min error: 0.45138115548384256
+[00:10:38] Confidence: 0.19509181141860765
+[00:54:48] There are 8062 configurations with the minimum error.
+[00:54:49] Best Filter: 0[480] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1296]
+[00:54:49] Best Threshold: 1
+[00:54:50] Min error: 0.45138115548384244
+[00:54:50] Confidence: 0.19509181141860785
+[01:39:08] There are 8054 configurations with the minimum error.
+[01:39:08] Best Filter: 0[1264] 🀆🀆🀆🀆🀫🀫🀫🀫 0[512]
+[01:39:09] Best Threshold: 1
+[01:39:09] Min error: 0.45138115548384256
+[01:39:09] Confidence: 0.19509181141860765
+[02:23:57] There are 8046 configurations with the minimum error.
+[02:23:58] Best Filter: 0[776] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1000]
+[02:23:58] Best Threshold: 1
+[02:23:59] Min error: 0.45138115548384244
+[02:23:59] Confidence: 0.19509181141860785
+[03:08:26] There are 8038 configurations with the minimum error.
+[03:08:26] Best Filter: 0[1408] 🀆🀆🀆🀆🀫🀫🀫🀫 0[368]
+[03:08:26] Best Threshold: 1
+[03:08:27] Min error: 0.45138115548384256
+[03:08:27] Confidence: 0.19509181141860765
+[03:52:14] There are 8030 configurations with the minimum error.
+[03:52:15] Best Filter: 0[1400] 🀫🀫🀫🀫🀫🀫🀫🀫 0[376]
+[03:52:15] Best Threshold: 1
+[03:52:16] Min error: 0.45138115548384244
+[03:52:16] Confidence: 0.19509181141860785
+[04:36:12] There are 8022 configurations with the minimum error.
+[04:36:13] Best Filter: 0[1152] 🀆🀆🀆🀆🀫🀫🀫🀫 0[624]
+[04:36:13] Best Threshold: 1
+[04:36:14] Min error: 0.45138115548384256
+[04:36:14] Confidence: 0.19509181141860765
+[05:21:13] There are 8014 configurations with the minimum error.
+[05:21:13] Best Filter: 0[1544] 🀫🀫🀫🀫🀫🀫🀫🀫 0[232]
+[05:21:14] Best Threshold: 1
+[05:21:14] Min error: 0.45138115548384244
+[05:21:15] Confidence: 0.19509181141860785
+[06:05:02] There are 8006 configurations with the minimum error.
+[06:05:03] Best Filter: 0[1144] 🀫🀫🀫🀫🀆🀆🀆🀆 0[632]
+[06:05:03] Best Threshold: 1
+[06:05:04] Min error: 0.45138115548384256
+[06:05:04] Confidence: 0.19509181141860765
+[06:49:21] There are 7998 configurations with the minimum error.
+[06:49:22] Best Filter: 0[1016] 🀆🀆🀆🀆🀫🀫🀫🀫 0[760]
+[06:49:22] Best Threshold: 1
+[06:49:23] Min error: 0.45138115548384244
+[06:49:23] Confidence: 0.19509181141860785
+[07:33:37] There are 7990 configurations with the minimum error.
+[07:33:37] Best Filter: 0[1008] 🀫🀫🀫🀫🀫🀫🀫🀫 0[768]
+[07:33:38] Best Threshold: 1
+[07:33:38] Min error: 0.45138115548384256
+[07:33:39] Confidence: 0.19509181141860765
+[08:17:40] There are 7982 configurations with the minimum error.
+[08:17:40] Best Filter: 0[768] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1008]
+[08:17:41] Best Threshold: 1
+[08:17:41] Min error: 0.45138115548384244
+[08:17:41] Confidence: 0.19509181141860785
+[09:02:47] There are 7974 configurations with the minimum error.
+[09:02:48] Best Filter: 0[1544] 🀫🀫🀫🀫🀆🀆🀆🀆 0[232]
+[09:02:48] Best Threshold: 1
+[09:02:49] Min error: 0.45138115548384256
+[09:02:49] Confidence: 0.19509181141860765
+[09:46:54] There are 7966 configurations with the minimum error.
+[09:46:55] Best Filter: 0[272] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1504]
+[09:46:55] Best Threshold: 1
+[09:46:56] Min error: 0.45138115548384244
+[09:46:56] Confidence: 0.19509181141860785
+[10:31:22] There are 7958 configurations with the minimum error.
+[10:31:22] Best Filter: 0[1000] 🀫🀫🀫🀫🀫🀫🀫🀫 0[776]
+[10:31:23] Best Threshold: 1
+[10:31:23] Min error: 0.45138115548384256
+[10:31:24] Confidence: 0.19509181141860765
+[11:15:15] There are 7950 configurations with the minimum error.
+[11:15:15] Best Filter: 0[488] 🀆🀆🀆🀆🀫🀫🀫🀫 0[1288]
+[11:15:16] Best Threshold: 1
+[11:15:16] Min error: 0.45138115548384244
+[11:15:17] Confidence: 0.19509181141860785
+[11:59:22] There are 7942 configurations with the minimum error.
+[11:59:22] Best Filter: 0[32] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1744]
+[11:59:23] Best Threshold: 1
+[11:59:23] Min error: 0.45138115548384256
+[11:59:24] Confidence: 0.19509181141860765
+[12:43:28] There are 7934 configurations with the minimum error.
+[12:43:28] Best Filter: 0[1152] 🀫🀫🀫🀫🀆🀆🀆🀆 0[624]
+[12:43:29] Best Threshold: 1
+[12:43:29] Min error: 0.45138115548384244
+[12:43:30] Confidence: 0.19509181141860785
+[13:27:28] There are 7926 configurations with the minimum error.
+[13:27:28] Best Filter: 0[488] 🀫🀫🀫🀫🀆🀆🀆🀆 0[1288]
+[13:27:29] Best Threshold: 1
+[13:27:29] Min error: 0.45138115548384256
+[13:27:30] Confidence: 0.19509181141860765
+[14:11:41] There are 7918 configurations with the minimum error.
+[14:11:42] Best Filter: 0[1560] 🀫🀫🀫🀫🀆🀆🀆🀆 0[216]
+[14:11:43] Best Threshold: 1
+[14:11:43] Min error: 0.45138115548384244
+[14:11:44] Confidence: 0.19509181141860785
+[14:56:14] There are 7910 configurations with the minimum error.
+[14:56:14] Best Filter: 0[1160] 🀆🀆🀆🀆🀫🀫🀫🀫 0[616]
+[14:56:14] Best Threshold: 1
+[14:56:15] Min error: 0.45138115548384256
+[14:56:15] Confidence: 0.19509181141860765
+[15:39:05] There are 7902 configurations with the minimum error.
+[15:39:06] Best Filter: 0[776] 🀫🀫🀫🀫🀫🀫🀫🀫 0[1000]
+[15:39:06] Best Threshold: 1
+[15:39:07] Min error: 0.45138115548384244
+[15:39:07] Confidence: 0.19509181141860785
+[16:22:14] There are 7894 configurations with the minimum error.
+[16:22:14] Best Filter: 0[1024] 🀫🀫🀫🀫🀆🀆🀆🀆 0[752]
+[16:22:15] Best Threshold: 1
+[16:22:15] Min error: 0.45138115548384256
+[16:22:16] Confidence: 0.19509181141860765
