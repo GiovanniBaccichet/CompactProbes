@@ -563,3 +563,4 @@ data/interim/identical-pairs_df.csv
 data/interim/identical-string_df.csv
 data/interim/debug_pairs_df.csv
 .vscode/settings.json
+trash/*
