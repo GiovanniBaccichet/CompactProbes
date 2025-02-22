@@ -1,0 +1,129 @@
+combination,length
+"('XiaomiRedmi5_J', 'GooglePixel3A_V')",2
+"('GooglePixel3A_L', 'iPhone11_F', 'S21Ultra_M')",3
+"('OppoFindX3Neo_A', 'iPhoneXR_U', 'HuaweiP20_G', 'iPhone11_F')",4
+"('GooglePixel3A_V', 'XiaomiRedmi5_J', 'iPhone11_F', 'SamsungS6_H', 'iPhoneXR_U')",5
+"('XiaomiRedmi4_B', 'SamsungM31_A', 'GooglePixel3A_L', 'iPhone12Pro_C', 'GooglePixel3A_V', 'OppoFindX3Neo_A')",6
+"('OppoFindX3Neo_A', 'SamsungS6_H', 'XiaomiRedmi4_B', 'GooglePixel3A_L', 'iPhoneXR_A', 'iPhoneXR_U', 'XiaomiRedmi5_J')",7
+"('SamsungM31_A', 'OppoFindX3Neo_A', 'SamsungS4_C', 'XiaomiRedmi4_B', 'S21Ultra_M', 'GooglePixel3A_L', 'HuaweiP20_G', 'iPhoneXR_U')",8
+"('SamsungJ6_K', 'S21Ultra_M', 'HuaweiP20_G', 'OppoFindX3Neo_A', 'iPhoneXR_U', 'GooglePixel3A_V', 'XiaomiRedmi4_B', 'SamsungM31_A', 'GooglePixel3A_L')",9
+"('SamsungJ6_K', 'iPhoneXR_A', 'iPhoneXR_U', 'XiaomiRedmi4_B', 'S21Ultra_M', 'GooglePixel3A_L', 'SamsungS4_C', 'GooglePixel3A_V', 'OppoFindX3Neo_A', 'iPhone11_F')",10
+"('SamsungS6_H', 'S21Ultra_M', 'XiaomiRedmi5_J', 'XiaomiRedmi4_B', 'SamsungJ6_K', 'iPhone11_F', 'OppoFindX3Neo_A', 'GooglePixel3A_V', 'GooglePixel3A_L', 'iPhone12Pro_C', 'SamsungS4_C')",11
+"('iPhone12Pro_C', 'S21Ultra_M', 'GooglePixel3A_V', 'OppoFindX3Neo_A', 'iPhoneXR_U', 'SamsungM31_A', 'iPhoneXR_A', 'SamsungS4_C', 'SamsungJ6_K', 'HuaweiP20_G', 'XiaomiRedmi5_J', 'XiaomiRedmi4_B')",12
+"('SamsungJ6_K', 'OppoFindX3Neo_A', 'XiaomiRedmi5_J', 'S21Ultra_M', 'iPhone12Pro_C', 'GooglePixel3A_V', 'HuaweiP20_G', 'iPhoneXR_A', 'XiaomiRedmi4_B', 'SamsungS4_C', 'iPhoneXR_U', 'SamsungS6_H', 'iPhone11_F')",13
+"('iPhone11_F', 'SamsungS6_H', 'OppoFindX3Neo_A', 'XiaomiRedmi5_J', 'SamsungJ6_K', 'GooglePixel3A_L', 'iPhone12Pro_C', 'XiaomiRedmi4_B', 'SamsungM31_A', 'HuaweiP20_G', 'iPhoneXR_A', 'iPhoneXR_U', 'SamsungS4_C', 'S21Ultra_M')",14
+"('iPhoneXR_U', 'XiaomiRedmi4_B', 'iPhone11_F', 'SamsungJ6_K', 'OppoFindX3Neo_A', 'SamsungS4_C', 'SamsungM31_A', 'iPhoneXR_A', 'GooglePixel3A_V', 'HuaweiP20_G', 'SamsungS6_H', 'S21Ultra_M', 'iPhone12Pro_C', 'XiaomiRedmi5_J', 'GooglePixel3A_L')",15
+"('iPhoneXR_U', 'XiaomiRedmi4_B')",2
+"('SamsungM31_A', 'SamsungJ6_K', 'OppoFindX3Neo_A')",3
+"('HuaweiP20_G', 'SamsungS6_H', 'SamsungS4_C', 'GooglePixel3A_V')",4
+"('iPhone12Pro_C', 'GooglePixel3A_L', 'GooglePixel3A_V', 'HuaweiP20_G', 'XiaomiRedmi5_J')",5
+"('HuaweiP20_G', 'iPhone12Pro_C', 'XiaomiRedmi5_J', 'SamsungM31_A', 'XiaomiRedmi4_B', 'GooglePixel3A_V')",6
+"('SamsungM31_A', 'iPhoneXR_U', 'XiaomiRedmi4_B', 'SamsungS4_C', 'SamsungS6_H', 'S21Ultra_M', 'XiaomiRedmi5_J')",7
+"('iPhoneXR_A', 'GooglePixel3A_L', 'XiaomiRedmi5_J', 'iPhone11_F', 'GooglePixel3A_V', 'SamsungS6_H', 'S21Ultra_M', 'SamsungJ6_K')",8
+"('GooglePixel3A_V', 'S21Ultra_M', 'SamsungM31_A', 'HuaweiP20_G', 'SamsungS4_C', 'GooglePixel3A_L', 'iPhoneXR_A', 'iPhone11_F', 'SamsungS6_H')",9
+"('iPhoneXR_U', 'GooglePixel3A_V', 'XiaomiRedmi5_J', 'S21Ultra_M', 'iPhone12Pro_C', 'SamsungS6_H', 'OppoFindX3Neo_A', 'HuaweiP20_G', 'SamsungS4_C', 'iPhoneXR_A')",10
+"('SamsungS6_H', 'iPhone12Pro_C', 'iPhoneXR_U', 'GooglePixel3A_L', 'XiaomiRedmi4_B', 'SamsungJ6_K', 'SamsungS4_C', 'iPhone11_F', 'iPhoneXR_A', 'HuaweiP20_G', 'XiaomiRedmi5_J')",11
+"('OppoFindX3Neo_A', 'GooglePixel3A_L', 'iPhoneXR_U', 'XiaomiRedmi4_B', 'GooglePixel3A_V', 'XiaomiRedmi5_J', 'SamsungS4_C', 'iPhone11_F', 'SamsungM31_A', 'S21Ultra_M', 'SamsungS6_H', 'SamsungJ6_K')",12
+"('XiaomiRedmi5_J', 'SamsungS4_C', 'SamsungS6_H', 'HuaweiP20_G', 'S21Ultra_M', 'iPhone12Pro_C', 'SamsungM31_A', 'OppoFindX3Neo_A', 'iPhoneXR_U', 'SamsungJ6_K', 'GooglePixel3A_V', 'iPhone11_F', 'XiaomiRedmi4_B')",13
+"('XiaomiRedmi5_J', 'iPhoneXR_U', 'SamsungJ6_K', 'SamsungS4_C', 'SamsungS6_H', 'iPhone11_F', 'GooglePixel3A_V', 'OppoFindX3Neo_A', 'iPhoneXR_A', 'GooglePixel3A_L', 'HuaweiP20_G', 'iPhone12Pro_C', 'S21Ultra_M', 'XiaomiRedmi4_B')",14
+"('SamsungS6_H', 'HuaweiP20_G')",2
+"('iPhone11_F', 'XiaomiRedmi4_B', 'iPhoneXR_A')",3
+"('SamsungS4_C', 'OppoFindX3Neo_A', 'iPhone12Pro_C', 'iPhoneXR_U')",4
+"('iPhone12Pro_C', 'SamsungM31_A', 'OppoFindX3Neo_A', 'GooglePixel3A_V', 'iPhone11_F')",5
+"('XiaomiRedmi5_J', 'SamsungM31_A', 'SamsungJ6_K', 'iPhoneXR_A', 'iPhone11_F', 'SamsungS4_C')",6
+"('iPhoneXR_A', 'iPhone11_F', 'GooglePixel3A_L', 'XiaomiRedmi5_J', 'iPhoneXR_U', 'GooglePixel3A_V', 'iPhone12Pro_C')",7
+"('SamsungM31_A', 'iPhone11_F', 'SamsungJ6_K', 'GooglePixel3A_V', 'OppoFindX3Neo_A', 'XiaomiRedmi5_J', 'XiaomiRedmi4_B', 'SamsungS4_C')",8
+"('HuaweiP20_G', 'SamsungM31_A', 'iPhoneXR_U', 'S21Ultra_M', 'SamsungS4_C', 'OppoFindX3Neo_A', 'GooglePixel3A_V', 'XiaomiRedmi5_J', 'iPhoneXR_A')",9
+"('iPhoneXR_A', 'iPhoneXR_U', 'SamsungS6_H', 'GooglePixel3A_V', 'GooglePixel3A_L', 'iPhone12Pro_C', 'XiaomiRedmi5_J', 'iPhone11_F', 'SamsungM31_A', 'SamsungS4_C')",10
+"('HuaweiP20_G', 'SamsungM31_A', 'SamsungS4_C', 'iPhone12Pro_C', 'OppoFindX3Neo_A', 'iPhoneXR_A', 'GooglePixel3A_L', 'iPhoneXR_U', 'XiaomiRedmi5_J', 'SamsungS6_H', 'XiaomiRedmi4_B')",11
+"('S21Ultra_M', 'iPhone12Pro_C', 'iPhoneXR_A', 'SamsungS4_C', 'iPhoneXR_U', 'SamsungM31_A', 'SamsungS6_H', 'iPhone11_F', 'GooglePixel3A_V', 'XiaomiRedmi4_B', 'HuaweiP20_G', 'SamsungJ6_K')",12
+"('GooglePixel3A_L', 'XiaomiRedmi4_B', 'iPhone11_F', 'SamsungS6_H', 'iPhoneXR_U', 'SamsungJ6_K', 'XiaomiRedmi5_J', 'iPhone12Pro_C', 'S21Ultra_M', 'OppoFindX3Neo_A', 'SamsungM31_A', 'GooglePixel3A_V', 'SamsungS4_C')",13
+"('SamsungS6_H', 'GooglePixel3A_V', 'HuaweiP20_G', 'iPhoneXR_A', 'XiaomiRedmi4_B', 'iPhone11_F', 'OppoFindX3Neo_A', 'SamsungM31_A', 'GooglePixel3A_L', 'S21Ultra_M', 'XiaomiRedmi5_J', 'SamsungS4_C', 'iPhone12Pro_C', 'iPhoneXR_U')",14
+"('XiaomiRedmi5_J', 'iPhoneXR_U')",2
+"('S21Ultra_M', 'SamsungS4_C', 'SamsungJ6_K')",3
+"('iPhoneXR_U', 'iPhone12Pro_C', 'GooglePixel3A_V', 'GooglePixel3A_L')",4
+"('SamsungS4_C', 'XiaomiRedmi4_B', 'iPhoneXR_A', 'GooglePixel3A_V', 'iPhone11_F')",5
+"('SamsungS6_H', 'OppoFindX3Neo_A', 'iPhoneXR_U', 'S21Ultra_M', 'HuaweiP20_G', 'SamsungJ6_K')",6
+"('iPhoneXR_U', 'GooglePixel3A_V', 'OppoFindX3Neo_A', 'SamsungJ6_K', 'S21Ultra_M', 'HuaweiP20_G', 'SamsungS4_C')",7
+"('iPhoneXR_A', 'SamsungS6_H', 'iPhone11_F', 'S21Ultra_M', 'XiaomiRedmi4_B', 'iPhoneXR_U', 'GooglePixel3A_L', 'iPhone12Pro_C')",8
+"('iPhoneXR_U', 'XiaomiRedmi5_J', 'GooglePixel3A_V', 'HuaweiP20_G', 'S21Ultra_M', 'iPhone12Pro_C', 'XiaomiRedmi4_B', 'iPhone11_F', 'SamsungS4_C')",9
+"('S21Ultra_M', 'XiaomiRedmi4_B', 'OppoFindX3Neo_A', 'iPhone11_F', 'SamsungJ6_K', 'iPhone12Pro_C', 'iPhoneXR_U', 'SamsungS4_C', 'HuaweiP20_G', 'GooglePixel3A_L')",10
+"('GooglePixel3A_V', 'XiaomiRedmi5_J', 'SamsungM31_A', 'S21Ultra_M', 'GooglePixel3A_L', 'iPhoneXR_A', 'SamsungJ6_K', 'HuaweiP20_G', 'SamsungS6_H', 'SamsungS4_C', 'iPhoneXR_U')",11
+"('iPhone11_F', 'SamsungS4_C', 'SamsungS6_H', 'iPhoneXR_U', 'SamsungM31_A', 'iPhone12Pro_C', 'GooglePixel3A_L', 'GooglePixel3A_V', 'XiaomiRedmi4_B', 'SamsungJ6_K', 'iPhoneXR_A', 'XiaomiRedmi5_J')",12
+"('iPhoneXR_A', 'SamsungJ6_K', 'XiaomiRedmi4_B', 'SamsungS6_H', 'HuaweiP20_G', 'SamsungM31_A', 'XiaomiRedmi5_J', 'GooglePixel3A_L', 'iPhone11_F', 'iPhone12Pro_C', 'SamsungS4_C', 'iPhoneXR_U', 'S21Ultra_M')",13
+"('XiaomiRedmi5_J', 'OppoFindX3Neo_A', 'iPhoneXR_U', 'GooglePixel3A_V', 'SamsungJ6_K', 'SamsungS6_H', 'SamsungM31_A', 'HuaweiP20_G', 'iPhone11_F', 'XiaomiRedmi4_B', 'iPhone12Pro_C', 'iPhoneXR_A', 'GooglePixel3A_L', 'SamsungS4_C')",14
+"('OppoFindX3Neo_A', 'iPhoneXR_A')",2
+"('iPhoneXR_U', 'SamsungS4_C', 'SamsungJ6_K')",3
+"('S21Ultra_M', 'iPhoneXR_A', 'iPhone12Pro_C', 'OppoFindX3Neo_A')",4
+"('OppoFindX3Neo_A', 'GooglePixel3A_L', 'XiaomiRedmi5_J', 'iPhoneXR_U', 'SamsungM31_A')",5
+"('SamsungJ6_K', 'S21Ultra_M', 'GooglePixel3A_V', 'iPhoneXR_A', 'iPhoneXR_U', 'SamsungS6_H')",6
+"('SamsungM31_A', 'XiaomiRedmi5_J', 'SamsungS6_H', 'SamsungJ6_K', 'GooglePixel3A_L', 'GooglePixel3A_V', 'S21Ultra_M')",7
+"('HuaweiP20_G', 'XiaomiRedmi4_B', 'S21Ultra_M', 'GooglePixel3A_L', 'GooglePixel3A_V', 'iPhoneXR_A', 'SamsungM31_A', 'SamsungJ6_K')",8
+"('iPhone11_F', 'iPhone12Pro_C', 'SamsungJ6_K', 'SamsungM31_A', 'XiaomiRedmi4_B', 'SamsungS6_H', 'GooglePixel3A_V', 'iPhoneXR_U', 'S21Ultra_M')",9
+"('OppoFindX3Neo_A', 'S21Ultra_M', 'GooglePixel3A_L', 'iPhone11_F', 'SamsungM31_A', 'iPhone12Pro_C', 'SamsungS6_H', 'iPhoneXR_U', 'HuaweiP20_G', 'SamsungS4_C')",10
+"('GooglePixel3A_V', 'XiaomiRedmi5_J', 'SamsungJ6_K', 'XiaomiRedmi4_B', 'iPhone12Pro_C', 'iPhoneXR_U', 'S21Ultra_M', 'SamsungS6_H', 'iPhoneXR_A', 'OppoFindX3Neo_A', 'HuaweiP20_G')",11
+"('SamsungM31_A', 'iPhone11_F', 'S21Ultra_M', 'SamsungS6_H', 'HuaweiP20_G', 'OppoFindX3Neo_A', 'iPhoneXR_U', 'iPhoneXR_A', 'SamsungJ6_K', 'SamsungS4_C', 'GooglePixel3A_V', 'XiaomiRedmi5_J')",12
+"('SamsungM31_A', 'SamsungS6_H', 'GooglePixel3A_L', 'S21Ultra_M', 'iPhone11_F', 'OppoFindX3Neo_A', 'iPhoneXR_U', 'SamsungJ6_K', 'XiaomiRedmi4_B', 'iPhoneXR_A', 'SamsungS4_C', 'GooglePixel3A_V', 'HuaweiP20_G')",13
+"('SamsungS4_C', 'iPhone12Pro_C', 'iPhoneXR_A', 'iPhone11_F', 'HuaweiP20_G', 'GooglePixel3A_V', 'S21Ultra_M', 'SamsungJ6_K', 'GooglePixel3A_L', 'XiaomiRedmi4_B', 'XiaomiRedmi5_J', 'iPhoneXR_U', 'SamsungM31_A', 'SamsungS6_H')",14
+"('HuaweiP20_G', 'XiaomiRedmi5_J')",2
+"('iPhone11_F', 'GooglePixel3A_L', 'iPhone12Pro_C')",3
+"('iPhoneXR_A', 'iPhone12Pro_C', 'GooglePixel3A_V', 'SamsungM31_A')",4
+"('OppoFindX3Neo_A', 'HuaweiP20_G', 'iPhone12Pro_C', 'iPhone11_F', 'SamsungS6_H')",5
+"('SamsungS4_C', 'GooglePixel3A_L', 'SamsungS6_H', 'OppoFindX3Neo_A', 'GooglePixel3A_V', 'iPhoneXR_U')",6
+"('HuaweiP20_G', 'iPhone12Pro_C', 'SamsungS4_C', 'XiaomiRedmi5_J', 'SamsungS6_H', 'iPhone11_F', 'SamsungJ6_K')",7
+"('iPhone12Pro_C', 'SamsungS4_C', 'XiaomiRedmi4_B', 'iPhone11_F', 'SamsungS6_H', 'SamsungM31_A', 'XiaomiRedmi5_J', 'iPhoneXR_A')",8
+"('iPhoneXR_U', 'HuaweiP20_G', 'iPhone11_F', 'SamsungS4_C', 'iPhone12Pro_C', 'S21Ultra_M', 'OppoFindX3Neo_A', 'XiaomiRedmi4_B', 'SamsungM31_A')",9
+"('iPhone12Pro_C', 'SamsungS6_H', 'SamsungS4_C', 'XiaomiRedmi5_J', 'OppoFindX3Neo_A', 'S21Ultra_M', 'iPhoneXR_U', 'GooglePixel3A_V', 'SamsungJ6_K', 'HuaweiP20_G')",10
+"('OppoFindX3Neo_A', 'S21Ultra_M', 'SamsungJ6_K', 'iPhone12Pro_C', 'SamsungS6_H', 'GooglePixel3A_V', 'HuaweiP20_G', 'XiaomiRedmi5_J', 'XiaomiRedmi4_B', 'iPhoneXR_U', 'SamsungM31_A')",11
+"('iPhone11_F', 'OppoFindX3Neo_A', 'GooglePixel3A_V', 'SamsungM31_A', 'iPhoneXR_U', 'SamsungJ6_K', 'SamsungS6_H', 'SamsungS4_C', 'iPhoneXR_A', 'GooglePixel3A_L', 'iPhone12Pro_C', 'XiaomiRedmi5_J')",12
+"('SamsungM31_A', 'iPhone12Pro_C', 'XiaomiRedmi4_B', 'iPhone11_F', 'GooglePixel3A_L', 'iPhoneXR_A', 'iPhoneXR_U', 'SamsungS4_C', 'XiaomiRedmi5_J', 'HuaweiP20_G', 'SamsungJ6_K', 'OppoFindX3Neo_A', 'GooglePixel3A_V')",13
+"('iPhoneXR_A', 'SamsungS4_C')",2
+"('HuaweiP20_G', 'GooglePixel3A_L', 'S21Ultra_M')",3
+"('SamsungM31_A', 'SamsungJ6_K', 'OppoFindX3Neo_A', 'SamsungS4_C')",4
+"('SamsungJ6_K', 'iPhoneXR_U', 'iPhone12Pro_C', 'SamsungM31_A', 'S21Ultra_M')",5
+"('iPhone12Pro_C', 'iPhoneXR_A', 'SamsungM31_A', 'S21Ultra_M', 'GooglePixel3A_V', 'SamsungS4_C')",6
+"('GooglePixel3A_L', 'iPhone11_F', 'SamsungS6_H', 'iPhoneXR_U', 'SamsungJ6_K', 'OppoFindX3Neo_A', 'GooglePixel3A_V')",7
+"('iPhone12Pro_C', 'XiaomiRedmi5_J', 'GooglePixel3A_L', 'iPhoneXR_U', 'OppoFindX3Neo_A', 'iPhoneXR_A', 'iPhone11_F', 'HuaweiP20_G')",8
+"('OppoFindX3Neo_A', 'HuaweiP20_G', 'SamsungS4_C', 'XiaomiRedmi5_J', 'GooglePixel3A_V', 'XiaomiRedmi4_B', 'iPhoneXR_U', 'iPhone12Pro_C', 'SamsungJ6_K')",9
+"('S21Ultra_M', 'iPhone12Pro_C', 'SamsungJ6_K', 'HuaweiP20_G', 'XiaomiRedmi4_B', 'XiaomiRedmi5_J', 'GooglePixel3A_V', 'iPhone11_F', 'SamsungS4_C', 'GooglePixel3A_L')",10
+"('XiaomiRedmi4_B', 'GooglePixel3A_L', 'S21Ultra_M', 'iPhoneXR_U', 'XiaomiRedmi5_J', 'SamsungM31_A', 'iPhone11_F', 'OppoFindX3Neo_A', 'iPhoneXR_A', 'iPhone12Pro_C', 'GooglePixel3A_V')",11
+"('GooglePixel3A_V', 'iPhone11_F', 'iPhone12Pro_C', 'S21Ultra_M', 'XiaomiRedmi5_J', 'XiaomiRedmi4_B', 'iPhoneXR_U', 'GooglePixel3A_L', 'HuaweiP20_G', 'iPhoneXR_A', 'OppoFindX3Neo_A', 'SamsungM31_A')",12
+"('GooglePixel3A_V', 'SamsungS6_H', 'XiaomiRedmi5_J', 'SamsungJ6_K', 'GooglePixel3A_L', 'SamsungM31_A', 'SamsungS4_C', 'iPhoneXR_U', 'OppoFindX3Neo_A', 'HuaweiP20_G', 'XiaomiRedmi4_B', 'iPhoneXR_A', 'S21Ultra_M')",13
+"('iPhone12Pro_C', 'S21Ultra_M')",2
+"('SamsungJ6_K', 'S21Ultra_M', 'XiaomiRedmi4_B')",3
+"('iPhone11_F', 'S21Ultra_M', 'SamsungS6_H', 'GooglePixel3A_L')",4
+"('SamsungS6_H', 'OppoFindX3Neo_A', 'GooglePixel3A_V', 'iPhoneXR_A', 'SamsungM31_A')",5
+"('SamsungS4_C', 'SamsungS6_H', 'iPhone12Pro_C', 'OppoFindX3Neo_A', 'iPhoneXR_U', 'XiaomiRedmi5_J')",6
+"('SamsungS4_C', 'iPhone12Pro_C', 'GooglePixel3A_L', 'GooglePixel3A_V', 'S21Ultra_M', 'OppoFindX3Neo_A', 'SamsungM31_A')",7
+"('iPhone11_F', 'OppoFindX3Neo_A', 'S21Ultra_M', 'XiaomiRedmi5_J', 'XiaomiRedmi4_B', 'SamsungJ6_K', 'SamsungS4_C', 'iPhoneXR_U')",8
+"('SamsungM31_A', 'iPhone11_F', 'SamsungS6_H', 'SamsungJ6_K', 'iPhoneXR_A', 'SamsungS4_C', 'S21Ultra_M', 'iPhone12Pro_C', 'HuaweiP20_G')",9
+"('OppoFindX3Neo_A', 'GooglePixel3A_V', 'iPhone11_F', 'iPhoneXR_U', 'SamsungJ6_K', 'iPhoneXR_A', 'SamsungS6_H', 'HuaweiP20_G', 'XiaomiRedmi4_B', 'SamsungM31_A')",10
+"('iPhone11_F', 'SamsungS4_C', 'S21Ultra_M', 'iPhoneXR_U', 'XiaomiRedmi4_B', 'SamsungS6_H', 'iPhone12Pro_C', 'GooglePixel3A_V', 'SamsungM31_A', 'iPhoneXR_A', 'HuaweiP20_G')",11
+"('OppoFindX3Neo_A', 'SamsungJ6_K', 'HuaweiP20_G', 'S21Ultra_M', 'GooglePixel3A_L', 'SamsungS6_H', 'iPhone12Pro_C', 'iPhone11_F', 'XiaomiRedmi5_J', 'SamsungM31_A', 'SamsungS4_C', 'XiaomiRedmi4_B')",12
+"('iPhone11_F', 'HuaweiP20_G', 'XiaomiRedmi5_J', 'SamsungS4_C', 'GooglePixel3A_V', 'GooglePixel3A_L', 'S21Ultra_M', 'iPhoneXR_U', 'OppoFindX3Neo_A', 'SamsungM31_A', 'iPhoneXR_A', 'iPhone12Pro_C', 'XiaomiRedmi4_B')",13
+"('S21Ultra_M', 'iPhoneXR_A', 'SamsungS4_C', 'GooglePixel3A_V', 'iPhone11_F', 'SamsungM31_A', 'iPhone12Pro_C', 'XiaomiRedmi5_J', 'iPhoneXR_U', 'SamsungJ6_K', 'GooglePixel3A_L', 'SamsungS6_H', 'XiaomiRedmi4_B', 'OppoFindX3Neo_A')",14
+"('iPhone12Pro_C', 'OppoFindX3Neo_A')",2
+"('XiaomiRedmi5_J', 'OppoFindX3Neo_A', 'S21Ultra_M')",3
+"('XiaomiRedmi5_J', 'GooglePixel3A_V', 'HuaweiP20_G', 'OppoFindX3Neo_A')",4
+"('HuaweiP20_G', 'SamsungS6_H', 'GooglePixel3A_V', 'iPhoneXR_U', 'GooglePixel3A_L')",5
+"('SamsungM31_A', 'SamsungS4_C', 'iPhone11_F', 'XiaomiRedmi4_B', 'iPhoneXR_A', 'S21Ultra_M')",6
+"('GooglePixel3A_L', 'OppoFindX3Neo_A', 'S21Ultra_M', 'iPhone11_F', 'iPhone12Pro_C', 'SamsungS4_C', 'GooglePixel3A_V')",7
+"('XiaomiRedmi5_J', 'OppoFindX3Neo_A', 'S21Ultra_M', 'iPhoneXR_U', 'XiaomiRedmi4_B', 'iPhoneXR_A', 'SamsungM31_A', 'GooglePixel3A_V')",8
+"('SamsungS6_H', 'OppoFindX3Neo_A', 'XiaomiRedmi5_J', 'HuaweiP20_G', 'S21Ultra_M', 'iPhone11_F', 'GooglePixel3A_V', 'GooglePixel3A_L', 'iPhoneXR_U')",9
+"('iPhone12Pro_C', 'S21Ultra_M', 'XiaomiRedmi4_B', 'iPhone11_F', 'iPhoneXR_U', 'iPhoneXR_A', 'SamsungS4_C', 'GooglePixel3A_V', 'OppoFindX3Neo_A', 'SamsungJ6_K')",10
+"('S21Ultra_M', 'iPhone11_F', 'SamsungM31_A', 'iPhoneXR_U', 'SamsungS6_H', 'XiaomiRedmi5_J', 'SamsungS4_C', 'XiaomiRedmi4_B', 'GooglePixel3A_L', 'iPhoneXR_A', 'iPhone12Pro_C')",11
+"('iPhoneXR_U', 'SamsungM31_A', 'iPhone11_F', 'SamsungJ6_K', 'XiaomiRedmi4_B', 'S21Ultra_M', 'GooglePixel3A_L', 'GooglePixel3A_V', 'SamsungS4_C', 'iPhone12Pro_C', 'XiaomiRedmi5_J', 'SamsungS6_H')",12
+"('iPhone12Pro_C', 'XiaomiRedmi5_J', 'S21Ultra_M', 'XiaomiRedmi4_B', 'GooglePixel3A_L', 'HuaweiP20_G', 'SamsungS4_C', 'SamsungS6_H', 'iPhone11_F', 'GooglePixel3A_V', 'iPhoneXR_U', 'OppoFindX3Neo_A', 'SamsungM31_A')",13
+"('iPhoneXR_A', 'SamsungS4_C', 'GooglePixel3A_V', 'iPhoneXR_U', 'SamsungJ6_K', 'SamsungM31_A', 'XiaomiRedmi5_J', 'SamsungS6_H', 'iPhone11_F', 'GooglePixel3A_L', 'iPhone12Pro_C', 'HuaweiP20_G', 'S21Ultra_M', 'OppoFindX3Neo_A')",14
+"('SamsungM31_A', 'GooglePixel3A_L')",2
+"('OppoFindX3Neo_A', 'SamsungS6_H', 'SamsungJ6_K')",3
+"('XiaomiRedmi4_B', 'iPhone12Pro_C', 'SamsungS4_C', 'XiaomiRedmi5_J')",4
+"('SamsungS4_C', 'iPhone12Pro_C', 'GooglePixel3A_L', 'OppoFindX3Neo_A', 'S21Ultra_M')",5
+"('SamsungS6_H', 'HuaweiP20_G', 'S21Ultra_M', 'SamsungS4_C', 'iPhone11_F', 'GooglePixel3A_V')",6
+"('GooglePixel3A_L', 'XiaomiRedmi5_J', 'XiaomiRedmi4_B', 'OppoFindX3Neo_A', 'HuaweiP20_G', 'S21Ultra_M', 'SamsungS6_H')",7
+"('GooglePixel3A_L', 'SamsungS6_H', 'SamsungM31_A', 'GooglePixel3A_V', 'OppoFindX3Neo_A', 'iPhone11_F', 'SamsungS4_C', 'XiaomiRedmi4_B')",8
+"('XiaomiRedmi5_J', 'iPhoneXR_A', 'HuaweiP20_G', 'SamsungS4_C', 'S21Ultra_M', 'SamsungS6_H', 'iPhoneXR_U', 'SamsungM31_A', 'iPhone11_F')",9
+"('SamsungS4_C', 'iPhoneXR_U', 'OppoFindX3Neo_A', 'iPhoneXR_A', 'SamsungS6_H', 'HuaweiP20_G', 'SamsungM31_A', 'iPhone12Pro_C', 'S21Ultra_M', 'XiaomiRedmi5_J')",10
+"('iPhone11_F', 'HuaweiP20_G', 'GooglePixel3A_V', 'S21Ultra_M', 'SamsungM31_A', 'SamsungJ6_K', 'SamsungS6_H', 'iPhoneXR_U', 'XiaomiRedmi5_J', 'GooglePixel3A_L', 'iPhoneXR_A')",11
+"('iPhone11_F', 'S21Ultra_M', 'XiaomiRedmi4_B', 'iPhone12Pro_C', 'XiaomiRedmi5_J', 'SamsungS4_C', 'HuaweiP20_G', 'iPhoneXR_U', 'iPhoneXR_A', 'OppoFindX3Neo_A', 'SamsungS6_H', 'SamsungM31_A')",12
+"('SamsungS6_H', 'iPhone12Pro_C', 'iPhoneXR_U', 'SamsungM31_A', 'SamsungS4_C', 'SamsungJ6_K', 'OppoFindX3Neo_A', 'iPhoneXR_A', 'S21Ultra_M', 'XiaomiRedmi5_J', 'GooglePixel3A_V', 'XiaomiRedmi4_B', 'GooglePixel3A_L')",13
