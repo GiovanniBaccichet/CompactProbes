@@ -15,11 +15,19 @@ def filter_to_vector(filter_str: str) -> np.ndarray:
     return vector
 
 
+
 def process_filters_chunk(chunk, string_pair_df, weights) -> dict:
     filter_threshold_errors_dict = {}
     print("HERE OK")
+    
+    if chunk.empty:
+        print("Empty chunk error")
+        logger.log.critical("The input chunk is empty, cannot process filters.")
+        raise ValueError("The input chunk is empty, cannot process filters.")
+
     for _, row in chunk.iterrows():
         if chunk.empty:
+            print("Empty chunk error")
             logger.log.critical("The input chunk is empty, cannot process filters.")
             raise ValueError("The input chunk is empty, cannot process filters.")
 
@@ -29,12 +37,12 @@ def process_filters_chunk(chunk, string_pair_df, weights) -> dict:
             string_pair_df, thresholds, filter, weights
         )
         
-        print("ROTTO? VA BENEEE")
         # Merge errors
         for key, value in current_errors.items():
             if key in filter_threshold_errors_dict:
                 filter_threshold_errors_dict[key].extend(value)
             else:
                 filter_threshold_errors_dict[key] = value
-
+        
+        print("Row done", filter)
     return filter_threshold_errors_dict

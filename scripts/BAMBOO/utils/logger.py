@@ -41,9 +41,11 @@ def format_non_zero_part(filter_str: str) -> str:
 
     for char in non_zero_part:
         if char == "N":
-            non_zero_part = non_zero_part.replace("N", "🀆")
+            #non_zero_part = non_zero_part.replace("N", "🀆")
+            non_zero_part = non_zero_part.replace("N", "o")
         if char == "1":
-            non_zero_part = non_zero_part.replace("1", "🀫")
+            non_zero_part = non_zero_part.replace("1", "x")
+            #non_zero_part = non_zero_part.replace("1", "🀫")
 
     result = f"0[{zeros_before}] {non_zero_part} 0[{zeros_after}]"
     return result

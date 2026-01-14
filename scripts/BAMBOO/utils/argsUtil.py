@@ -26,7 +26,7 @@ def argsHandler(parser, console) -> None:
         )
         args.F = 16
 
-    if args.M > args.F & args.F != 0:
+    if args.M > args.F and args.F != 0:
         console.print(
             Panel(
                 "[!] The number of iterations should be less than the number of filters.",

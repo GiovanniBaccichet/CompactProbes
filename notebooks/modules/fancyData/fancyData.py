@@ -30,10 +30,10 @@ def load_and_concat_csv(binary_path):
     # Concatenate all DataFrames into one
     return pd.concat(dataframes.values(), ignore_index=True)
 
-def pad_columns(df, symbol='0', exclude=[]):
+def pad_columns(df, symbol='0', exclude=[],length=None):
     max_lengths = df.drop(columns=exclude).apply(lambda col: col.map(lambda x: len(str(x)))).max()
     for col in df.columns:
         if col not in exclude:
-            max_length = max_lengths[col]
+            max_length = length if length is not None else max_lengths[col]
             df[col] = df[col].fillna("").astype(str).str.ljust(max_length, symbol)
     return df

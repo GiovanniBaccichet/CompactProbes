@@ -5,7 +5,6 @@ import pandas as pd
 
 from . import filters
 
-
 def weak_classifier(
     string_pair_df: pd.DataFrame, threshold: int, filter_str: str
 ) -> list:

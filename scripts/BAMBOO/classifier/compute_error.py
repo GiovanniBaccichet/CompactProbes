@@ -5,7 +5,6 @@ import pandas as pd
 
 from . import classifier
 
-
 def get_confidence(errors: dict, best_filter: str, best_threshold: str) -> tuple:
     min_error = errors[(best_filter, best_threshold)]
 
